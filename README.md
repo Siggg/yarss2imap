@@ -12,3 +12,11 @@ We want to connect to IMAP server. Its parameters are to be stored in the config
     >>> import config
     >>> config.test
     'OK'
+
+We should be able to connect to an IMAP account with these settings.
+
+    >>> import imaplib
+    >>> M = imaplib.IMAP4(config.servername,config.port)
+    >>> status, message = M.login(config.username,config.password)
+    >>> status
+    'OK'
