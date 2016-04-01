@@ -20,3 +20,19 @@ We should be able to connect to an IMAP account with these settings.
     >>> status, message = M.login(config.username,config.password)
     >>> status
     'OK'
+    >>> status, message = M.select()
+    >>> status
+    'OK'
+    >>> status, message = M.close()
+    >>> status
+    'OK'
+    >>> status, message = M.logout()
+    >>> status
+    'BYE'
+
+And we can load an example feed from a local atom file.
+
+    >>> import feedparser
+    >>> stuff = feedparser.parse('akasig.atom')
+    >>> stuff.feed.title
+    'Jean, aka Sig(gg)'
