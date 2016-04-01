@@ -4,8 +4,13 @@ Distributed under the GNU Affero General Public License v.3.0 (or later). Copyri
 
 # Here it goes
 
-    >>> 'hello'
-    'hello'
+You can run the tests below with this command line :
+
+    python3 main.py
+
+or
+
+    python3 main.py -v
 
 We want to connect to IMAP server. Its parameters are to be stored in the config.py file. You should copy config.py.example to config.py and update its contents according to your environment.
 
