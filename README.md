@@ -6,3 +6,9 @@ Distributed under the GNU Affero General Public License v.3.0 (or later). Copyri
 
     >>> 'hello'
     'hello'
+
+We want to connect to IMAP server. Its parameters are to be stored in the config.py file. You should copy config.py.example to config.py and update its contents according to your environment.
+
+    >>> import config
+    >>> config.test
+    'OK'
