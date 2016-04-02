@@ -1,0 +1,1088 @@
+<?xml version="1.0" encoding="ISO-8859-15"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>Jean, aka Sig(gg)</title>
+	<atom:link href="http://www.akasig.org/feed/" rel="self" type="application/rss+xml" />
+	<link>http://www.akasig.org</link>
+	<description>Innover, Servir, Entreprendre !</description>
+	<lastBuildDate>Mon, 14 Mar 2016 08:32:00 +0000</lastBuildDate>
+	<language>fr</language>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<generator>http://wordpress.org/?v=4.3.3</generator>
+	<item>
+		<title>How to run Tesseract from web browsers with the help of emscripten</title>
+		<link>http://www.akasig.org/2016/03/14/how-to-run-tesseract-from-web-browsers-with-the-help-of-emscripten/</link>
+		<comments>http://www.akasig.org/2016/03/14/how-to-run-tesseract-from-web-browsers-with-the-help-of-emscripten/#comments</comments>
+		<pubDate>Mon, 14 Mar 2016 08:32:00 +0000</pubDate>
+		<dc:creator><![CDATA[Sig]]></dc:creator>
+				<category><![CDATA[Développement]]></category>
+		<category><![CDATA[Informatique]]></category>
+		<category><![CDATA[Innovation]]></category>
+		<category><![CDATA[Open source]]></category>
+		<category><![CDATA[written in English]]></category>
+
+		<guid isPermaLink="false">http://www.akasig.org/?p=1417</guid>
+		<description><![CDATA[Tesseract is a fairly accurate Optical Character Recognition (OCR) engine available as open source and free software. It&#8217;s written in C and C++ and usually runs from the command line or from a GUI. But I work on a web application where we have to let thousands of users run OCR tasks from their web [&#8230;]]]></description>
+				<content:encoded><![CDATA[<p><a href="https://github.com/tesseract-ocr/tesseract">Tesseract </a>is a fairly accurate Optical Character Recognition (OCR) engine available as open source and free software. It&#8217;s written in C and C++ and usually runs from the command line or from a GUI. But I work on <a href="https://github.com/cnedDI/kamel-leon">a web application</a> where we have to let thousands of users run OCR tasks from their web browsers without having to rely on server-side processing. So we asked our great <a href="https://www.fr.capgemini.com/">Capgemini </a>developers team to compile Tesseract so that it could be executed from Javascript code. This is were <a href="https://en.wikipedia.org/wiki/Emscripten">emscripten </a>is useful : it allows programs written in C to be compiled into Javascript. This compilation was tricky but they made it.</p>
+<p>Here is <a href="http://www.akasig.org/wp-content/uploads/2016/03/install_devTesseract_ENG_v1.0.pdf">their HOWTO documentation.</a></p>
+<p>I share it under the <a href="https://creativecommons.org/licenses/by-sa/3.0/">Create Commons CC-BY-SA 3.0 license</a> so feel free to improve it as you like.</p>
+]]></content:encoded>
+			<wfw:commentRss>http://www.akasig.org/2016/03/14/how-to-run-tesseract-from-web-browsers-with-the-help-of-emscripten/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>Un lab pour que l&#8217;État démocratise les blockchains ?</title>
+		<link>http://www.akasig.org/2016/02/17/un-lab-pour-que-letat-democratise-les-blockchains/</link>
+		<comments>http://www.akasig.org/2016/02/17/un-lab-pour-que-letat-democratise-les-blockchains/#comments</comments>
+		<pubDate>Wed, 17 Feb 2016 19:58:38 +0000</pubDate>
+		<dc:creator><![CDATA[Sig]]></dc:creator>
+				<category><![CDATA[Architecture]]></category>
+		<category><![CDATA[blockchain]]></category>
+		<category><![CDATA[Ecrit en français]]></category>
+		<category><![CDATA[Entreprises responsables]]></category>
+		<category><![CDATA[Humains en réseaux]]></category>
+		<category><![CDATA[Informatique]]></category>
+		<category><![CDATA[Innovation]]></category>
+		<category><![CDATA[Mécénat]]></category>
+		<category><![CDATA[My wishlist]]></category>
+
+		<guid isPermaLink="false">http://www.akasig.org/?p=1404</guid>
+		<description><![CDATA[La technologie des blockchains va transformer notre société de manière au moins aussi radicale que le Web. L&#8217;État a besoin d&#8217;un laboratoire de recherche et développement dédié aux blockchains : pour accélérer la transformation numérique des métiers du financement et de la sécurisation des politiques publiques, pour en démocratiser les applications d&#8217;intérêt général, de manière à [&#8230;]]]></description>
+				<content:encoded><![CDATA[<p>La technologie des <em>blockchains</em> va transformer notre société de manière au moins aussi radicale que le Web. L&#8217;État a besoin d&#8217;un laboratoire de recherche et développement dédié aux blockchains :</p>
+<ul>
+<li>pour accélérer la transformation numérique des métiers du financement et de la sécurisation des politiques publiques,</li>
+<li>pour en démocratiser les applications d&#8217;intérêt général, de manière à éviter que cette technologie ne renforce exclusivement des pouvoirs privés (notamment financiers),</li>
+<li>et pour renseigner nos gouvernants et hauts fonctionnaires sur les menaces et opportunités liés à cette technologie ainsi que ses capacités et limites réelles.</li>
+</ul>
+<p>La Caisse des Dépôts et Consignations a récemment annoncé <a href="http://www.lesechos.fr/finance-marches/banque-assurances/021561369934-la-cdc-reunit-la-finance-francaise-pour-plancher-sur-la-technologie-blockchain-1184918.php">la création d&#8217;un groupe de travail sur ce thème</a> (voir aussi <a href="https://bitcoin.fr/la-caisse-des-depots-explore-la-blockchain/">leur communiqué de presse</a>). Développer ce genre de laboratoire serait une aventure passionnante au service de laquelle je souhaiterais mettre <a href="https://www.linkedin.com/in/jean-millerat-8b1414?">mes compétences professionnelles</a>.</p>
+<h1 class="western">La <em>blockchain</em> bouleverse la régulation des relations sociales</h1>
+<p>La « blockchain » est la technologie sous-jacente aux cryptomonnaies telles que Bitcoin. Le caractère monétaire, plus ou moins intraçable et anonyme, de Bitcoin n&#8217;a qu&#8217;une importance anecdotique. Sa technologie sous-jacente est, elle, révolutionnaire.</p>
+<p>Une blockchain est un ordinateur mondial unique qui, au lieu d&#8217;être installé dans un immense hangar spécialisé, est installé de manière « distribuée » sur les millions d&#8217;ordinateurs et smartphones des utilisateurs qui l&#8217;exécutent tous ensemble, simultanément en se coordonnant les uns avec les autres de manière automatique via Internet. Comme tout ordinateur, un ordinateur « blockchain » exécute des applications logicielles. Les premières blockchains, telles que celle de Bitcoin, permettaient principalement d&#8217;exécuter des logiciels de transaction financière entre utilisateurs (« Alice transfère 1 bitcoin à Bob »). Mais les blockchains plus récentes, comme celle d&#8217;Ethereum, permettent d&#8217;exécuter des applications multi-utilisateurs aussi complètes que celles auxquelles nous ont habitués nos ordinateurs et smartphones. A la différence d&#8217;un ordinateur ou d&#8217;un smartphone habituel, une blockchain, en pratique, ne peut pas être éteinte ni piratée : il ne s&#8217;agit pas d&#8217;une infrastructure informatique entre les mains d&#8217;une personne, d&#8217;un groupe d&#8217;individus ou d&#8217;un opérateur mais d&#8217;un ordinateur virtuel unique ultra-sécurisé car s&#8217;exécutant simultanément sur des millions d&#8217;ordinateurs. Si quelques-uns des ordinateurs participants viennent à « tricher » ou défaillir, ils sont automatiquement détectés par les autres et leurs déclarations sont rejetées.</p>
+<p>Étant donné qu&#8217;une blockchain est un ordinateur multi-utilisateurs, on qualifie ses logiciels de « contrats intelligents » (« smart contracts ») ou contrats algorithmiques auxquels souscrivent ou non les utilisateurs qui le souhaitent. Un utilisateur de blockchain est un souscripteur de contrat algorithmique. Contrairement à un contrat traditionnel, les contrats algorithmiques apportent une garantie mathématique d&#8217;exécution : étant donné qu&#8217;il s&#8217;agit de logiciels sur un ordinateur que nul ne peut éteindre ni compromettre, ces contrats seront exécutés tels qu&#8217;ils ont été écrits (avec leurs éventuels bugs de conception), sans échappatoire possible.</p>
+<p>La blockchain est donc une technologie sociale qui permet de conclure et d&#8217;exécuter des contrats entre personnes dans des conditions de sécurité telles qu&#8217;elles rendent inutile de faire confiance aux contractants ou à un tiers de confiance, à un magistrat ou un arbitre, pour en obtenir l&#8217;exécution prévue. On parle de technologies « sans confiance », c&#8217;est-à-dire qui permettent de s&#8217;exonérer de tout tiers de confiance.</p>
+<p>En résumé, la technologie des blockchains, sous-jacente à Bitcoin et aux autres cryptomonnaies, redéfinit la manière dont se régulent certaines relations sociales. La blockchain rend possible des relations contractuelles (y compris des contrats de propriété) tellement sûres qu&#8217;elles rendent inutiles les tiers de confiance et les arbitrages humains habituellement requis pour la garantie d&#8217;exécution d&#8217;un contrat. La décision humaine intervient lors de la conception du contrat et lors de sa souscription. Mais elle n&#8217;intervient plus lors de son exécution.</p>
+<h1 class="western">L&#8217;histoire se répète, c&#8217;est le moment de s&#8217;y mettre</h1>
+<p>A titre prospectif, voici un scénario d&#8217;évolution des blockchains qui suit la même logique historique que celle de la démocratisation de l&#8217;Internet et du Web. D&#8217;ici 2018, la technologie des blockchains, jusqu&#8217;ici réservée aux spécialistes des cryptomonnaies et autres cryptanarchistes gagnera en maturité au point d&#8217;être utilisable facilement par l&#8217;ensemble de la population. A partir de 2018, la blockchain connaîtra une démocratisation de même envergure que celle du Web dans la deuxième moitié des années 1990.</p>
+<table width="100%" cellspacing="0" cellpadding="4">
+<colgroup>
+<col width="128*" />
+<col width="128*" /> </colgroup>
+<tbody>
+<tr valign="top">
+<td width="50%">
+<p align="center"><b>Histoire du Web</b></p>
+</td>
+<td width="50%">
+<p align="center"><b>Histoire des blockchains</b></p>
+</td>
+</tr>
+<tr valign="top">
+<td width="50%"><strong>1963</strong> = idée d&#8217;un réseau global d&#8217;ordinateurs</td>
+<td width="50%"><strong>1988</strong> = concept de cryptomonnaie (David Chaum)</td>
+</tr>
+<tr valign="top">
+<td width="50%"><strong>1973</strong> = définition de TCP/IP</td>
+<td width="50%"><strong>1998</strong> = définition des premières cryptomonnaies distribuées (b-money et bit-gold)</td>
+</tr>
+<tr valign="top">
+<td width="50%"><strong>1983</strong> = adoption de TCP/IP et du concept d&#8217;Internet, premier serveur DNS</td>
+<td width="50%"><strong>2008</strong> = invention du bitcoin</td>
+</tr>
+<tr valign="top">
+<td width="50%"><strong>1990</strong> = invention du World Wide Web</td>
+<td width="50%"><strong>2015</strong> = invention de Ethereum, la première blockchain à langage de programmation complet</td>
+</tr>
+<tr valign="top">
+<td width="50%"><strong>1993</strong> = début de la démocratisation du Web avec le premier navigateur Web multimédia « NCSA MOSAIC »</td>
+<td width="50%"><strong>2018</strong> = début de la démocratisation des blockchains avec les premières applications mobiles d&#8217;utilisation de de contrats algorithmiques.</td>
+</tr>
+</tbody>
+</table>
+<h1 class="western">Les applications de la blockchain</h1>
+<p>Les blockchains vont être appliquées dans tous les domaines où la sécurité économique est importante et où les tiers de confiance sont traditionnellement présents. Elles redéfiniront le rôle des intermédiaires financiers et contractuels (phénomène de désintermédiation).</p>
+<p>Poursuivons notre exercice de prospective :</p>
+<p>Les <b>applications immédiates, </b><b>d&#8217;ici 2 à 5 ans,</b> sont les suivantes :</p>
+<ul>
+<li>blockchains bancaires privées pour la sécurisation des transactions financières (cf. le laboratoire <a href="http://blockchainfrance.net/2015/09/23/banques-blockchain-finance/">créé en 2015 par les banques Barclays, Goldman Sachs, BBVA, UBS, Credit Suisse, JP Morgan, Royal Bank of Scotland, Commonwealth Bank of Australia, et de State Street</a>)</li>
+<li>sécurisation des registres, certificats et actes administratifs : gestion du cadastre (cf. <a href="http://geopolis.francetvinfo.fr/le-blockchain-la-technologie-qui-pourrait-donner-vie-a-des-cadastres-virtuels-95941">les intentions exprimées au Ghana et au Honduras</a>), transformation numérique des métiers notariaux, sécurisation des actes juridiques, sécurisation et ouverture des registres du commerce, des listes d&#8217;organismes agréés, des diplômes et certificats de compétences, etc.</li>
+<li>sécurisation et automatisation des transactions administratives et des versements associés (Chèque Emploi Service Universel, allocations familiales, déclarations administratives, déclaration et collecte des impôts et taxes, &#8230;)</li>
+<li>identification partielle des migrants et réfugiés, renforcement de la coopération policière européenne, lutte contre l&#8217;évasion fiscale, &#8230;</li>
+<li>émergence de la propriété collaborative (« smart property ») dans la continuité des AirBNB et autres Uber.</li>
+</ul>
+<p>Les <b>applications à moyen terme, </b><b>d&#8217;ici </b><b>5 à 10 ans,</b> pourraient être les suivantes  :</p>
+<ul>
+<li>démocratisation des micro-paiements et des portes-monnaies individuels sur blockchains, « explosion » du nombre de contrats et développement des nouveaux usages autour de la consommation collaborative, accélération des phénomènes « d&#8217;ubérisation » ; de même que chaque nouvel internaute avait sa « page Web » ou son « mur Facebook », chaque internaute publiera sur une blockchain sa collection de souscriptions et contrats et y gérera les transactions de sa vie quotidienne, en plus ou moins grande conformité avec les législations locales,</li>
+<li>développement à grande échelle de la propriété collaborative (exemple : je possède cet objet de telle heure à telle heure et uniquement si telles conditions sont remplies, et tu en es propriétaire le reste du temps), nouvelles formes de contrats de prestations et de travail collaboratif (par exemple résolution de problèmes algorithmiques contre paiement, ou participation à des oracles collaboratifs organisés autour du principe du Point de Schelling),</li>
+<li>nouvelles formes de collecte de dons et impôts volontaires, nouveaux modes de redistribution des richesses (cf. <a href="http://www.akasig.org/2015/08/09/smart-contracts-crypto-monnaie-et-revenu-libre-dexistence/">revenu de base, smart basic income</a>), démocratisation des monnaies alternatives spécialisées,</li>
+<li>nouveaux instruments pour le financement des politiques publiques (exemple : <a href="http://www.akasig.org/2016/01/25/des-social-impact-bonds-sur-une-blockchain/">smart Social Impact Bonds</a>)</li>
+<li>sécurisation de l&#8217;<i>open data</i> pour en faire une infrastructure informationnelle publique utilisable pour les transactions de la vie courante,</li>
+<li>développement et fiabilisation des marchés de prédiction semi-automatisés par appel à une foule d&#8217;internautes livrant des prédictions (crowd-sourcing) et aux capacités croissantes de prédiction et d&#8217;apprentissage automatisé (machine learning)</li>
+<li>émergence des premières D.A.O. (Distributed Autonomous Organizations), organisations gouvernées sans intervention humaine : banques sans banquiers, assurances sans assureurs, mutuelles sans administrateurs, sociétés privés sans gérants ni conseils, associations sans conseil d&#8217;administration, partis politiques sans bureaux politiques, complexes logiciels et intelligences artificielles restreintes.</li>
+</ul>
+<p>Les <b>applications à long terme, d&#8217;ici 10 à 20 ans,</b> donneront toute sa dimension à la révolution blockchain. En particulier, la société sera marquée par de nouveaux sentiments identitaires d&#8217;appartenance à des communautés fondées sur des contrats algorithmiques. Après la tribu ou la famille, puis la nation et la société privée, les contrats algorithmiques créeront une surcouche de régulation sociale au travers de communautés contractuelles transnationales, concept exploré par plusieurs auteurs de science-fiction de style « cyberpunk » ou « steampunk » comme par exemple les « phyles » de Neal Stephenson (L&#8217;Âge de Diamant).</p>
+<h1 class="western">Impact sur les acteurs économiques</h1>
+<p>A court terme, la technologie des blockchain annule une part croissante de la valeur ajoutée de tout ou partie des tiers de confiance, en les rendant inutiles et obsolètes. Le phénomène est à rapprocher de la manière dont le Web a annulé une partie de la valeur ajoutée des distributeurs de contenus culturels, ce qui avait entraîné la crise de l&#8217;industrie du disque et de la presse. Les blockchains transforment la confiance contractuelle en une matière première faiblement différenciatrice, dont tous les opérateurs économiques peuvent disposer à faible coût, sans pouvoir y construire un avantage concurrentiel durable.</p>
+<p>En banalisant (<i>commoditization</i>) la technologie des opérateurs et tiers de confiance, la blockchain détruit les rentes des « intermédiaires » de confiance et déplace les gisements de valeur ajoutée vers une « couche technologique » plus élaborée : celle des applications et usages des blockchains. Ce faisant, elle crée un phénomène d&#8217; « innovation de rupture » qui érode les parts de marché des opérateurs traditionnels « de confiance » (banques, assurances, mutuelles, professions réglementées de la confiance, voire administrations) et les acculera progressivement vers des niches à plus forte valeur ajoutée mais à plus faible volume, jusqu&#8217;à les faire disparaître. Le périmètre exact des industries concernées reste à préciser.</p>
+<p>Les innovation de rupture permises par la blockchain permettent à de nouveaux acteurs de concurrencer ces opérateurs traditionnels sur leurs segments « bas de gamme » qu&#8217;ils leur délaisseront progressivement au fur et à mesure que les applications des blockchains gagneront en maturité, en simplicité, en praticité et donc se démocratiseront. Les nouveaux acteurs des blockchains proposeront des offres « sans tiers de confiance » tellement simples, pratiques et peu coûteuses qu&#8217;ils y donneront accès pour des segments de clientèle très nombreux, très volumineux et jusqu&#8217;ici exclus du marché des applications traditionnelles de la confiance contractuelle.</p>
+<p>On devrait, par exemple, voire émerger des offres de services bancaires sans banques, de crédit sans organisme de crédit, d&#8217;assurance sans assurance, de mutuelles sans mutuelles, de notaires sans notaires, d&#8217;huissiers sans huissiers, pour des contrats simples, pratiques et peu coûteux jusqu&#8217;ici hors de portée des particuliers. On peut d&#8217;ailleurs constater les prémisses de ce phénomène à travers l&#8217;émergence des prêts entre particuliers.</p>
+<p>Des excès de la financiarisation ou de l&#8217;ubérisation de l&#8217;économie sont à craindre. Mais des innovations sociales solidaires de très grande ampleur sont également à espérer.</p>
+<p>A plus long terme, l&#8217;administration et les services publics sont directement concernés. En effet, l&#8217;administration publique a aussi une raison d&#8217;être qui est de nature économique : celle d&#8217;offrir aux citoyens des services publics dans le respect de l&#8217;intérêt général et avec un haut niveau de confiance, celui inspiré par la puissance de l&#8217;État et sa capacité régalienne de violence (police, justice, prison, armée). Supposons que les citoyens puissent commencer à obtenir des services similaires en souscrivant à des contrats algorithmiques et que les preuves mathématiques d&#8217;exécution de ces contrats, offertes par leur nature algorithmique, leur inspirent davantage confiance que l&#8217;État (qui est plus fiable : les mathématiques ou les États ?). Alors ils se tourneront progressivement vers ce nouveau mode de régulation de leurs relations, meilleur garant de l&#8217;intérêt général que l&#8217;État. Leur qualité de souscripteur pourrait prendre plus d&#8217;importance à leurs yeux que leur qualité de citoyen. Jusqu&#8217;à il y a peu, l&#8217;État exerçait une sorte de monopole sur la défense de l&#8217;intérêt général, monopole déjà largement érodé par le développement du secteur associatif et celui, plus limité, du mécénat privé. Mais rien n&#8217;empêchera désormais un collectif de personnes d&#8217;écrire un contrat algorithmique défendant la vision de l&#8217;intérêt général à laquelle ils souscrivent (leur politique), d&#8217;y souscrire et d&#8217;y trouver un substitut pratique aux services publics avec toute la confiance mathématique conférée par la nature algorithmique de ces contrats.</p>
+<p>Et si les citoyens, plutôt que d&#8217;espérer changer le monde par le débat démocratique et le vote, se mettaient à vouloir changer de monde en souscrivant à des contrats collectifs reflétant leurs valeurs et leur vision politique ? Et si l&#8217;État, prenant les devants, proposait des applications blockchain et des contrats algorithmiques incarnant les valeurs et principes de notre démocratie et promouvant l&#8217;intérêt général, tout en laissant au citoyen la possibilité d&#8217;y exprimer ses besoins et aspirations individuelles ? Et si on mettait les blockchains au service de l&#8217;État, de l&#8217;intérêt général et de l&#8217;innovation sociale ?</p>
+]]></content:encoded>
+			<wfw:commentRss>http://www.akasig.org/2016/02/17/un-lab-pour-que-letat-democratise-les-blockchains/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>Des Social Impact Bonds sur une blockchain</title>
+		<link>http://www.akasig.org/2016/01/25/des-social-impact-bonds-sur-une-blockchain/</link>
+		<comments>http://www.akasig.org/2016/01/25/des-social-impact-bonds-sur-une-blockchain/#comments</comments>
+		<pubDate>Mon, 25 Jan 2016 14:41:54 +0000</pubDate>
+		<dc:creator><![CDATA[Sig]]></dc:creator>
+				<category><![CDATA[blockchain]]></category>
+		<category><![CDATA[Ecrit en français]]></category>
+		<category><![CDATA[Entreprises responsables]]></category>
+		<category><![CDATA[Informatique]]></category>
+		<category><![CDATA[Innovation]]></category>
+
+		<guid isPermaLink="false">http://www.akasig.org/?p=1397</guid>
+		<description><![CDATA[La banque suisse UBS vient de faire don à une ONG britannique du code source pour un logiciel qui permettrait de financer la recherche médicale contre le SIDA. J&#8217;ai lu en diagonale alors n&#8217;hésitez pas à corriger/compléter/commenter mon propos vis les commentaires ci-dessous&#8230; Ce que je comprends : l&#8217;originalité de ce logiciel financier, c&#8217;est de [&#8230;]]]></description>
+				<content:encoded><![CDATA[<p><a href="http://www.econotimes.com/UBS-Makes-Pro-Bono-Contribution-of-Blockchain-Code-To-HIV-Research-Initiative-147988">La banque suisse UBS vient de faire don à une ONG britannique du code source pour un logiciel qui permettrait de financer la recherche médicale contre le SIDA.</a> J&#8217;ai lu en diagonale alors n&#8217;hésitez pas à corriger/compléter/commenter mon propos vis les commentaires ci-dessous&#8230; Ce que je comprends : l&#8217;originalité de ce logiciel financier, c&#8217;est de mettre l&#8217;intérêt privé (une banque suisse&#8230;) au service d&#8217;une innovation d&#8217;intérêt général (trouver un médicament pour guérir le sida). Pour ce faire, le logiciel permet d&#8217;automatiser des transactions financières appelées « Social Impact Bonds », une forme d&#8217;« obligation » privée dédiée au financement de l&#8217;impact social. L&#8217;intérêt principal de ce logiciel est de sécuriser des collectes de dons provenant de collectivités publiques ou de particuliers (les souscripteurs de ce contrat d&#8217;obligation) ainsi que l&#8217;intervention des banques.</p>
+<p>Le principe de fonctionnement ressemblerait à ceci. Les investissements privés des banques servent à payer les laboratoires de recherche sélectionnés pour l&#8217;exécution de ce contrat. Si jamais un médicament est trouvé dans les 25 ans, alors les dons des particuliers ou des Etats vont rembourser les investissements des banques (avec intérêts). Si jamais aucun médicament n&#8217;est trouvé par les chercheurs, alors les dons des particuliers et des Etats leurs sont remboursés (sans intérêts) pour qu&#8217;ils puissent financer d&#8217;autres projets alors que les banques auront perdu leur mise de départ.</p>
+<p>Ce logiciel apporte la sécurité financière fournie par la technologie « blockchain » « Ethereum ». Une « blockchain » est un ordinateur mondial unique, coordonné par des millions de PC ou téléphones. Une blockchain permet, entre autres, de générer une cryptomonnaie telle que bitcoin (bitcoin utilise sa propre blockchain). Dans le cas de la blockchain Ethereum, elle permet de sécuriser des contrats financiers complexes tels que les Social Impact Bonds. Ce logiciel est donc un &#8220;smart contract&#8221;, c&#8217;est-à-dire un logiciel pour blockchain. D&#8217;où son nom de &#8220;Smart Impact Bond&#8221;.</p>
+<p>Pour en savoir plus :</p>
+<p>Cet article en français explique assez bien le concept de Social Impact Bond et les freins à son adoption en France mais n&#8217;aborde pas les apports d&#8217;une sécurisation des SIB par une blockchain :</p>
+<p><a href="http://www.fiscalonline.com/Les-Social-impact-bond-sont-ils,7342.html">http://www.fiscalonline.com/Les-Social-impact-bond-sont-ils,7342.html</a></p>
+<p>Un collectif dénonce les SIB comme une menace d&#8217;excès de financiarisation de la société :</p>
+<p><a href="http://www.politis.fr/blogs/2015/04/gare-aux-social-impact-bonds-30865/">http://www.politis.fr/blogs/2015/04/gare-aux-social-impact-bonds-30865/</a></p>
+<p>La presse en vante au contraire certains mérites :</p>
+<p><a href="http://www.slate.fr/story/94897/finance-sociale">http://www.slate.fr/story/94897/finance-sociale</a></p>
+<p><a href="http://www.levif.be/actualite/belgique/social-impact-bond-etat-des-lieux/article-opinion-413209.html">http://www.levif.be/actualite/belgique/social-impact-bond-etat-des-lieux/article-opinion-413209.html</a></p>
+<p>Hugues Sibille recommanderait d&#8217;expérimenter les SIB en France (je n&#8217;ai pas lu le rapport) :</p>
+<p><a href="http://www.economie.gouv.fr/innover-financierement-pour-innover-socialement">http://www.economie.gouv.fr/innover-financierement-pour-innover-socialement</a></p>
+]]></content:encoded>
+			<wfw:commentRss>http://www.akasig.org/2016/01/25/des-social-impact-bonds-sur-une-blockchain/feed/</wfw:commentRss>
+		<slash:comments>1</slash:comments>
+		</item>
+		<item>
+		<title>Le terrorisme n&#8217;est pas une priorité.</title>
+		<link>http://www.akasig.org/2015/11/16/le-terrorisme-nest-pas-une-priorite/</link>
+		<comments>http://www.akasig.org/2015/11/16/le-terrorisme-nest-pas-une-priorite/#comments</comments>
+		<pubDate>Mon, 16 Nov 2015 09:07:41 +0000</pubDate>
+		<dc:creator><![CDATA[Sig]]></dc:creator>
+				<category><![CDATA[Affaires non classees]]></category>
+		<category><![CDATA[Ecrit en français]]></category>
+		<category><![CDATA[Humains en réseaux]]></category>
+
+		<guid isPermaLink="false">http://www.akasig.org/?p=1380</guid>
+		<description><![CDATA[[Edit : il semble nécessaire de préciser que je n&#8217;expose ci-dessous qu&#8217;une opinion personnelle, qui n&#8217;engage que moi, et aucunement mon employeur.] Vendredi matin, avant les attentats, j&#8217;entendais à la radio que la préoccupation majeure des français reste le chômage. Ça se comprend. Ça touche presque tout le monde à un moment ou un autre [&#8230;]]]></description>
+				<content:encoded><![CDATA[<p>[<em>Edit : il semble nécessaire de préciser que je n&#8217;expose ci-dessous qu&#8217;une opinion personnelle, qui n&#8217;engage que moi, et aucunement mon employeur.</em>]</p>
+<p>Vendredi matin, avant les attentats, j&#8217;entendais à la radio que la préoccupation majeure des français reste le chômage. Ça se comprend. Ça touche presque tout le monde à un moment ou un autre de sa vie professionnelle. Et ça touche actuellement plus de 1 actif sur 10. Chose plus surprenante : la 2ème préoccupation des français serait le terrorisme. Et le soir-même, boum, 130 morts dans les attentats parisiens. Et on ne parle plus que de ça à la radio, au boulot&#8230; même moi sur mon blog. Et un général d&#8217;annoncer dans les médias que les français vont devoir renoncer à des libertés individuelles. Ça ne doit pas être un copain de Benjamin Franklin, celui-là.</p>
+<div style="width: 310px" class="wp-caption alignnone"><img class="" src="https://allenwestrepublic.files.wordpress.com/2013/06/rhu.png?w=300" alt="" width="300" height="164" /><p class="wp-caption-text">&#8221; Ceux qui sont prêts à abandonner une liberté essentielle pour obtenir une petite sécurité temporaire ne méritent ni l&#8217;une ni l&#8217;autre. &#8221; Benjamin Franklin</p></div>
+<p>Et voila qu&#8217;on se retrouve à vouloir réagir par sympathie ou par peur mais à vouloir montrer aux terroristes qu&#8217;on n&#8217;a pas peur d&#8217;eux. Nous sommes un peu dans la même situation que ces enfants qui disent &#8220;même pas mal&#8221; en pleurant parce que, oui, ça fait mal&#8230;.</p>
+<p>Ceci dit, on en fait trop. Je ne parle pas de la sympathie pour les proches des victimes bien sûr. Ni du boulot exceptionnel de la police. Ni même de l&#8217;état d&#8217;urgence qui permet à l&#8217;administration d&#8217;ignorer la justice. Mais l&#8217;attention que l&#8217;on porte aux terroristes est une attention détournée des vraies priorités, comme lorsqu&#8217;un avion se fait détourner.</p>
+<p>Quelques images pour s&#8217;en convaincre (basées sur des statistiques américaines, mais pas très différentes de la France, en ce qui nous intéresse) :</p>
+<div style="width: 1050px" class="wp-caption alignnone"><img class="" src="http://www.acting-man.com/blog/media/2015/06/terror-risk-1.jpg" alt="" width="1040" height="1072" /><p class="wp-caption-text">Le risque du terrorisme, comparé à d&#8217;autres risques.</p></div>
+<div style="width: 1210px" class="wp-caption alignnone"><a href="http://waronirrationalfear.com//wp-content/uploads/2013/10/graph_1_large.png"><img src="http://waronirrationalfear.com//wp-content/uploads/2013/10/graph_1_large.png" alt="" width="1200" height="544" /></a><p class="wp-caption-text">Causes de mort aux USA au cours des 5 dernières années : 8 fois plus de chances de mourir foudroyé que de mourir dans une attaque terroriste, et 87 fois plus de chances de mourir noyé dans son bain que dans une attaque terroriste.</p></div>
+<p>Alors bien entendu, comme les terroristes sont très forts en détournement (encore plus forts que Mozinor), voila l&#8217;effet que cela produit sur l&#8217;attention que les médias portent aux menaces réelles qui portent sur nos vies :</p>
+<div style="width: 1033px" class="wp-caption alignnone"><a href="http://thesocietypages.org/socimages/files/2009/09/susanna_hertrich_reality-1023x708.jpg"><img src="http://thesocietypages.org/socimages/files/2009/09/susanna_hertrich_reality-1023x708.jpg" alt="L'attention des médias au risque terroriste est totalement disproportionnée par rapport au risque réel de mourir dans une attaque terroriste." width="1023" height="708" /></a><p class="wp-caption-text">En haut, l&#8217;attention portée par les médias. En bas, l&#8217;importance réelle du risque. Les médias (et leur public) portent une attention disproportionnée au risque d&#8217;attaque terroriste et aux crashs aériens.</p></div>
+<p>Bien entendu, ça ne s&#8217;arrête pas là car qui dit &#8220;attention médiatique&#8221; dit &#8220;détournement d&#8217;argent public&#8221;, comme l&#8217;indiquent les budgets américains :</p>
+<div style="width: 1210px" class="wp-caption alignnone"><a href="http://waronirrationalfear.com//wp-content/uploads/2013/10/graph_3_large.png"><img src="http://waronirrationalfear.com//wp-content/uploads/2013/10/graph_3_large.png" alt="" width="1200" height="734" /></a><p class="wp-caption-text">Les USA dépensent 80 dollar par victime de maladie cardiaque pour lutter contre ces maladies, et 400 millions de dollars par victime du terrorisme pour lutter contre le terrorisme.</p></div>
+<p>Alors que faire ? écrire un post sur le terrorisme ? Mouais&#8230;</p>
+<p>Éviter d&#8217;aller à Paris de peur d&#8217;y croiser une balle de kalachnikov ? Certainement pas.</p>
+<div style="width: 327px" class="wp-caption alignnone"><img class="" src="http://www.explainxkcd.com/wiki/images/1/11/increased_risk.png" alt="" width="317" height="484" /><p class="wp-caption-text">Un risque très faible qui augmente de 50% reste un risque très faible.</p></div>
+<p>Et pourtant, ne rien faire serait tout aussi stupide, non ?</p>
+<div style="width: 553px" class="wp-caption alignnone"><img class="" src="https://imgs.xkcd.com/comics/conditional_risk.png" alt="" width="543" height="460" /><p class="wp-caption-text">Ce n&#8217;est pas parce qu&#8217;un risque est faible qu&#8217;il faut l&#8217;ignorer.</p></div>
+<p>Et si on commençait par arrêter de financer cette secte salafiste en cessant d&#8217;acheter du pétrole saoudien ? Et s&#8217;il fallait multiplier les salons de l&#8217;éducation <a href="http://www.salon-education.com/index.php/2015/05/20/report-de-ledition-2015-du-salon-europeen-de-leducation/">plutôt que de le reporter</a> ?</p>
+]]></content:encoded>
+			<wfw:commentRss>http://www.akasig.org/2015/11/16/le-terrorisme-nest-pas-une-priorite/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>Apprendre à coder, quelles solutions pour mes enfants ?</title>
+		<link>http://www.akasig.org/2015/11/02/apprendre-a-coder-quelles-solutions-pour-mes-enfants/</link>
+		<comments>http://www.akasig.org/2015/11/02/apprendre-a-coder-quelles-solutions-pour-mes-enfants/#comments</comments>
+		<pubDate>Mon, 02 Nov 2015 15:56:43 +0000</pubDate>
+		<dc:creator><![CDATA[Sig]]></dc:creator>
+				<category><![CDATA[Affaires non classees]]></category>
+		<category><![CDATA[Développement]]></category>
+		<category><![CDATA[Ecrit en français]]></category>
+		<category><![CDATA[Informatique]]></category>
+		<category><![CDATA[My wishlist]]></category>
+		<category><![CDATA[Open source]]></category>
+
+		<guid isPermaLink="false">http://www.akasig.org/?p=1367</guid>
+		<description><![CDATA[Mes enfants ont 8 ans et 11 ans, garçons et filles (oui, j&#8217;ai des multiples&#8230;). Je tiens à ce qu&#8217;ils apprennent la culture et les bases du code informatique car je crois que le code modèle en partie la société et que ceux qui s&#8217;en sortiront le mieux seront ceux qui sauront &#8220;bidouiller&#8221; (hacker) la [&#8230;]]]></description>
+				<content:encoded><![CDATA[<p>Mes enfants ont 8 ans et 11 ans, garçons et filles (oui, j&#8217;ai des multiples&#8230;). Je tiens à ce qu&#8217;ils apprennent la culture et les bases du code informatique car je crois que le code modèle en partie la société et que ceux qui s&#8217;en sortiront le mieux seront ceux qui sauront &#8220;bidouiller&#8221; (hacker) la société et non ceux qui se feront bidouiller par elle. Bref. Comment leur donner les moyens et l&#8217;envie d&#8217;apprendre à bidouiller du code ?</p>
+<p>Après réflexion, examen des solutions populaires sur le Net et quelques tests avec mes enfants, en me basant également sur mes propres souvenirs d&#8217;enfance (j&#8217;ai commencé à coder à 8 ans), je crois que l&#8217;approche et les outils à privilégier dépendent grandement de l&#8217;âge. Et qu&#8217;il ne s&#8217;agit pas uniquement de choisir un langage de programmation pour en enseigner les bases mais plutôt de trouver un environnement d&#8217;apprentissage adapté à l&#8217;âge, motivant et ludique pour créer de l&#8217;engagement, du plaisir et de l&#8217;effort. En résumé, je pense que, jusqu&#8217;à 11 ans, l&#8217;environnement idéal est <a href="https://scratch.mit.edu/">Scratch</a>, ou les <a href="https://blockly-games.appspot.com/?lang=fr">jeux blockly</a>. De 11 ans à 14 ans, l&#8217;environnement idéal me semble <a href="https://minecraft.net/">Minecraft</a>. Au-delà, des environnements plus &#8220;sérieux&#8221;, probablement autour du langage <a href="https://www.python.org/">python</a> pourraient être plus appropriés.</p>
+<p>En plus de cette approche &#8220;par âge&#8221;, j&#8217;ai été séduit par ce que peuvent apporter les activités d&#8217;apprentissage :</p>
+<ul>
+<li>autour de l&#8217;écriture de &#8220;<strong>fictions interactives</strong>&#8221; (livres dont vous êtes le héro) qui tirent partie de l&#8217;interdisciplinarité entre la littérature, les arts et le code,</li>
+<li>autour du <strong>matériel informatique</strong> (Arduino, Raspberry Pi, Lego Mindstorms ou tout simplement assembler un ordinateur)</li>
+<li>mais aussi en &#8220;<strong>mode débranché</strong>&#8221; pour découvrir l&#8217;algorithmie théorique, sans matériel informatique, avec du papier, un crayon, des allumettes, etc.</li>
+</ul>
+<p>Je me dis que ce qui manque aussi probablement, étant données les tendances technologiques de fond, ce sont des activités pour faire découvrir le <em>machine learning</em> aux enfants, les bases de la probabilité appliquée à la résolution automatisée de problèmes (raisonnement bayésien, etc.).</p>
+<p>Enfin, quel que soit l&#8217;âge ou les types d&#8217;activités, se pose un défi pédagogique : comment animer ces activités lorsqu&#8217;on a soi-même peu de temps (ou beaucoup d&#8217;enfants&#8230;) ? Pour répondre à cela, deux pistes se dégagent :</p>
+<ol>
+<li>les ateliers animés par des professionnels (mais il y en a peu sur le territoire français, en dehors de Paris et quelques grandes villes)</li>
+<li>ou bien les mécanismes de jeu qui, avec le bon scénario et la bonne plate-forme éducative, guident la progression des apprenants avec moins de dépendance à un animateur (donc de manière moins coûteuse en temps et en argent).</li>
+</ol>
+<p>Les mécanismes de jeu (le <em>gameplay</em>, règles, système motivationnel de quêtes et badges) et le scénario (imaginaire adapté et motivant) sont importants, mais la richesse visuelle du jeu importe presque autant (on ne refait pas nos vieux cerveaux&#8230;). Le fait de pouvoir changer le personnage d&#8217;un jeu en un petit panda a fait un gros effet (positif) sur ma fille&#8230; Presqu&#8217;autant que si elle avait pu le transformer en <a href="https://fr.wikipedia.org/wiki/Tux">pingouin tux</a>.</p>
+<p>Voici donc, en vrac, une sélection de ressources pour illustrer sur quoi s&#8217;appuient mes croyances actuelles.</p>
+<h2>Autour de<strong> Scratch</strong></h2>
+<ul>
+<li>des bouquins réputés comme <a href="http://www.amazon.fr/Scratch-pour-kids-D%C3%A8s-ans/dp/2212141114/ref=sr_1_2_twi_pap_2?s=books&amp;ie=UTF8&amp;qid=1446476171&amp;sr=1-2&amp;keywords=scratch">&#8220;Scratch pour les Kids : dès 8 ans&#8221;</a>.</li>
+<li>de la documentation en français, comme <a href="https://pixees.fr/?p=3663">celle des Magic Makers</a> ou <a href="https://pixees.fr/?page_id=36">le manuel de référence et les ressources pédagogiques associées</a></li>
+<li>des ateliers animés par des professionnels comme <a href="http://magicmakers.fr/">Claude Terosier et les Magic Makers</a> ou <a href="http://www.lessavoirsnumeriques.com/">Les Savoirs Numériques</a></li>
+<li>pour ceux qui maîtrisent déjà  la programmation sous Scratch et ont grandi (12 ans ?), la transition vers la programmation en langage JavaScript<a href="http://www.s2js.com/"> semble possible avec S2JS (in English, sorry&#8230;)</a></li>
+<li>mon expérience, anecdotique : de 9 à 11 ans, mes enfants n&#8217;ont pas été &#8220;jusqu&#8217;au bout&#8221; de Scratch, ils sont restés sur l&#8217;idée que c&#8217;est une plate-forme amusante pour créer des cartes postales animées, mais ça ne leur a pas permis d&#8217;apprendre à coder par eux-même ; seuls ceux de mes enfants qui sont les plus intéressés par la création graphique continuent à l&#8217;utiliser occasionnellement</li>
+</ul>
+<h2>Autour de <strong>Blockly</strong></h2>
+<ul>
+<li>les <a href="https://blockly-games.appspot.com/?lang=fr">jeux Blockly</a> proposent une bonne progression pour découvrir les bases de l&#8217;algorithmie (boucles, branchements conditionnels et variables), c&#8217;est ce que j&#8217;ai pu vérifier avec ma fille (11 ans), mais on est vite frustrés par la raideur de certaines étapes de cette progression : soit on maîtrise déjà les concepts et ça passe très vite, soit réussir à franchir certaines étapes ressemble à un casse-tête assez douloureux ; j&#8217;aurais aimé voir une progression plus longue, plus variée et plus &#8220;pas à pas&#8221; parfois</li>
+<li><a href="https://www.codeforlife.education/rapidrouter/">RapidRouteur </a>est une progression ludo-éducative basée sur blockly, avec plus de 100 niveaux de jeu et qui mène peu à peu à découvrir Python (malheureusement seulement en anglais)</li>
+<li><a href="https://pencilcode.net/">pencilcode </a>ressemble à blockly et propose des tutoriels mais reste en anglais seulement pour le moment</li>
+<li><a href="http://www.catchu.fr/code4kids/">Code4Kids </a>est une solution française d&#8217;animation pédagogique proposée pour les écoles du premier degré par Catchu, autour d&#8217;un environnement Blockly</li>
+<li>Sur une logique Blockly mais sur téléphone, l&#8217;appli iOS <a href="https://www.gethopscotch.com/">HopScotch </a>propose un environnement pour apprendre à programmer des jeux mobiles ; mais est-ce vraiment du blockly là-dessous ? je n&#8217;ai pas vérifié</li>
+</ul>
+<h2>Autour de <strong>Minecraft</strong></h2>
+<ul>
+<li>avec les super &#8220;<a href="http://www.amazon.fr/Minecraft%C2%A0-%C2%A0Construction-guide-officiel-Collectif/dp/2070660214/ref=sr_1_1?s=books&amp;ie=UTF8&amp;qid=1446477127&amp;sr=1-1&amp;keywords=minecraft">Guides officiels</a>&#8221; (débuter, construction, combat, Redstone, &#8230;) pour découvrir toutes les arcanes du jeu</li>
+<li>l&#8217;intérêt pédagogique de Minecraft est démultiplié si on utilise <a href="https://fr.wikipedia.org/wiki/Minecraft#Participation_de_la_communaut.C3.A9">les bons serveurs, &#8220;mods&#8221; et leurs tutoriels</a>, mais cela implique d&#8217;accéder à un serveur adapté voire de se créer son propre serveur :
+<ul>
+<li><a href="http://gnancraft.net/">Gnancraft</a> est créé et utilisé par <a href="https://www.linkedin.com/in/raphaelpierquin">Raphaël Pierquin</a> et l&#8217;équipe des <a href="http://codinggouter.org">Coding Goûters</a></li>
+<li><a href="http://www.thoughtstem.com/minecraft">ThoughtStem </a>propose des ateliers de programmation avec Minecraft pour les enfants dans la Silicon Valley mais également quelques activités en ligne</li>
+<li><a href="http://www.learntomod.com/">LearnToMod </a>est une plate-forme payante pour apprendre la programmation à travers la modification de minecraft</li>
+<li><a href="http://www.computercraft.info/">ComputerCraft </a>est un mod minecraft destiné à la découverte de la programmation et qui permet d&#8217;apprendre à scripter en langage LUA</li>
+<li>Avec Minecraft, vous l&#8217;aurez compris, on est dans un environnement très immersif et très bidouillable alors pourquoi ne pas <a href="http://www.educavox.fr/innovation/pedagogie/utiliser-minecraft-pour-enseigner-les-mathematiques">enseigner les mathématiques via Minecraft</a> ?</li>
+</ul>
+</li>
+</ul>
+<h2>Autour de <strong>Python</strong> :</h2>
+<ul>
+<li>Parmi les langages de programmation généralistes qui ont un véritable usage industriel, python est sans doute le plus utilisable pour l&#8217;apprentissage de la programmation car il combine une syntaxe très lisible et un modèle exemplaire de programmation orientée objet ; il ne lui manquerait plus qu&#8217;une syntaxe en français pour faire fureur dans les bacs à sable des lycées&#8230; En attendant, faut-il imaginer faire découvrir la programmation au collège ou au lycée en utilisant <a href="http://pygame.org/tags/pyglet">pygame et piglet comme environnements </a>? sans doute serait-ce un choix plutôt risqué car on peut lire des <a href="https://www.reddit.com/r/Python/comments/1z27fv/if_the_pyglet_community_is_dead_and_pygame_is_not/">doutes crédibles sur la vivacité de la communauté pyglet</a>, sur son usage des <em>decorators</em> qui est difficile à expliquer pour des débutants et ressemble donc à une magie arbitraire et fort peu éducative&#8230;</li>
+<li>Etant donné la popularité et la richesse de la communauté python, de bons livres existent certainement en français pour pour apprendre la programmation avec python,</li>
+<li><a href="http://www.checkio.org/">Checkio </a>est un jeu en ligne très séduisant pour apprendre à programme avec python</li>
+</ul>
+<h2>Autour de <strong>JavaScript</strong></h2>
+<p>Quand on devient plus grand et qu&#8217;on veut manipuler du code &#8220;pour de vrai&#8221;, python est une excellente solution mais JavaScript s&#8217;étant imposé partout sur le Net ces dernières années comme langage généraliste, y compris côté serveurs, il n&#8217;est pas idiot d&#8217;apprendre la programmation avec JavaScript, même si ça a un petit côté maso et casse-cou. Alors pourquoi ne pas découvrir carrément la programmation par ce biais, avec par exemple <a href="http://www.crunchzilla.com/code-monster">Code Monster (en anglais)</a>. <a href="http://jswarrior.fusioncharts.com/">JSWarrior</a> fait pâle figure à côté d&#8217;autres plate-formes ludo-éducatives et place la barre un peu haut pour les débutants : animateur indispensable.</p>
+<h2>Avec des <strong>fictions interactives ?<br />
+</strong></h2>
+<p>Les &#8220;Livres dont vous êtes le héro&#8221; (également appelés &#8220;Livres-jeux&#8221;, &#8220;Choose Your Own Adventure&#8221;, &#8220;CYOA&#8221; ou &#8220;gamebooks), sous forme numérique, sont des contenus interactifs qui permettent de visiter sous une forme créative et motivante des concepts simples d&#8217;algorithmie (branches conditionnelles, variables, voire conception objet), de programmation (compilation, exécution) mais aussi de design de jeu. Bien sûr, on peut faire une fiction interactive avec de simples liens hypertextes dans un wiki, mais les logiciels pour écrire les fictions interactives sont devenus très sophistiqués en s&#8217;inspirant des premiers jeux textuels en liens (les muds) et en introduisant donc des possibilités algorithmiques amusantes et créatives. Je n&#8217;ai pas cherché de proposition de progression pédagogique pour découvrir l&#8217;algorithmie à travers l&#8217;écriture de fictions interactives mais je suis à peu près sûr que ça existe. Cet angle de découverte de la programmation pourrait très bien convenir aux enfants les plus férus de lecture, d&#8217;écriture&#8230; et d&#8217;aventure. De nombreuses solutions logicielles très éprouvées et plus ou moins faciles à prendre en main existent pour créer des fictions interactives plus ou moins sophistiquées informatiquement. Parmi les logiciels de création les plus connus, on peut citer <a href="http://twinery.org/">Twine</a>, le vénérable <a href="http://inform7.com/">Inform7</a>, <a href="http://www.tads.org/">TADS</a>, <a href="http://www.adrift.co/">ADRIFT</a>, <a href="http://www.alanif.se/">ALAN </a>mais aussi, avec un côté plus récent, <a href="http://textadventures.co.uk/squiffy">squiffy </a>et <a href="https://github.com/textadventures/questkit">QuestKit</a>. Il faudrait y regarder de plus près. Des <a href="http://textadventures.co.uk/">bibliothèques en ligne </a>permettent ensuite de partager et découvrir les créations, pour les lire et s&#8217;y plonger sur ordinateur ou sur smartphone.</p>
+<h2>Avec du<strong> matériel bidouillable</strong></h2>
+<p>Pour les enfants et parents qui n&#8217;ont pas peur de leurs doigts&#8230;</p>
+<p>Bien sûr, on doit citer les vénérables mais toujours d&#8217;actualité Lego Mindstorms, pour les plus familles qui en ont les moyens. Mais on regardera surtout du côté de  :</p>
+<ul>
+<li>La <a href="https://www.raspberrypi.org/picademy/">Picademy </a>aide les enseignants à exploiter les <strong>Raspberry Pi</strong></li>
+<li>Canopé Versailles <a href="http://blog.crdp-versailles.fr/technoclergeot/index.php/category/Technologie/Cours-Arduino">publie un cours de 3ème</a> sur <strong><a href="https://www.arduino.cc/en/Guide/HomePage">Arduino</a></strong></li>
+<li>On peut aussi <a href="http://algothymio.blogspot.fr/p/algorithmes.html">découvrir la logique algorithmique</a> avec du matériel non informatique (papier, crayon, allumettes, &#8230;). On parle alors de <a href="https://pixees.fr/?cat=612">découverte &#8220;débranchée&#8221; de l&#8217;algorithmie</a>.</li>
+</ul>
+<h2>Autour de plate-formes ludo-éducatives &#8220;tout-intégré&#8221;</h2>
+<p>Il existe des sites Web proposant des progressions ludiques pour apprendre la programmation. La plupart sont fondés sur des logiciels dits privateurs. Vous n&#8217;avez pas le droit de les utiliser comme vous voulez, de les étudier, de les partager, bref de les bidouiller, ce qui est un peu paradoxal. Mais l&#8217;avantage de ces plates-formes peut résider dans leur caractère &#8220;intégrée&#8221; : elles pourraient offrir une expérience ludique plus agréable et pédagogiquement plus efficace si elles accompagnent de A à Z les programmeurs en herbe. Mais au risque de disparaître corps et âme en cas de faillite commerciale. Quelques-unes de ces plate-formes utilisent du libre, mais ce ne sont pas forcément les meilleures pédagogiques.</p>
+<ul>
+<li>Autour de <strong>C++</strong> : quitte à être maso, pourquoi ne pas apprendre la programmation avec un langage beaucoup compliqué à apprendre que python ou même JavaScript, c&#8217;est le défi que propose pourtant <a href="http://codowl.io/">codowl.io</a> (ah tiens, c&#8217;est en français ?)</li>
+<li><a href="https://studio.code.org/">Code.org</a> propose des progressions en français sous forme de sélection d&#8217;activités débranchées, de jeux algorithmiques et d&#8217;activités de programmation. C&#8217;est un peu la Khan Academy de la programmation : une association américaine à but non lucratif fait vivre cette plate-forme, à grands renforts de dons de Microsoft, Facebook et autres Google. Très Silicon Valley. Le code qui fait tourner la plate-forme est libre mais pas les contenus des activités pédagogiques qu&#8217;elle héberge. La richesse et la qualité des activités proposées semble pertinente. Hum&#8230; Pas mal.</li>
+<li><a href="http://codecombat.com/">Codecombat.com</a> vous embarque dans un vrai jeu vidéo pour apprendre à programmer, avec des contenus graphiques et sonores de qualité. Le joueur a le choix du langage de programmation qu&#8217;il veut apprendre (au moins au niveau de la syntaxe) : python, coffescript, clojure, &#8230; le choix est vaste. Et franchement, c&#8217;est du joli ! Ca donne envie de jouer et d&#8217;apprendre&#8230; A signaler encore quelques bugs et défauts de traduction en français.</li>
+<li><a href="http://www.blackvoxel.com/view.php?node=1560">Blackvoxel </a>est un jeu en logiciel libre, pour apprendre le C++, l&#8217;assembleur et le graphisme 3D. On dirait bien là un jeu pour apprendre à programmer des jeux &#8220;à la dure&#8221; plutôt qu&#8217;avec des progressions pédagogiques pour débutants. A réserver pour des lycéens ou des passionnés qui se seront déjà fait la main sur des langages et des environnements plus simples ? Blackvoxel semble proposer des modalités intéressantes pour impliquer un enseignant dans la progression de ses élèves-joueurs.</li>
+<li>Encore pour des lycéens (ou pour des grands collégiens, +13 ans), <a href="https://livecode.com/products/livecode-platform/livecode-in-education/">LiveCode </a>propose une solution d&#8217;apprentissage du code pour développer des applis mobiles.</li>
+</ul>
+<p>Bon, voila pour mon petit tour du moment. Je suis surpris par la quantité de solutions proposées, y compris en français, et par la première impression très positive que me donnent certaines d&#8217;entre elles. Pour mes enfants, je compte explorer les pistes blockly mais surtout Minecraft car la communauté des modders Minecraft est tellement grande qu&#8217;il existe déjà tout un tas de réponses à des problématiques pédagogiques récurrentes. Par exemple, il existe des systèmes de gestion de quêtes dans Minecraft qui me semblent intéressantes. Et si je pouvais promettre 5 minutes de Minecraft de plus à celui de mes enfants qui fera la vaisselle demain soir ? ou à celui qui aura bidouillé avec succès tel ou tel aspect de notre vie familiale ?</p>
+<p>Et vous, vous en faites quoi de tout ça ?</p>
+]]></content:encoded>
+			<wfw:commentRss>http://www.akasig.org/2015/11/02/apprendre-a-coder-quelles-solutions-pour-mes-enfants/feed/</wfw:commentRss>
+		<slash:comments>4</slash:comments>
+		</item>
+		<item>
+		<title>Fibromyalgie, qu&#8217;est-ce qui marche vraiment ?</title>
+		<link>http://www.akasig.org/2015/09/17/fibromyalgie-quest-ce-qui-marche-vraiment/</link>
+		<comments>http://www.akasig.org/2015/09/17/fibromyalgie-quest-ce-qui-marche-vraiment/#comments</comments>
+		<pubDate>Thu, 17 Sep 2015 21:10:01 +0000</pubDate>
+		<dc:creator><![CDATA[Sig]]></dc:creator>
+				<category><![CDATA[Affaires non classees]]></category>
+		<category><![CDATA[Ecrit en français]]></category>
+
+		<guid isPermaLink="false">http://www.akasig.org/?p=1361</guid>
+		<description><![CDATA[Un de mes proches souffre de fibromyalgie alors je m&#8217;interroge sur l&#8217;état actuel des connaissances scientifiques sur les traitements de la fibromyalgie : qu&#8217;est-ce qui marche vraiment ? y a-t-il des progrès récents et de nouveaux traitements à envisager avec des preuves solides et consensuelles ? Donc j&#8217;ai dégainé Google Scholar, à la recherche de [&#8230;]]]></description>
+				<content:encoded><![CDATA[<p>Un de mes proches souffre de <a href="https://fr.wikipedia.org/wiki/Fibromyalgie">fibromyalgie</a> alors je m&#8217;interroge sur l&#8217;état actuel des connaissances scientifiques sur les traitements de la fibromyalgie : qu&#8217;est-ce qui marche vraiment ? y a-t-il des progrès récents et de nouveaux traitements à envisager avec des preuves solides et consensuelles ?</p>
+<p>Donc j&#8217;ai dégainé <a href="https://scholar.google.com/">Google Scholar</a>, à la recherche de <a href="https://fr.wikipedia.org/wiki/M%C3%A9ta-analyse">méta-analyses</a> et de <a href="https://en.wikipedia.org/wiki/Systematic_review">revues systématiques de littérature</a> au sujet de la fibromyalgie. Voici l&#8217;essentiel de mes découvertes. A noter que la traduction des résumés de ces publications (ou de leur conclusion) a été bâclée par moi avec l&#8217;aide de Google Translate donc des imperfections subsistent&#8230; En cas de doute, allez lire la publication scientifique d&#8217;origine.</p>
+<p>Ah, et puis un conseil pour commencer : s&#8217;intéresser à l&#8217;association <a href="http://www.fibromyalgie-france.org/">Fibromyalgie France</a>, contacter leur responsable local (départemental ou régionale) pour leur demander d&#8217;éventuelles infos (événements locaux, rencontres, forums, &#8230;) et notamment identifier s&#8217;il y a dans le coin des médecins rhumatologues (la fibro relève de leur spécialité, même si ça n&#8217;a rien d&#8217;un rhumatisme&#8230;) qui s&#8217;y connaissent bien en matière de fibromyalgie.</p>
+<p>Ah, et puis encore un point préalable, parcourir <a href="https://en.wikipedia.org/wiki/Fibromyalgia#Management">l&#8217;article fibromyalgie (ou &#8220;FMS&#8221;) de la wikipédia anglophone, notamment la rubrique traitements</a>, dont voici mon résumé :</p>
+<ul>
+<li><strong>Thérapies psychologiques</strong> : les TCC et les thérapies psychologiques et comportementales liées ont un effet faible à modéré dans la réduction des symptômes. Les TCC sont plus efficaces lorsque combinées à l&#8217;exercice physique.</li>
+<li><strong>Exercice physique</strong> : l&#8217;exercice améliore le bien-être et le sommeil et peut réduire la douleur et la fatigue chez certains fibromyalgiques. En particulier, il y a des preuves fortes que l&#8217;exercice cardiovasculaire est efficace chez certains. L&#8217;exercice aquatique récurrent a des bénéfices prouvés car il combine exercice cardiovasculaire avec entrainement à la résistance.</li>
+<li><strong>Antidépresseurs</strong> : un petit nombre de personnes tirent des bénéfices significatifs des SNRIs duloxetine et milnacipran et des anti-dépresseurs tricycliques (tels que l&#8217;amitriptyline) cependant de nombreuses personnes ressentent plus d&#8217;effets indésirables que de bénéfices.</li>
+<li><strong>Médicaments anti-convulsifs</strong> : la gabapentine a des bénéfices significatifs chez 30% des patients. Cependant elle est fréquemment associées avec des effets indésirables.</li>
+<li><strong>Opioïdes</strong> : la combinaison de tramadol et de paracétamol a une efficacité, une sécurité et une tolérabilité prouvées (pour des durées jusqu&#8217;à 2 ans) sans le développement de tolérance.</li>
+<li><strong>Résultats intrigants</strong> : hormone de croissance humaine ? naltrexone à faible dose ? oxybate de sodium ?</li>
+</ul>
+<p>Allez, après cette introduction wikipediesque, c&#8217;est parti pour les publications les plus intéressantes de ces dernières années d&#8217;après ma recherche sur Google Scholar :</p>
+<ul>
+<li>2010 : <a href="http://onlinelibrary.wiley.com/doi/10.1002/acr.20328/full">Emotional, physical, and sexual abuse in fibromyalgia syndrome: A systematic review with meta-analysis</a><br />
+<strong>Conclusion</strong> : L&#8217;association entre FMS et abus physique et sexuel a pu être confirmée, mais est compliquée par la qualité de l&#8217;étude</li>
+<li>2011 : <a href="http://ard.bmj.com/content/72/6/955.short">Comparative efficacy of pharmacological and non-pharmacological interventions in fibromyalgia syndrome: network meta-analysis</a><br />
+<strong>Résultats</strong> : 102 essais clinniques sur 14 982 patients et huit interventions actives (antidépresseurs tricycliques, inhibiteurs de recapture de la sérotonine, inhibiteurs de la sérotonine recapture de la noradrénaline (IRSN), acide butyrique analogique, prégabaline gamma-amino, exercice aérobique, balnéothérapie, thérapie cognitivo-comportementale (TCC), thérapie multi-composantes) ont été inclus dans l&#8217;étude. La plupart des essais étaient de petite taille et entravés par leur qualité méthodologique, l&#8217;introduction de l&#8217;hétérogénéité et l&#8217;incohérence dans le réseau. Lorsque restreinte aux grands essais avec plus de 100 patients par groupe, l&#8217;hétérogénéité était faible et les avantages pour IRSN et la prégabaline par rapport au placebo était statistiquement significatifs, mais faibles et pas cliniquement pertinents. Pour les interventions non pharmacologiques, un seul essai à grande échelle de la TCC était disponible. Dans les essais de taille moyenne avec &#8805;50 patients par groupe, la thérapie multi-composantes a montré des avantages faibles à modérés par rapport au placebo, suivie par l&#8217;exercice aérobie et la TCC.<br />
+<strong>Conclusions</strong> : les avantages des traitements pharmacologiques de la FMS sont d&#8217;une pertinence clinique discutable et les preuves au sujet des bénéfices des interventions non pharmacologiques sont limitées. Une combinaison de la prégabaline ou de l&#8217;IRSN en tant qu&#8217;intervention pharmacologique et de la thérapie multi-composants incluant exercice aérobique et TCC en tant qu&#8217;interventions non pharmacologiques semble la plus prometteuse pour la gestion de la FMS.</li>
+<li>2012 : <a href="http://link.springer.com/article/10.2165/11598970-000000000-00000">The Role of Antidepressants in the Management of Fibromyalgia Syndrome, A Systematic Review and Meta-Analysis</a><br />
+<strong>Conclusions</strong>: L&#8217;amitriptyline de TCA, la duloxétine et l&#8217;IRSN milnacipran sont des options de première intention pour le traitement de patients fibromyalgiques. Les médecins et les patients doivent être réalistes sur les avantages potentiels d&#8217;antidépresseurs dans FMS. Un petit nombre de patients éprouvent un soulagement notable des symptômes sans ou avec des mineurs des effets néfastes. Cependant, un nombre remarquable de patients abandonnent le traitement en raison d&#8217;effets indésirables intolérables ou ne ressentent qu&#8217;un petit soulagement des symptômes, ce qui ne l&#8217;emportent pas sur les effets indésirables.</li>
+<li>2012 : <a href="http://link.springer.com/article/10.2165/11530950-000000000-00000">Pharmacological treatment of fibromyalgia syndrome, Systematic review and meta-analysis</a> (par l&#8217;association des sociétés de médecins allemands), voir <strong>notamment tableau de synthèse page 51</strong>
+<ul>
+<li><strong>Duloxetine</strong>, recommandation consensuelle fondée sur des preuves de qualité 1A : les patients fibromyalgiques souffrant également de troubles dépressifs et/ou de troubles de l&#8217;anxiété devraient être traités avec de la duloxetine à 60mg/jour pour une période de temps limitée. Ce traitement peut également être envisagé pour des patients sans trouble dépressif ni trouble de l&#8217;anxiété si un traitement à l&#8217;amitriptyline n&#8217;est pas possible (par exemple à cause de contre-indications) ou bien ne fut pas efficace ou bien fut mal toléré.</li>
+<li><strong>Antidépresseurs tricycliques</strong>, recommandation fortement consensuelle fondée sur un niveau de preuve 2A : l&#8217;Amitriptyline entre 10 et 50 mg/jour devrait être utilisée sur des périodes de temps limitées</li>
+<li><strong>Prégabaline</strong>, recommandation consensuelle fondée sur des preuves de qualité 1A : Un traitement à prégabaline entre 150 et 450 mg/jour peut être envisagé sur des périodes de temps limitées si un traitement à l&#8217;amitritpyline n&#8217;est pas possible (par exemple à cause de contre-indications) ou bien ne fut pas efficace ou bien fut mal toléré.</li>
+<li><strong>Inhibiteurs de la recapture de la sérotonine</strong>, recommandation consensuelle fondée sur un niveau de preuves de qualité 2A : Un traitement à base de SSRI, fluoxetine entre 20 et 40 mg /jour ou paroxetine entre 20 et 40 mg / jour peut être envisagée sur une période de temps limitée pour des patients souffrant également de troubles dépressifs ou de troubles de l&#8217;anxiété.</li>
+<li><strong>Recommandations négatives</strong> (ne devraient pas être utilisés) : les anti-viraux, les anxiolytiques, les agonistes de la dopamine, les traitements hormonaux (y compris hormone de croissance), les hypnotiques, les interférons, la ketamine en intraveneuses, les anesthésiques locaux, l&#8217;oxybate de sodium, les neuroleptiques, les opïodes forts, les antagonistes des récepteurs de sérotonine, les canabinoïdes, les relaxants musculaires, les antirhumatiques non-stéroïdaux,</li>
+<li><strong>Pas de recommandation</strong> (données insuffisantes pour trancher, nécessitent des recherches complémentaires) : gabapentine, inhibiteurs de la recapture de la noradrenaline, opioïdes faibles, aspirine, acétaminophène, metamizole.</li>
+</ul>
+</li>
+<li>2012 : <a href="http://www.ncbi.nlm.nih.gov/pubmed/23748251">Canadian Guidelines for the Diagnosis and Management of Fibromyalgia Syndrome</a><br />
+Les <strong>recommandations consensuelles canadiennes</strong> :</p>
+<ul>
+<li>la stratégie thérapeutique doit inclure des principes d&#8217;auto-gestion de la fibromyalgie, d&#8217;attention personnalisée aux symptômes individuels, avec une supervision étroite et un suivi régulier, en particulier aux premiers temps de la gestion de la fibromyalgie par le patient,</li>
+<li>les patients devraient être encouragés à identifier des objectifs spécifiques quant à leur qualité de vie au début du traitement, avec une ré-évaluation des objectifs au cours du suivi,</li>
+<li>la participation active du patient devrait être une part entière de la stratégie thérapeutique, en encourageant le patient à trouver des sources d&#8217;entraide,</li>
+<li>les patients devraient être encouragés à poursuivre une vie aussi normale que possible,<br />
+la thérapie devrait inclure une composante de thérapie psychologique et au moins une composante de thérapie physique,</li>
+<li>les patients devraient être informés de l&#8217;impact négatif que leur détresse psychologique peut avoir sur leur bien-être physique,</li>
+<li>les TCC même sur de courtes périodes sont efficaces pour réduire la peur de la douleur et la peur de l&#8217;activité physique,</li>
+<li>les personnes fibromyalgiques devraient participer à un programme d&#8217;entraînement physique progressif de leur choix et en attendre des effets probables sur les symptômes de la fibromyalgie,</li>
+<li>les patients devraient être informés que l&#8217;on ne dispose pas, actuellement, de preuves de l&#8217;utilité des médecines alternatives pour la fibromyalgie,</li>
+<li>les patients devraient être encouragés à informer leur médecin traitant des éventuelles médecines alternatives qu&#8217;ils suivent,</li>
+<li>les médecins devraient identifier le symptôme le plus gênant pour le patient et cibler des traitements pharmacologiques centrés sur ce symptôme ; un choix pharmaceutique idéal pourrait cibler plusieurs symptômes simultanément mais nécessite alors une attention sur l&#8217;interaction entre les médicaments utilisés,</li>
+<li>les traitements pharmaceutiques doivent être commencés à faible dose avec une augmentation graduelle et prudente pour éviter les risques d&#8217;intolérance, et avec une évaluation régulière sur l&#8217;efficacité et les effets secondaires, en notant que certains effets secondaires sont similaires à certains symptômes de la fibromyalgie,</li>
+<li>les médecins prescrivant des médicaments doivent garder l&#8217;esprit ouvert et s&#8217;informer sur le large spectre de médicaments disponibles pour traiter les symptômes, et ne devraient pas se limiter à une simple catégorie de médicaments,</li>
+<li>l&#8217;acétaminophène peut être utile pour certains patients mais avec une attention au dosage,<br />
+si jamais l&#8217;acétaminophène et les anti-inflammatoires non-stéroïdiens sont prescrits, en particulier en cas d&#8217;ostéoarthrite, ils ne devraient l&#8217;être qu&#8217;au plus faibles doses et pour les périodes de temps les plus courtes possibles,</li>
+<li>l&#8217;essai d&#8217;opioïdes, en commençant par des opioïdes faibles comme le tramadol, devrait être réservé aux patients à douleur moyenne à sévère qui ne répondent pas aux autres traitements,</li>
+<li>les opioïdes forts ne devraient pas être prescrits et l&#8217;usage d&#8217;opioïdes ne devraient être prolongé que pour les patients dont les fonctions et la douleur s&#8217;améliorent,<br />
+essayer un traitement à base de cannabis peut être envisagé en particulier en cas de troubles importants du sommeil,</li>
+<li>les effets anti-douleurs des anti-dépresseurs devraient être expliqués aux patients afin de dissiper l&#8217;idée qu&#8217;ils seraient avant tout prescrit pour répondre à des plaintes d&#8217;ordre psychologiques,</li>
+<li>toutes les catégories d&#8217;anti-dépresseurs peuvent être utilisées contre la douleur et le choix doit être guidé par les preuves disponibles de leur efficacité, par les connaissances du médecin, les caractéristiques du patient, et l&#8217;attention au profil d&#8217;effets secondaires,</li>
+<li>l&#8217;usage de médicaments anti-convulsifs devrait être expliquée par leurs propriétés anti-douleur, le traitement devrait commencer aux doses les plus faibles avec augmentation progressive sous surveillance des effets secondaires,</li>
+<li>les médecins devraient noter que seuls la prégabaline et le duloxetine ont reçus une approbation de prescription contre la fibromyalgie, les autre traitements consistuant des prescriptions &#8220;hors étiquette&#8221;</li>
+</ul>
+</li>
+<li>2013 : <a href="http://fr.summaries.cochrane.org/CD009796/les-therapies-comportementales-cognitives-pour-le-syndrome-de-fibromyalgie">Les thérapies comportementales cognitives pour le syndrome de fibromyalgie</a><br />
+<strong>Conclusions des auteurs</strong> : Les TCC apportent un léger bénéfice incrémental par rapport aux traitements de contrôle pour réduire la douleur, les humeurs négatives et l&#8217;incapacité à la fin du traitement et lors du suivi à long terme. Les taux d&#8217;abandon pour une raison quelconque n&#8217;étaient pas différents entre les groupes de TCC et les groupes témoins.</li>
+<li>2013 : <a href="http://link.springer.com/article/10.1007/s00296-012-2360-1">Efficacy and safety of meditative movement therapies in fibromyalgia syndrome: a systematic review and meta-analysis of randomized controlled trials</a><br />
+Un total de 7 études sur 117 avec 362 sujets et une médiane de 12 séances ont été inclus. Les thérapies méditatives ont réduit les troubles du sommeil, la fatigue, la dépression et amélioré la qualité de vie liée à la santé mais pas la douleur. Les effets significatifs sur les troubles du sommeil et la qualité de vie pourraient être maintenus au-delà de 4,5 mois après la fin du traitement. Dans les analyses de sous-groupes, seul le Yoga a abouti à des effets significatifs sur la douleur, la fatigue, la dépression et la qualité de vie à la fin du traitement. Le taux d&#8217;abandon en raison d&#8217;événements indésirables a été de 3,1%. Aucun événement indésirable grave n&#8217;a été signalé. Les thérapies méditatives sont sûres. le Yoga a eu des effets bénéfiques à court terme sur certains domaines clés de la FMS. Il y a un besoin pour des études de haute qualité avec des échantillons plus importants pour confirmer les résultats.</li>
+<li>2014 : <a href="http://jama.jamanetwork.com/article.aspx?articleid=1860480&amp;tab=cme">Fibromyalgia, A Clinical Review</a><br />
+<strong>Résultats</strong> : de nombreux traitements sont disponibles pour gérer la fibromyalgie, dont l&#8217;efficacité dispose de preuves de haute qualité. Ils incluent des thérapies non pharmacologiques (éducation, exercice, physique, TCC) et des thérapies pharmacologiques (tricycliques, inhibiteurs de la recapture de sérotonine norépinéphrine et les gabapentinoïdes).<br />
+Conclusions et pertinence : la fibromyalgie les autres états de douleurs &#8220;centrales&#8221; sont bien mieux compris de nos jours que par le passé. La fibromyalgie peut être considérée comme un diagnostic à part enitère ou bien comme une constellation de symptômes caractérisés par une amplification de la douleur dans le système nerveux central, concomittamment à une fatigue, des problèmes de mémoire, des troubles du sommeil et des troubles de l&#8217;humeur. Des traitements efficaces de la fibromyalgie sont désormais possibles.</li>
+<li>2014 : <a href="http://www.jrheum.org/content/41/9/1737.short">Fibromyalgia and Physical Trauma: The Concepts We Invent</a><br />
+Il n&#8217;existe pas de preuves scientifiques soutenant l&#8217;idée que des traumas physiques causeraient la fibromyalgie ; en particulier il n&#8217;existe pas de preuve (ou unique des preuves très faibles) que des accidents de la route pourraient causer une fibromyalgie. Dans certains cas rapportés dans les études sur le sujet, les effets précèdent même la cause. Les théories proposant que le trauma physique créerait un stress qui conduirait à une fibromyalgie sont non-prouvables et non mesurables.</li>
+<li>2014 : <a href="http://ard.bmj.com/content/73/Suppl_2/34.2.abstract">SP0125&#8197;Management of Fibromyalgia</a><br />
+Nous pouvant supposer que les troubles du sommeil pourraient expliquer le développement de mécanismes anormaux de la douleur chez certains patients vulnérables. Nous savons que le seul de la douleur est significativement réduit en cas de réduction des ondes du seommeil lents et les études en IRM fonctionnelel ont montré une activité réduite dans certaines structures cérables liées à la douleur en particulier lors du sommeil lent. Des études de long-terme ont montré que des perturbations du sommeil peuvent être un risque majeur pour développer une fibromyalgie et des études polysomnographiques soutiennent l&#8217;hypothèse selon laquelle la fibromyalgie serait un trouble primaire du sommeil. Des architectures altérées du sommeil sont découvertes dans la plupart des études.<br />
+Il existe des preuves que la fatigue du fibromyalgique est causalement liée aux troubles du sommeil. Suite au rétablissement du sommeil profond avec un traitement à base d&#8217;oxybate de sodium chez le fibromyalgique, la fatigue diminue ainsi que la douleur et d&#8217;autres symptômes. Les données actuelles soutiennent donc l&#8217;hypothèse selon laquelle la fatigue chronique et la douleur chronique chez le fibromyalgique résultent d&#8217;anomalies dans l&#8217;architecture du sommeil chez des patients psychologiquement vulnérables, ce qui conduit à un dysfonctionnement du système de régulation de la douleur.<br />
+Ces données suggèrent que la gestion de la fibromyalgie devrait être multi-facettes. En plus des traitements physiques, comportements et psychologiques, les programmes de traitement doivent inclure une gestion active des pathologies du sommeil.</li>
+<li>2015 :  <a href="http://link.springer.com/article/10.1007/s11724-015-0407-2">Fibromyalgie : où en est-on en 2015 ?</a><br />
+<strong>Résumé</strong> : La fibromyalgie fait beaucoup parler d&#8217;elle et suscite encore débats et controverses en 2015. Pourtant, il n&#8217;est plus question de remettre en cause ce syndrome facilement reconnaissable (même si le diagnostic est aussi posé avec excès). Le modèle biopsychosocial permet de comprendre et de prendre en charge de façon plus globale toutes les maladies chroniques et évite la mise en échec des patients et des soignants. La fibromyalgie est un syndrome fréquent qui touche surtout les femmes qui rapportent des douleurs chroniques, diffuses, musculaires, tendineuses et/ou articulaires. Ces douleurs sont associées à des céphalées de tension, des troubles fonctionnels intestinaux, des symptômes génito-urinaires, des acouphènes, des douleurs de l&#8217;articulation temporomandibulaire, des paresthésies distales&#8230; On parle de troubles somatoformes, définis par des symptômes fonctionnels sans lésion tissulaire. Les critères diagnostiques de l&#8217;American College of Rheumatology (ACR 1990) se sont affinés en 2010&#8211;2011 et permettent désormais de mieux appréhender les symptômes dans leur globalité et leur sévérité. Les comorbidités émotionnelles et cognitives sont très fréquentes (troubles anxieux, dépression, catastrophisme, hypervigilance, manque de flexibilité, troubles de concentration et de mémoire&#8230;). La sensibilisation du système nerveux central est l&#8217;hypothèse physiopathologique la plus consensuelle. Les symptômes surviennent sur un terrain favorisant, apparaissent au décours de facteurs précipitants (éventuellement) et sont entretenus et/ou aggravés par des facteurs d&#8217;entretien. Différents traitements médicamenteux antalgiques classiques et psychotropes (antiépileptiques et antidépresseurs) ont montré leur efficacité. Des recommandations internationales actualisées sont disponibles. Elles font consensus sur la prise en charge qui doit être multimodale et faire appel à des traitements médicamenteux d&#8217;action centrale, associés à des approches psychophysiques et éducatives. L&#8217;éducation des patients, comme pour toute pathologie chronique, est donc indispensable.<br />
+L&#8217;article complet peut être acheté pour 41,94 €. L&#8217;intérêt de cet article est qu&#8217;il est récent, en français et rédigé par 2 spécialistes français (sur Paris). Mais je ne l&#8217;ai pas lu et je ne sais pas ce que son contenu vaut.</li>
+</ul>
+<p>Et voila ! Merci Google Scholar !</p>
+]]></content:encoded>
+			<wfw:commentRss>http://www.akasig.org/2015/09/17/fibromyalgie-quest-ce-qui-marche-vraiment/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>Quelles sont les méthodes et techniques pédagogiques qui marchent vraiment ?</title>
+		<link>http://www.akasig.org/2015/08/28/quelles-sont-les-methodes-et-techniques-pedagogiques-qui-marchent-vraiment/</link>
+		<comments>http://www.akasig.org/2015/08/28/quelles-sont-les-methodes-et-techniques-pedagogiques-qui-marchent-vraiment/#comments</comments>
+		<pubDate>Fri, 28 Aug 2015 11:20:52 +0000</pubDate>
+		<dc:creator><![CDATA[Sig]]></dc:creator>
+				<category><![CDATA[Ecrit en français]]></category>
+		<category><![CDATA[Innovation]]></category>
+
+		<guid isPermaLink="false">http://www.akasig.org/?p=1350</guid>
+		<description><![CDATA[Quelles sont les méthodes pédagogiques qui marchent bien et celles qui marchent moins bien ? Qu&#8217;est-ce qui fonctionne réellement en pédagogie ? Comment savoir si une idée pédagogique est vraiment bonne ou mauvaise ? Où trouver des idées d&#8217;innovation pédagogiques qui ont des chances de faire plus de bien que de mal à nos apprenants [&#8230;]]]></description>
+				<content:encoded><![CDATA[<p>Quelles sont les méthodes pédagogiques qui marchent bien et celles qui marchent moins bien ? Qu&#8217;est-ce qui fonctionne réellement en pédagogie ? Comment savoir si une idée pédagogique est vraiment bonne ou mauvaise ? Où trouver des idées d&#8217;innovation pédagogiques qui ont des chances de faire plus de bien que de mal à nos apprenants ?</p>
+<p>Vous avez sans doute déjà assisté à ou lu des débats entre pédagogues, des débats sans fins, à coups de théories élaborées, des affrontements d&#8217;opinions, de croyances et de thèses difficilement vérifiables, bien souvent tranchés par l&#8217;invocation d&#8217;un grade (&#8220;c&#8217;est Monsieur l&#8217;inspecteur général qui l&#8217;a dit, c&#8217;est vrai&#8221;) ou d&#8217;une figure d&#8217;autorité historique (&#8220;c&#8217;est Piaget qui l&#8217;a dit, alors c&#8217;est vrai&#8221;), ou, plus souvent encore, jamais tranchés mais laissés en suspens de manière vaine au prétexte du relativisme ou des spécificités culturelles. Pour autant, au-delà des croyances et opinions de chacun, de quoi peut-on être sûr en matière d&#8217;éducation et de pédagogie ?</p>
+<p>Je m&#8217;étais posé ce genre de questions il y trois ans alors que je m&#8217;investissais professionnellement dans le secteur de l&#8217;éducation et j&#8217;avais eu du mal à identifier un &#8220;état de l&#8217;art&#8221; de qualité scientifique pour y répondre. J&#8217;ai un peu avancé cet été, voici ce que j&#8217;ai appris.</p>
+<p>Le mouvement de &#8220;l&#8217;éducation fondée sur les preuves&#8221; (EBE comme Evidence-Based Education et non pas comme Extraterrestrial Biological Entity) vise à rendre &#8220;scientifique&#8221; la connaissance en pédagogie. Ce mouvement a pris de l&#8217;ampleur sous l&#8217;influence des progrès scientifiques en sciences cognitives, en neuroscience (<a href="https://en.wikipedia.org/wiki/Educational_neuroscience">https://en.wikipedia.org/wiki/Educational_neuroscience</a>), en psychologie sociale mais aussi en s&#8217;appuyant sur les approches expérimentales rigoureuses déjà courantes dans le domaine éducatif (Piaget&#8230;). La différence entre opinion et savoir réside dans la solidité des preuves expérimentales avancées :</p>
+<ul>
+<li>solidité dans les protocoles expérimentaux (expérience randomisée en double aveugle comme en médecine, expériences reproductibles ou non, &#8230;),</li>
+<li>solidité dans l&#8217;analyse statistique des données expérimentales,</li>
+<li>solidité par la taille des groupes étudiés,</li>
+<li>solidité par la publication systématique des résultats expérimentaux (y compris les résultats négatifs) avec revue par les pairs..</li>
+</ul>
+<p>Cette problématique de ce qui différencie un science d&#8217;un débat d&#8217;opinions est <a href="http://www.ted.com/talks/ben_goldacre_battling_bad_science?language=fr">exprimée de manière très éloquente par Ben Goldacre dans sa présentation vidéo TED de 14 minutes sous-titrée en français</a>.</p>
+<p>Ben Goldacre a ensuite proposé au ministère britannique de l&#8217;éducation <a href="http://www.badscience.net/2013/03/heres-my-paper-on-evidence-and-teaching-for-the-education-minister/">une explication quant à ce que cette approche scientifique devait donner une fois appliquée au domaine de la pédagogie et de l&#8217;éducation</a>.</p>
+<p>On peut donc bien parler d&#8217;<a href="https://en.wikipedia.org/wiki/Evidence-based_education">éducation (ou de pédagogie) fondée sur les preuves (scientifiques)</a>. Alors, maintenant que l&#8217;on sait qu&#8217;il existe une approche scientifique de la pédagogie (les scientifiques du domaine pardonneront mon doute initial&#8230;), quel est l&#8217;état des connaissances scientifiques en la matière ? Plusieurs organismes essaient de tenir à jour une compilation de &#8220;ce qui marche&#8221; et qui marche moins bien, de ce dont on peut être sûr, d&#8217;après les publications scientifiques en pédagogie et didactique :</p>
+<ul>
+<li>le <a href="http://ies.ed.gov/ncee/wwc/">bureau &#8220;Qu&#8217;est-ce qui fonctionne&#8221; du ministère de l&#8217;éducation des USA</a>,</li>
+<li>le <a href="http://www.cebe.us/">Centre pour une éducation fondée sur les preuves</a>, aux USA,</li>
+<li>le <a href="http://www.ebtn.org.uk/">Réseau des enseignants qui s&#8217;appuient sur les preuves</a>, basé au Royaume-Uni,</li>
+<li>le site &#8220;<a href="http://toptierevidence.org/">Preuves de Haut Niveau</a>&#8221; de la <a href="http://coalition4evidence.org/">Coalition pour les preuves</a>, devenue la <a href="http://www.arnoldfoundation.org/initiative/evidence-based-policy-innovation/">division Innovation politique fondée sur les preuves de la fondation Laura et John Arnold</a>, aux USA.</li>
+</ul>
+<p>Ces acteurs et d&#8217;autres ont donc compilé des listes de preuves sur l&#8217;efficacité de telles ou telles méthodes ou interventions pédagogiques :</p>
+<ul>
+<li>La <a href="http://www.ebtn.org.uk/evidence/combined-list">synthèse de l&#8217;Evidence-Based Teaching Network</a></li>
+<li>La <a href="http://www.bestevidence.org/index.cfm">Best Evidence Encyclopedia</a></li>
+<li>La <a href="https://www.york.ac.uk/iee/">newsletter &#8220;Best Evidence in Brief&#8221; de l&#8217;Institut pour une éducation efficace</a></li>
+<li>Les listes du bureau &#8220;qu&#8217;est-ce qui fonctionne&#8221; du ministère US de l&#8217;éducation, par exemple <a href="http://ies.ed.gov/ncee/wwc/Topic.aspx?sid=5">celle sur les technologies pédagogiques</a></li>
+</ul>
+<p>Toutes ces listes s&#8217;appuient notamment sur le travail initial de 2 équipes de chercheurs :</p>
+<ol>
+<li>l&#8217;équipe de John Hattie, en Nouvelle-Zélande, qui a compilé pendant 15 ans <a href="http://visible-learning.org/fr/john-hattie-classement-facteurs-reussite-apprentissage/">800 &#8220;méta-analyses&#8221; qui recoupent entre elles, par analyse statistique, plus de 50 000 études scientifiques en matière de pédagogie, équipe qui a publié ses résultats en 2009 dans le livre &#8220;Visible Learning&#8221;</a> ; voici 3 présentations qui tentent de résumer, en plus de la page ci-dessus, les principales découvertes de l&#8217;équipe de John Hattie :
+<ul>
+<li><a href="http://samples.sainsburysebooks.co.uk/9781134024124_sample_526335.pdf">http://samples.sainsburysebooks.co.uk/9781134024124_sample_526335.pdf</a></li>
+<li><a href="http://www.steveventura.com/files/vlsynth.pdf">http://www.steveventura.com/files/vlsynth.pdf</a></li>
+<li><a href="http://www.treasury.govt.nz/publications/media-speeches/guestlectures/pdfs/tgls-hattie.pdf">http://www.treasury.govt.nz/publications/media-speeches/guestlectures/pdfs/tgls-hattie.pdf</a></li>
+</ul>
+</li>
+<li>l&#8217;équipe de Robert Marzano, du Colorado, qui a adopté la même approche mais <a href="http://www.marzanoresearch.com/research/database">en se concentrant exclusivement sur les études d&#8217;efficacité d&#8217;interventions pédagogiques en classe</a> : Marzano, R (2001) Classroom Instruction that Works Alexandria, VA: ASCD</li>
+</ol>
+<p>Avec ces points de départ, on peut relativement facilement identifier des publications de synthèse qui mettent à jour ces connaissances :</p>
+<ul>
+<li>voici par exemple la publication la plus citée (d&#8217;après Google Scholar) parmi celles qui citent les travaux de John Hattie : <a href="http://psi.sagepub.com/content/14/1/4.short">Improving Students&#8217; Learning With Effective Learning Techniques</a></li>
+<li>et voici celle la plus citée parmi celles citant Hattie et portant spécifiquement sur la technopédagogie <a href="http://rer.sagepub.com/content/81/1/4.short">What Forty Years of Research Says About the Impact of Technology on Learning</a></li>
+</ul>
+<p>Au final, j&#8217;ai trouvé peu de ressources en français sur l&#8217;éducation fondée sur les preuves. Et vous ?</p>
+]]></content:encoded>
+			<wfw:commentRss>http://www.akasig.org/2015/08/28/quelles-sont-les-methodes-et-techniques-pedagogiques-qui-marchent-vraiment/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>Smart Contracts, crypto-monnaie et Revenu Libre d&#8217;Existence</title>
+		<link>http://www.akasig.org/2015/08/09/smart-contracts-crypto-monnaie-et-revenu-libre-dexistence/</link>
+		<comments>http://www.akasig.org/2015/08/09/smart-contracts-crypto-monnaie-et-revenu-libre-dexistence/#comments</comments>
+		<pubDate>Sun, 09 Aug 2015 21:15:30 +0000</pubDate>
+		<dc:creator><![CDATA[Sig]]></dc:creator>
+				<category><![CDATA[blockchain]]></category>
+		<category><![CDATA[Développement]]></category>
+		<category><![CDATA[Economie de communion]]></category>
+		<category><![CDATA[Ecrit en français]]></category>
+		<category><![CDATA[Humains en réseaux]]></category>
+		<category><![CDATA[Informatique]]></category>
+		<category><![CDATA[Innovation]]></category>
+		<category><![CDATA[My hacks]]></category>
+		<category><![CDATA[My wishlist]]></category>
+		<category><![CDATA[Open source]]></category>
+
+		<guid isPermaLink="false">http://www.akasig.org/?p=1345</guid>
+		<description><![CDATA[J&#8217;ai un ami qui dédie sa carrière au &#8220;libre&#8221; et aux &#8220;biens communs&#8221; et je m&#8217;apprêtais à lui soumettre une idée d&#8217;innovation solidaire par email. Mais je lui ai dit que ça pouvait aussi t&#8217;intéresser, cher lecteur-contributeur. Ca parle donc de liberté, de solidarité mais aussi de cryptomonnaie (bitcoins, ethers) et de programmation de &#8220;smart [&#8230;]]]></description>
+				<content:encoded><![CDATA[<p>J&#8217;ai un ami qui dédie sa carrière au &#8220;libre&#8221; et aux &#8220;biens communs&#8221; et je m&#8217;apprêtais à lui soumettre une idée d&#8217;innovation solidaire par email. Mais je lui ai dit que ça pouvait aussi t&#8217;intéresser, cher lecteur-contributeur. Ca parle donc de liberté, de solidarité mais aussi de cryptomonnaie (bitcoins, ethers) et de programmation de &#8220;smart contracts&#8221; solidaires. Donc essentiellement de numérique et d&#8217;innovation sociale.</p>
+<p>L&#8217;idée de base, c&#8217;est d&#8217;essayer de rendre libres et communs des <a href="https://fr.wikipedia.org/wiki/Biens_rivaux">biens rivaux</a>, ce qui est théoriquement impossible. J&#8217;ai évoqué <a href="http://www.akasig.org/2011/02/14/free-money/">cette idée ici il y a quelques années mais en anglais</a>. Le principe est inspiré du <a href="https://en.wikipedia.org/wiki/Pay_it_forward">Pay-It-Forward</a> et de l&#8217;<a href="https://fr.wikipedia.org/wiki/%C3%89conomie_de_communion">économie de communion</a>. Un peu comme avec une licence de logiciel libre (copyleft), on rédige un contrat entre nous du style suivant.</p>
+<blockquote><p>Je te donne ce stylo (je te le &#8220;libère&#8221;) à condition que tu t&#8217;engages à donner à ton tour un stylo de valeur égale ou supérieure à celui-ci à la première personne qui t&#8217;en fera la demande dès qu&#8217;elle t&#8217;en fera la demande et acceptera les mêmes conditions que celles-ci et sans poser aucune restriction supplémentaire sur cette personne, le stylo ou l&#8217;usage que cette personne en fera.</p></blockquote>
+<p>Le stylo en question devient donc &#8220;libre&#8221; dans la mesure où plus personne ne peut se l&#8217;approprier au point d&#8217;en priver les autres. Mais tout le monde peut l&#8217;utiliser, l&#8217;étudier, l&#8217;améliorer et le partager. Presque comme un logiciel libre. Bien sûr, la différence principale c&#8217;est que, dès que je rend ce stylo à mon prochain, je ne l&#8217;ai plus. On ne peut pas l&#8217;utiliser simultanément à plusieurs. Mais je n&#8217;en suis pas non plus définitivement privé puisque je peux le redemander. Et si je l&#8217;use trop, c&#8217;est à moi de le réparer, de le remplacer ou de l&#8217;améliorer pour que je rende toujours une valeur au moins égale à celle que j&#8217;ai reçue.</p>
+<p>Ce qui est amusant, c&#8217;est que si on inclut cette notion &#8220;d&#8217;intérêts&#8221; au sens financier (je te donne 1 stylo si tu t&#8217;engages à en donner 2, ou bien je compense au moins &#8220;l&#8217;usure&#8221; du stylo) et une notion de prix comparable ou de valeur au moins équivalente (je te donne des biens de valeur X si tu t&#8217;engages à en donner de valeur X * 2, pas forcément les mêmes biens) alors on peut imaginer contaminer ainsi tous les biens rivaux de la planète et, en théorie, mettre fin en pratique à la propriété privée. En pratique&#8230; en théorie.</p>
+<p>Je te libère 1 euro la prochain fois que je te vois à condition que tu t&#8217;engages à en libérer 2 fois plus à la première personne qui t&#8217;en fera la demande, dès qu&#8217;elle t&#8217;en fera la demande et acceptera les mêmes conditions que celles-ci et pas une de plus. Par effet boule de neige, ce contrat librement contaminant pourrait, à terme, empêcher quiconque de refuser de partager son argent avec son prochain&#8230;</p>
+<p>Bon, l&#8217;idée peut paraître amusante mais, en pratique, elle est difficile à implémenter à grande échelle. Il serait coûteux de faire respecter un contrat de ce type. Difficile de savoir qui détiendrait, à un instant t, des biens libres, lesquels et de quelle valeur, selon quelle version du contrat. Difficile de s&#8217;assurer que le bien rendu est effectivement de valeur égale ou supérieure au bien libéré. Et ensuite difficile d&#8217;obtenir d&#8217;un système judiciaire qu&#8217;il fasse appliquer ce contrat en allant jusqu&#8217;à faire saisir les biens libres de cette personne. Sans compter les personnes qui organiseraient leur insolvabilité par malhonnêteté ou seraient tellement endettées que ça ne serait pour elle qu&#8217;une dette insolvable de plus, cette fois vis-à-vis de tous tiers. Des dettes communes, en quelque sorte. Les insolvables agiraient alors comme des trous noirs à biens communs, en profitant mais en privant alors définitivement les tiers. Une tragédie..</p>
+<p>Mais les choses sont plus facilement maitrisables avec la notion (compliquée) de <a href="https://en.wikipedia.org/wiki/Smart_contract">smart contract</a>. Je ne vais pas expliquer ici ce concept mais supposer que tu sais ce qu&#8217;il en est. Pour ce qui nous intéresse, on peut imaginer programmer un token de cryptomonnaie basé sur Ethereum selon un contrat de liberté inspiré de la GPL et du pay-it-forward : Alice donne ce token à Bob à condition que, etc. L&#8217;intérêt du smart contract c&#8217;est que Charles et David n&#8217;ont pas besoin de faire confiance à Bob pour savoir que le contrat va s&#8217;appliquer. Le contrat s&#8217;applique automatiquement, informatiquement, et avec une traçabilité parfaite. On peut programmer le contrat pour savoir à tout moment qui détient quels tokens libres et combien et selon quel contrat, et ces tokens peuvent être obtenus automatiquement par n&#8217;importe qui en ferait la demande. Il y a bien sûr un risque de fraude si on permet aux tokens d&#8217;échapper au contrat. Par exemple, si j&#8217;échange mon token contre des euros et que je m&#8217;approprie les euros obtenus au lieu de les laisser soumis au contrat qui me lie ainsi au reste de l&#8217;humanité. Qui va garder la contrainte de liberté lié au caractère &#8220;commun&#8221; de ce token ? Celui qui a obtenu les euros ? Ou celui qui aura récupéré le token libre ? Que vaut un token libre s&#8217;il ne peut pas être utilisée aussi librement qu&#8217;une monnaie non libre ? L&#8217;idéal serait que le détenteur de token libres puisse effectivement les échanger contre des euros libres, qu&#8217;il garde la charge de liberté initialement attachée au token mais désormais attachée aux euros dans le monde hors numérique dans lequel le smart contract ne s&#8217;applique plus automatiquement. Mais ce risque doit être quantifiable, limitable et gérable.</p>
+<p>Du coup, ça m&#8217;a donné une idée d&#8217;extension autour du concept de <a href="https://fr.wikipedia.org/wiki/Revenu_d%27existence">revenu d&#8217;existence</a>. L&#8217;idée est de faire circuler des smart contracts programmés pour permettre une redistribution équitable et universelle des richesses monétaires entre les personnes. Un revenu d&#8217;existence qui ne serait pas émis par une administration pour ses administrés seulement mais qui serait auto-organisé par contrat et librement consenti par ses souscripteurs en fonction de leur générosité (et de leurs besoins). Imaginons donc le contrat suivant.</p>
+<blockquote>
+<ul>Alice verse 1 ether à Bob en tant que &#8220;revenu libre d&#8217;existence&#8221; (RLE) à condition que Bob s&#8217;engage à reverser un RLE :</p>
+<li>à la première personne physique vivante qui en ferait la demande pour une période donnée, <strong>(Bob ne choisit pas le demandeur Charles qui lui demandera un RLE pour le mois de juillet 2015)</strong></li>
+<li>dès que cette personne en fait la demande, <strong>(Charles le demande le 9 août 2015 et donc l&#8217;obtient immédiatement, automatiquement, sans que Bob puisse s&#8217;y opposer comme il s&#8217;y est engagé initialement auprès d&#8217;Alice)</strong></li>
+<li>tant que la somme cumulée des reversements de RLE effectués par Bob est inférieure à la somme cumulée des RLE reçus par Bob, multipliée par un facteur d&#8217;intérêt F supérieur ou égal à 1, <strong>(tant que Bob n&#8217;a pas déjà reversé à des tiers F fois le montant total de RLE dont il a bénéficié ; une fois que Bob a beaucoup reversé de RLE, il s&#8217;est acquitté du contrat de RLE qui le liait à Alice)</strong></li>
+<li>et, étant défini que le montant nominal du RLE d&#8217;une personne pour une période donnée est égal à la somme cumulée des RLE reversés au cours de cette période divisée par le nombre de personnes ayant reçu ces reversements, <strong>(par égalité, le montant nominal du RLE est un partage égalitaire de tous ce que les gens ont pu reverser comme RLE à cette période)</strong>, tant que Bob, pour la période demandée, n&#8217;a pas déclaré avoir touché comme revenus totaux un montant inférieur à 4 fois le montant nominal du revenu d&#8217;existence pour cette période, <strong>(c&#8217;est une exception au principe de liberté au nom de la solidarité ou de la fraternité : par solidarité, on autorise Bob à s&#8217;approprier temporairement le RLE qu&#8217;il a perçu tant qu&#8217;il est pauvre et donc à priver les tiers du reversement de ce RLE)</strong></li>
+<li>d&#8217;un montant égal au montant nécessaire et suffisant pour que cette personne ait bénéficié, au titre de cette période, du montant nominal du RLE d&#8217;une personne pour cette période, <strong>(on reverse à Charles ce dont il a besoin pour bénéficier d&#8217;un RLE complet pour cette période, mais pas plus)</strong></li>
+<li>sous les mêmes conditions que celles énumérées dans ce contrat ou dans toute version de ce contrat émise ultérieurement par Jean Millerat <strong>(il pourrait s&#8217;agir d&#8217;un auteur plus compétent, comme une Free Software Foundation de la liberté, de l&#8217;égalité et de la fraternité, composée de juristes confirmés&#8230;)</strong></li>
+<li>et sans apporter de restriction ou condition supplémentaire.</li>
+</ul>
+</blockquote>
+<p>Donc tous les bénéficiaires du RLE reversent à leur tour un RLE aux personnes qui le demandent. La machine est amorcée par les personnes solidaires qui acceptent de libérer un peu d&#8217;argent de temps en temps (les Alice). La machine est entretenue par tous les bénéficiaires suffisamment riches pour reverser leur RLE et un peu plus, à toute la planète (les Bob et les Charles). Et la machine bénéficie à tous ceux qui, à un moment de leur vie, n&#8217;ont pas assez de revenus pour reverser immédiatement un RLE (parfois Bob, parfois Charles). C&#8217;est une espèce de gigantesque mutuelle automatisée, en quelque sorte.</p>
+<p>Je vais donc jeter un coup d&#8217;oeil à la programmation de smart contracts sur Ethereum pour voir dans quelle mesure ce concept est implémentable et donc ensuite essayer de le tester.</p>
+<p>A noter : ce concept peut être étendu à de nombreuses autres formes d&#8217;innovation sociale, c&#8217;est le tour de force des smart contracts et des cryptomonnaies, qui &#8220;informatisent la confiance&#8221; (qui rendent la confiance inutile dans certaines transactions en automatisant leurs conditions d&#8217;exécution). Par exemple, plutôt que de prévoir une exception solidaire de non-reversement immédiat par les plus pauvres, on pourrait imaginer un contrat dans lequel Charles peut définitivement s&#8217;approprier le montant perçu (ne pas avoir à le reverser) à condition d&#8217;avoir produit un bien commun dont la valeur est estimée par un panel de souscripteurs comme étant au moins égale au montant perçu. Un peu comme si Charles avait convertit un token de cryptomonnaie libre en un bien commun tel qu&#8217;un logiciel libre, des contributions à la wikipedia, à OpenStreetMap, etc. Le contrat devient alors un modèle de financement de la création de biens communs.</p>
+<p>Tu imagines d&#8217;autres applications possibles de contrats de ce type ? Qu&#8217;est-ce que ça t&#8217;inspire ?</p>
+]]></content:encoded>
+			<wfw:commentRss>http://www.akasig.org/2015/08/09/smart-contracts-crypto-monnaie-et-revenu-libre-dexistence/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>Manifeste pour la création Agile de formations</title>
+		<link>http://www.akasig.org/2015/02/09/manifeste-pour-la-creation-agile-de-formations/</link>
+		<comments>http://www.akasig.org/2015/02/09/manifeste-pour-la-creation-agile-de-formations/#comments</comments>
+		<pubDate>Mon, 09 Feb 2015 08:01:57 +0000</pubDate>
+		<dc:creator><![CDATA[Sig]]></dc:creator>
+				<category><![CDATA[Ecrit en français]]></category>
+		<category><![CDATA[Innovation]]></category>
+
+		<guid isPermaLink="false">http://www.akasig.org/?p=1341</guid>
+		<description><![CDATA[Dans l&#8217;univers de l&#8217;informatique, les méthodes de gestion de projet ont évolué au rythme de l&#8217;Internet. Les méthodes dites &#8220;agiles&#8221; sont venues enrichir la panoplie des chefs de projet de manière à réussir des projets à contexte incertains : ceux pour lesquels le besoin fonctionnel est difficilement connaissable ou bien susceptible d&#8217;évoluer. La méthode agile [&#8230;]]]></description>
+				<content:encoded><![CDATA[<p>Dans l&#8217;univers de l&#8217;informatique, les méthodes de gestion de projet ont évolué au rythme de l&#8217;Internet. Les méthodes dites &#8220;agiles&#8221; sont venues enrichir la panoplie des chefs de projet de manière à réussir des projets à contexte incertains : ceux pour lesquels le besoin fonctionnel est difficilement connaissable ou bien susceptible d&#8217;évoluer. La méthode agile la plus pratiquée est probablement <a href="http://fr.wikipedia.org/wiki/Scrum_%28m%C3%A9thode%29">la méthode Scrum</a>.</p>
+<p>Mais l&#8217;organisation du travail pronée par ces méthodes n&#8217;est pas uniquement pertinente pour la création de logicielle. Elle s&#8217;applique avec bonheur dans d&#8217;autres contextes de conduite de projet où l&#8217;incertitude sur les besoins métiers requiert de l&#8217;agilité et où les méthodes plus traditionnelles rencontrent leurs limites. C&#8217;est par exemple le cas dans ma pratique professionnelle dans le secteur de l&#8217;innovation technopédagogique.</p>
+<p>Or les méthodes agiles s&#8217;appuient sur des valeurs distinctes des méthodes traditionnelles. Ces valeurs sont résumées dans le &#8220;<a href="http://www.agilemanifesto.org/iso/fr/">manifeste agile</a>&#8221; mais avec des termes ancrés dans les pratiques du génie logiciel.</p>
+<p>Pour partager l&#8217;agile avec des non-informaticiens et, en particulier dans le domaine de l&#8217;ingénierie pédagogique, j&#8217;ai donc proposé à quelques collègues un <strong>Manifeste pour la création Agile de formations</strong>, que je livre ici à vos commentaires :</p>
+<blockquote><p>Nous découvrons comment mieux créer des formations par la pratique, la collaboration et l&#8217;entraide. Cette expérience nous a amené à valoriser :</p>
+<ul>
+<li>Les individus et leurs interactions davantage que les processus et les outils</li>
+<li>Les apprentissages réussis davantage que les modèles pédagogiques exhaustifs</li>
+<li>La collaboration avec les apprenants davantage que la satisfaction des experts</li>
+<li>L&#8217;adaptation au changement davantage que le suivi d&#8217;un plan</li>
+</ul>
+<p>Nous reconnaissons la valeur des seconds éléments, mais nous privilégions les premiers.</p></blockquote>
+]]></content:encoded>
+			<wfw:commentRss>http://www.akasig.org/2015/02/09/manifeste-pour-la-creation-agile-de-formations/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>Apprendre selon ses propres besoins avec l&#8217;adaptive learning</title>
+		<link>http://www.akasig.org/2014/06/25/apprendre-selon-ses-propres-besoins-ladaptive-learning/</link>
+		<comments>http://www.akasig.org/2014/06/25/apprendre-selon-ses-propres-besoins-ladaptive-learning/#comments</comments>
+		<pubDate>Wed, 25 Jun 2014 21:42:44 +0000</pubDate>
+		<dc:creator><![CDATA[Sig]]></dc:creator>
+				<category><![CDATA[Ecrit en français]]></category>
+		<category><![CDATA[Informatique]]></category>
+		<category><![CDATA[Innovation]]></category>
+
+		<guid isPermaLink="false">http://www.akasig.org/?p=1331</guid>
+		<description><![CDATA[A l&#8217;occasion d&#8217;un échange avec un journaliste intéressé par l&#8217;adaptive learning, je vous propose cette petite synthèse des principales infos qui m&#8217;ont marqué ces 2 dernières années en matière de technologies de personnalisation des apprentissages, également appelées &#8220;adaptive learning&#8221; : 2014-06-09 : Un bon article introductif sur l&#8217;adaptive learning (abonnement gratuit nécessaire) rappelle que les [&#8230;]]]></description>
+				<content:encoded><![CDATA[<p>A l&#8217;occasion d&#8217;un échange avec un journaliste intéressé par l&#8217;adaptive learning, je vous propose cette petite synthèse des principales infos qui m&#8217;ont marqué ces 2 dernières années en matière de technologies de personnalisation des apprentissages, également appelées &#8220;<a href="https://en.wikipedia.org/wiki/Adaptive_learning">adaptive learning</a>&#8221; :</p>
+<ul>
+<li>2014-06-09 : Un bon article introductif sur l&#8217;adaptive learning (abonnement gratuit nécessaire) rappelle que les bénéfices pédagogiques de l&#8217;adaptive learning sont parfois ambigüs et nécessitent des travaux complémentaires de recherche scientifique (<a href="http://modernlearners.com/what-should-school-leaders-know-about-adaptive-learning/">via Modern Learners</a>).</li>
+<li>2014-06-04 : Une entreprise japonaise fournisseur de technologies d&#8217;apprentissage adaptatif s&#8217;associe avec le petit-fils de Jacques-Yves Cousteau pour proposer des cours d&#8217;océanographie gratuits (<a href="http://www.edukwest.com/cerego-cousteaus-mission-31-launch-oceanography-courses/">via Edukwest</a>).</li>
+<li>2014-06-03 : Les acteurs américains de l&#8217;enseignement privé continuent d&#8217;investir des dizaines de millions de dollars sur l&#8217;adaptive learning et élaborent des partenariats entre éditeurs de contenus et fournisseurs de technologie logicielle (<a href="http://www.insidehighered.com/news/2014/06/13/profits-lead-way-adaptive-learning-becomes-more-popular#ixzz34YRycedz">via Inside Higher Ed</a>).</li>
+<li>2014-04-20 : Une autre bonne introduction générale sur l&#8217;adaptive learning : elle souligne que ces technologies en sont encore à leurs balbutiements et on ne sait pas encore lequel, parmi différents modèle pédagogique basés sur l&#8217;individualisation algorithmique des apprentissages, fera ses preuves et se développera de manière durable (<a href="http://distance-educator.com/adaptive-learning-systems-introductory-discussion/">via Distance Educator</a>).</li>
+<li>2014-04-13 : Le système éducatif actuel a été organisé pour l&#8217;instruction des masses à l&#8217;époque de la révolution industrielle. Il n&#8217;est plus adapté au fonctionnement de l&#8217;économie moderne. L&#8217;individualisation des apprentissages permise par les technologies logicielles d&#8217;apprentissage adaptatif pourrait être une solution pour remettre ce système en phase avec les besoins d la société d&#8217;aujourd&#8217;hui (<a href="http://distance-educator.com/introduction-to-distance-education-theories-and-theorists-ramifications-of-the-theory-of-transactional-distance/">via Distance educator</a>).</li>
+<li>2013-12-20 : Les entreprises américaines fournissant des technologies d&#8217; &#8220;adaptive learning&#8221; continuent à lever des fonds importants mais la recherche scientifique ne prouve pas d&#8217;impact pédagogique spécifique pour ces technologies (<a href="http://www.hackeducation.com/2013/12/20/hack-education-weekly-news-12-19-2013/">via Hack education</a>).</li>
+<li>2013-04 : La fondation Bill et Melinda Gates finance la production d&#8217;un état de l&#8217;art en matière d&#8217;adaptive learning (<a href="http://edgrowthadvisors.com/wp-content/uploads/2013/04/Learning-to-Adapt_Report_Supplier-Landscape_Education-Growth-Advisors_April-2013.pdf">via Ed Growth Advisors</a>).</li>
+<li>2013-03-21 : Les 2 acteurs qui accumulent le plus de données éducatives individuelles et de technologies de personnalisation adaptative sont Knewton (une entreprise) et la Khan Academy (une association non lucrative). Si l&#8217;enseignement (notamment supérieur) et la formation (notamment professionnelle) continuent à s&#8217;organiser sous la forme d&#8217;un espace mondialisé (marchand et de partage non marchand), alors ces 2 acteurs pourraient en devenir les leaders mondiaux et rompre définitivement l&#8217;équilibre économique des institutions éducatives traditionnelles (innovation &#8220;de rupture&#8221;) (<a href="http://www.forbes.com/sites/michaelhorn/2013/03/21/special-k-dont-sleep-on-khan-academy-knewton/">via Forbes</a>).</li>
+<li>2013-02-19 : La personnalisation, c&#8217;est le coeur de la pédagogie. Les technologies de personnalisation éducative constituent &#8220;naturellement&#8221; une tendance majeure pour l&#8217;innovation technopédagogique depuis quelques années. (<a href="http://blog.core-ed.org/blog/2013/02/core-ten-trends-2013-personalisation.html">via Core-Ed</a>).</li>
+<li>2012-06 : La fondation Bill et Melinda Gates finance la création d&#8217;un institut universitaire non lucratif, à distance, grâce aux technologies d&#8217;apprentissage adaptatif (<a href="http://www.gatesfoundation.org/media-center/press-releases/2012/06/gates-foundation-announces-grants-to-support-learning-models">via la Gates Foundation</a>).</li>
+<li>2012-02-22 : L&#8217;Inde, pour faire face à son développement économique et à ses besoins croissants en formation doit construire 50.000 instituts universitaires et aurait besoin d&#8217;1 million d&#8217;enseignants supplémentaires. Pour faire face à l&#8217;ampleur de ces besoins, elle pourrait être tentée d&#8217;investir massivement dans les technologies logicielles d&#8217;apprentissage adaptatif en ligne (<a href="http://www.forbes.com/sites/michaelhorn/2012/02/22/how-to-build-50000-new-colleges/">via Forbes</a>).</li>
+</ul>
+<p>Ne nous y trompons pas : l&#8217;actualité sur l&#8217;adaptive learning s&#8217;accélère nettement ces derniers mois, mais nous sommes sur une tendance de fond et qui prendra encore quelques années avant de trouver sa pleine maturité économique, technologique et pédagogique.</p>
+]]></content:encoded>
+			<wfw:commentRss>http://www.akasig.org/2014/06/25/apprendre-selon-ses-propres-besoins-ladaptive-learning/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>Indiscrétions de Faraday et blindage électromagnétique</title>
+		<link>http://www.akasig.org/2014/06/09/indiscretions-de-faraday-et-blindage-electromagnetique/</link>
+		<comments>http://www.akasig.org/2014/06/09/indiscretions-de-faraday-et-blindage-electromagnetique/#comments</comments>
+		<pubDate>Mon, 09 Jun 2014 12:38:49 +0000</pubDate>
+		<dc:creator><![CDATA[Sig]]></dc:creator>
+				<category><![CDATA[Affaires non classees]]></category>
+		<category><![CDATA[Ecrit en français]]></category>
+
+		<guid isPermaLink="false">http://www.akasig.org/?p=1326</guid>
+		<description><![CDATA[J&#8217;ai un copain qui est un peu parano. Il a peur que la NSA, Apple, son opérateur télécom, le gouvernement ou un pirate malveillant ne le localisent. Faut dire qu&#8217;il a une vie amusante&#8230; Il va dans des endroits où il n&#8217;est pas censé aller. Il va voir des gens qu&#8217;il n&#8217;est pas censé voir. [&#8230;]]]></description>
+				<content:encoded><![CDATA[<p>J&#8217;ai un copain qui est un peu parano. Il a peur que la NSA, Apple, son opérateur télécom, le gouvernement ou un pirate malveillant ne le localisent. Faut dire qu&#8217;il a une vie amusante&#8230; Il va dans des endroits où il n&#8217;est pas censé aller. Il va voir des gens qu&#8217;il n&#8217;est pas censé voir. Alors forcément, le fait d&#8217;avoir son iPhone dans sa poche l&#8217;inquiète. Si il le laisse allumé, son téléphone va communiquer avec les antennes-relais autour de lui et il laissera des traces électroniques de son passage. Ca ne ferait pas bien sur son CV ou dans les journaux.</p>
+<p>Bien sûr, il y a le mode &#8220;avion&#8221; qui est censé couper toute communication entre son téléphone et l&#8217;extérieur. Le problème, c&#8217;est que mon copain, il n&#8217;a vraiment pas confiance dans la technologie. Et si son téléphone prétendait être en mode avion alors qu&#8217;il laisserait derrière lui des traces de petit poucet ? Pas moyen de faire confiance à un morceau d&#8217;électronique corrompu.</p>
+<p>Bien sûr, il peut carrément éteindre son téléphone. Mais, de nos jours, ce n&#8217;est pas parce qu&#8217;un écran est éteint qu&#8217;un téléphone est silencieux. Pas moyen de faire confiance à un écran. Si son téléphone n&#8217;était pas un iPhone, il pourrait toujours en retirer la batterie. Mais, même dans ce cas, les condensateurs dans le téléphone ne suffiraient-ils pas au vicieux téléphone pour, dans un dernier sursaut de malveillance, laisser UN petit caillou blanc mal placé qui le localiserait là où il n&#8217;est pas censé aller ?</p>
+<p>Bien sûr, il peut d&#8217;abord veiller à vider la batterie de son téléphone en le laissant allumé le plus longtemps possible puis en tentant de le rallumer plusieurs fois alors même qu&#8217;il s&#8217;était éteint faute de courant suffisant. Mais il reste au moins à l&#8217;iPhone suffisamment d&#8217;énergie pour dire qu&#8217;il ne lui en reste plus. Et si il est corrompu, rien ne dit qu&#8217;il ne lui en reste pas plus, juste suffisamment pour signaler son passage auprès d&#8217;une antenne relais.</p>
+<p>Bien sûr, il peut enlever la carte SIM de son téléphone. Il faut appuyer sur le micro-bouton sur la tranche de l&#8217;iPhone et retirer la carte SIM pour que celle-ci ne puisse plus l&#8217;authentifier sur le réseau. Mais cela suffirait-il à empêcher Big Brother et le téléphone corrompu à échanger un numéro de série auprès d&#8217;un antenne réseau mal placé ? Après tout, l&#8217;identifiant IMEI de son téléphone est justement là pour ça : pour permettre d&#8217;identifier un téléphone sans carte SIM sur le réseau. Alors l&#8217;absence de carte SIM ne suffit pas à le rassurer.</p>
+<p>Bien sûr, il peut se fier à Mère Nature et ses sacrées lois de la physique pour détériorer la performance de l&#8217;antenne du téléphone. Il peut, par exemple, <a href="http://www.delta-service17.com/gt-protections-gare-aux-arnaques/s36.html">envelopper son iPhone dans une feuille de papier aluminium en veillant à ce que la feuille touche bien la tranche métallique du boîtier</a> (il faut enlever le téléphone de son éventuel étui). Ainsi, il devrait réussir à modifier l&#8217;impédance de l&#8217;antenne et diminuer la puissance (et la sensibilité ?) de celle-ci. Mais cela risque de ne pas suffire. S&#8217;il s&#8217;approche trop près d&#8217;une antenne relais, le signal risque de passer et sa paranoïa n&#8217;aura servi à rien.</p>
+<p>Bien sûr, il peut lire plus avant le texte des lois et créer un <a href="http://fr.wikipedia.org/wiki/Blindage_%C3%A9lectromagn%C3%A9tique">blindage électromagnétique</a> (cage de Faraday) autour du téléphone pour bloquer toute communication. Pour cela, il doit enfermer hermétiquement son téléphone dans une boîte métallique. Etant données les fréquences de son téléphone (de 900 MHz à 5 GHz), peu importe le métal dont est constitué la boîte du moment qu&#8217;il conduit assez bien l&#8217;électricité : boîte en fer blanc, en autre type d&#8217;acier, en fer, en aluminium, en cuivre, en or, peu importe&#8230; Mais si les parties métalliques de son téléphone (ou, dans notre cas, le papier aluminium qui emballe son téléphone) viennent à toucher le métal de la boîte, celle-ci risque alors de se transformer en extension d&#8217;antenne et de relayer le signal au lieu de le bloquer.</p>
+<p>Bien sûr, il peut veiller à isoler électriquement le téléphone de la boîte en enveloppant téléphone et papier aluminium dans un étui en mousse ou en film plastique (épais si possible). Ainsi isolée électriquement, la boîte métallique peut faire blindage. Mais si sa boîte n&#8217;est pas suffisamment hermétique, le signal de son téléphone s&#8217;échappera et ses efforts n&#8217;auront servi à rien.</p>
+<p>Bien sûr, il peut veiller à la boîte soit hermétiquement close. En fait, la boîte peut avoir des trous de petit périmètre, ce n&#8217;est pas bien grave. Mais elle ne doit pas présenter de fente longue, de plaques disjointes entre elles, de fil ou prise qui entre ou sort de la boîte, et encore moins de couvercle mal ajusté ou mal posé sur la boîte. Puisqu&#8217;il faut ouvrir la boîte pour y mettre le téléphone, il y a forcément un couvercle ou une trappe. Ce couvercle, lui-même doit alors assurer un excellent contact électrique avec la boîte : pas de couvercle tordu, bosselé ou ne touchant la boîte que sur un demi-millimètre carré. Il doit toucher la boîte sur l&#8217;ensemble de son pourtour et la surface de contact entre le couvercle et la boîte doit être la plus grande possible, et sans peinture ni vernis. Les radio-amateurs ayant besoin de blindage utiliseraient souvent un pot de peinture vide et métallique car le couvercle (lui-même métallique) s&#8217;y ajuste hermétiquement et par contact métal sur métal. Mais si, malgré ses efforts, le couvercle n&#8217;est pas en contact électrique suffisant avec la boîte, ses efforts auront été vain.</p>
+<p>Bien sûr, il peut compléter le contact électrique entre la boîte et son couvercle en enveloppant ceux-ci dans du papier aluminium ou du rouleau métallique adhésif de plombier (à condition que la colle de l&#8217;adhésif ne soit pas isolante&#8230;). Avec un bon blindage électromagnétique, la puissance de son téléphone peut être <a title="Calculateur d'atténuation de champ électromagnétique proche" href="http://www.cvel.clemson.edu/emc/calculators/SE_Calculator/nearfieldSE.html">atténuée de plusieurs dizaines voire centaines de decibels</a>. Mais ces bestioles électromagnétiques sont tellement puissantes et sensibles que, si il passe à proximité immédiate d&#8217;un antenne relais (quelques mètres, voire quelques dizaines de centimètres), le blindage risque de ne pas suffire et le signal risque de réussir à traverser.</p>
+<p>Bien sûr, il peut multiplier l&#8217;efficacité du blindage en choisissant une boîte au métal épais : plutôt qu&#8217;avec l&#8217;épaisseur de métal d&#8217;une cannette de soda ou d&#8217;une boîte de conserve, il peut choisir une bonne vieille boîte en acier épais de 1 ou 2 millimètres et mutiplier d&#8217;autant l&#8217;atténuation permise par son blindage. Mais, vues les hautes fréquences utilisées par les téléphones, un pouième de millimètre d&#8217;épaisseur devrait suffire.</p>
+<p>Résumons ce à quoi sa paranoïa devrait le mener :</p>
+<ul>
+<li>mettre son téléphone en mode avion,</li>
+<li>laisser son téléphone allumé jusqu&#8217;à ce que la batterie soit vide puis tenter plusieurs fois de le rallumer pour l&#8217;épuiser un peu plus encore,</li>
+<li>éteindre son téléphone,</li>
+<li>retirer la carte SIM,</li>
+<li>emballer son téléphone dans quelques épaisseurs de papier aluminium bien en contact avec la tranche métallique du téléphone,</li>
+<li>glisser le tout dans un étui de mousse ou de plastique isolant et épais,</li>
+<li>choisir une boîte au métal épais et au couvercle (lui-même au métal épais) très largement en contact avec la boîte sur tout son périmètre et glisser le téléphone dedans,</li>
+<li>parfaire le contact électrique entre la boîte et son couvercle en enveloppant à nouveau le tout dans du papier aluminium,</li>
+<li>à ce stade de paranoïa, il peut également brûler un cierge et faire une prière vaudou ou encore, plus simplement, laisser son téléphone chez lui !</li>
+</ul>
+<p>D&#8217;ailleurs, si il veut tester l&#8217;efficacité de ces divers emballages, il peut d&#8217;abord y mettre son téléphone allumé et avec carte SIM, se mettre à proximité immédiate d&#8217;une antenne relais et essayer d&#8217;appeler son téléphone depuis un autre téléphone pour voir si celui-ci se met à sonner.</p>
+<p>Mais tout cela n&#8217;aura servi à rien si il a ignoré une règle de base de la sécurité informatique : la plupart des fuites d&#8217;information ne sont pas dues à des dispositifs numériques défaillants mais à des faiblesses bien humaines. Avait-il imaginé que la bonne amie à qui il allait ainsi discrètement rendre visite, une fois abandonnée par lui suite à un revers de fortune amoureuse, se consolerait dans les bras du cousin de la grand-mère du concierge d&#8217;un journaliste influent ?</p>
+<p>Et vous, que conseilleriez-vous à mon copain parano ?</p>
+<p>Quelques liens complémentaires pour en savoir plus :</p>
+<ul>
+<li><a href="http://www.thesurvivalistblog.net/build-your-own-faraday-cage-heres-how/">construisez votre propre cage de Faraday</a></li>
+<li><a href="http://www.esiee.fr/~poulichp/CEM/Blindage_electromagnetique/chapitre2.PDF">calculez l&#8217;efficacité de votre blindage</a></li>
+<li><a href="http://raymond.caniac.perso.neuf.fr/mapage/monsite/cem/A09_Faradisation.pdf">la faradisation</a></li>
+<li><a href="http://arxiv.org/pdf/1112.5495.pdf">expérimentez une cage de Faraday avec vos élèves</a></li>
+</ul>
+]]></content:encoded>
+			<wfw:commentRss>http://www.akasig.org/2014/06/09/indiscretions-de-faraday-et-blindage-electromagnetique/feed/</wfw:commentRss>
+		<slash:comments>1</slash:comments>
+		</item>
+		<item>
+		<title>How to test lean canvases in the optimal order ?</title>
+		<link>http://www.akasig.org/2014/04/20/how-to-test-lean-canvases-in-the-optimal-order/</link>
+		<comments>http://www.akasig.org/2014/04/20/how-to-test-lean-canvases-in-the-optimal-order/#comments</comments>
+		<pubDate>Sat, 19 Apr 2014 23:32:47 +0000</pubDate>
+		<dc:creator><![CDATA[Sig]]></dc:creator>
+				<category><![CDATA[Innovation]]></category>
+		<category><![CDATA[written in English]]></category>
+
+		<guid isPermaLink="false">http://www.akasig.org/?p=1320</guid>
+		<description><![CDATA[I have portfolio of lean startup ideas or one startup idea but several versions for its lean canvas. And I have a limited capacity for testing these ideas. I can&#8217;t test all of them simultaneously and I wonder : which one should I start testing first ? which lean canvas should I start with ? [&#8230;]]]></description>
+				<content:encoded><![CDATA[<p>I have portfolio of lean startup ideas or one startup idea but several versions for its lean canvas. And I have a limited capacity for testing these ideas. I can&#8217;t test all of them simultaneously and I wonder : which one should I start testing first ? which lean canvas should I start with ?</p>
+<p>First, let&#8217;s remember why we always start testing the most uncertain hypothesis when given one canvas. For your startup to be a success, all of the hypotheses in the canvas have to be tested and validated as true. Hence the cost of testing the whole canvas : it is the sum of the costs for testing each and every of its hypotheses. You test the canvas and test it further and cumulate testing costs. But if ever the hypothesis you just tested is false, you have to pivot and start again with a modified canvas, a new version of your canvas, or you have to put that project aside and further test another one. You therefore hope you start by testing a false hypothesis rather than a true one. You&#8217;d rather spend as low as possible before invalidating the whole canvas. By failing fast, you limit the cost of testing the whole canvas and you can start with an hopefully better version or give up with this project. In other words, you should try to pick the hypothesis which has the highest probability of being false. That&#8217;s the most uncertain hypothesis.</p>
+<p>But one has to notice that some tests are expensive while others are cheap. How to take the cost of testing into account ? You should multiply the probability of each hypothesis with the cost required for testing it. You then pick the hypothesis which has the lowest product of probability and testing cost. Given a lean canvas, you can annotate your hypotheses :</p>
+<ul>
+<li>P=1 for low probability hypotheses, P=2 for medium probability, P=3 for high probability,</li>
+<li>C=1 for low cost tests, C=2 for medium cost tests, C=3 for most expensive tests</li>
+</ul>
+<p>You then multiply P and C and get P*C products from P*C=1*1 =1 to P*C=3*3=9 and start with the lowest P*C hypothesis.</p>
+<p>Now, let&#8217;s get back to my initial problem. I have a portfolio of lean startup ideas and have to pick the first one to be tested. Which idea should I pay the most attention to first ?</p>
+<p>Let&#8217;s calculate the probable cost for testing a whole canvas. This cost is not the sum of the cost of each and every hypothesis in this canvas because I may have to abandon this canvas as soon as one of its hypotheses is proven to be false.</p>
+<p>Let&#8217;s call :</p>
+<ul>
+<li>H1, H2, &#8230;, H9 the 9 hypotheses in this canvas, in their order of testing (lowest P*C first)</li>
+<li>p(H1), p(H2), &#8230;, p(H9) the probabilities of these hypotheses (0 &lt;= p(Hi) &lt;= 1)</li>
+<li>c(H1), c(H2), &#8230;, c(H9) the cost for testing these hypotheses</li>
+<li>C the probable cost of testing this whole lean canvas of hypotheses</li>
+</ul>
+<p>At first, there is the cost of testing H1. If H1 is found to be true, you then have the cost of testing H2. But we don&#8217;t know beforehand if H1 is true or false. We have to take the probability of H1 into account before adding the cost of testing H2. So the cost of testing one whole canvas is :</p>
+<blockquote><p>C = 1*c(H1) + p(H1)*c(H2) + p(H1)*p(H2)*C(H3) + &#8230; + p(H1)*p(H2)*&#8230;*p(H8)*c(H9)</p></blockquote>
+<p>Let&#8217;s assume that all of these costs have the same order of magnitude. Then the terms on the far right of this sum are negligible compared to the first terms. In other words, you don&#8217;t have to calculate all of these items and you can approximate the cost of testing the whole canvas :</p>
+<blockquote><p>C =~ c(H1) + p(H1)*c(H2)</p></blockquote>
+<p>or even, assuming that p(H1) =~ 0 (it&#8217;s the most uncertain hypothesis) and c(H2) =~ c(H1) (they are of a same order of magnitude), you can further approximate :</p>
+<blockquote><p>C =~ c(H1)</p></blockquote>
+<p>So the cost for testing a whole canvas is approximately equal to the cost for testing its most uncertain hypothesis, or its hypothesis with the lowest product of cost and probability.</p>
+<p>Now I have my collection of lean canvases and I can calculate the probable cost of their testing :</p>
+<ul>
+<li>for each canvas, I have to identify its hypothesis H1 with the lowest product of cost and probability,</li>
+<li>the probable cost for testing this canvas is approximately the cost of H1</li>
+</ul>
+<p>What is my collection made of ? Let&#8217;s say it&#8217;s a collection of several versions of a same project. On one hand you hope your first attempted canvas will be the right one so that you don&#8217;t spend time and effort testing bad versions. On the other hand you have to take the cost of testing into account and would prefer cheap tests to expensive ones. So your best version is the one with the best ratio of probability to cost. You want to maximize P / C.</p>
+<p>We know C =~c(H1) but what&#8217;s the total probability of a canvas ? It&#8217;s the product of the probabilities of its hypothesis :</p>
+<blockquote><p>P = p(H1) * p(H2) * &#8230; * p(H9)</p></blockquote>
+<p>So :</p>
+<blockquote><p>P / C =~ p(H1) * p(H2) * &#8230; * p(H9) / c(H1)</p></blockquote>
+<p>Let&#8217;s call :</p>
+<ul>
+<li>version A and version B the versions of canvas to be compared and optimally ordered for testing</li>
+<li>H1A, H2A, &#8230;, H9A the hypothesis in version A of the canvas</li>
+<li>H1B, H2B, &#8230;, H9B the hypothesis in version B of the canvas</li>
+<li>PA and PB the probabilities of version A and version B</li>
+<li>CA and CB the costs for testing version A and version B</li>
+</ul>
+<p>We want to compare the probability to cost ratio of these 2 canvas :</p>
+<blockquote><p>PA/CA =~ p(H1A) * p(H2A) * &#8230; * p(H9A) / c(H1A)<br />
+PB/CB =~ p(H1B) * p(H2B) * &#8230; * p(H9B) / c(H1B)</p></blockquote>
+<p>For this comparison, let&#8217;s calculate PA/CA * CB/PB. Is it more or less than 1 ?</p>
+<p>Given that these are 2 versions of the same lean startup projects, they probably share a significant number of hypotheses. You can eliminate these hypothesis and only keep this limited number of hypotheses which differ from A to B, which we will call :</p>
+<ul>
+<li>HiA, &#8230;, HnA in version A</li>
+<li>HiB, &#8230;, HnB in version B</li>
+</ul>
+<p>So :</p>
+<blockquote><p>PA/CA * CB/PB =~ ( p(HiA) * &#8230; * p(HnA) ) / ( p(HiB) * &#8230; * p(HnB) ) * c(H1B) / c(H1A)</p></blockquote>
+<p>If only one hypothesis Hi differs from A to B, you then have to compare p(HiA)/c(H1A) and p(HiB)/c(H1B). In other cases, the product of several probabilities will &#8230; probably&#8230; be more different from version A to version B than the cost of their first hypothesis (which may even be the same hypothesis) and you can then approximate :</p>
+<blockquote><p>PA/CA * CB/PB =~ ( p(HiA) * &#8230; * p(HnA) ) / ( p(HiB) * &#8230; * p(HnB) )</p></blockquote>
+<p>In other words, you simply want to start with the most probable version and only take cost into account if you can&#8217;t make up your mind considering probabilities only.</p>
+<p>You then take the version with the cheapest first test.</p>
+<p>Now let&#8217;s add one last difficulty : my portfolio is a collection of distinct projects which I want to test in an optimal order. You want to maximize the probability of validating a high value canvas with a minimal testing cost. So you have to estimate :</p>
+<ul>
+<li>V the value of each canvas (assuming they will be proven to be true and successful)</li>
+<li>P their respective probability</li>
+<li>C the cost for testing their first hypothesis (their least probable and cheapest hypothesis)</li>
+</ul>
+<p>And you want to pick the project with the highest V*P/C</p>
+<p>Assuming that the cost for testing hypotheses is of the same order of magnitude from project to project, you can consider V*P only and pick the project with the highest V*P value (unless your V*P values are similar and one of the first hypotheses has a surprising cost which you then have to take into account).</p>
+<p>Let&#8217;s summarize&#8230; Given a collection of lean startup projects described as canvases. Some projects may have several versions of their canvas. And each canvas is a set of 9 hypothesis. You want to pick the best hypothesis to start testing :</p>
+<ol>
+<li>First, for those projects with several versions, only consider the most probable version and put the other versions aside</li>
+<li>Now order your projects by value according to their value assuming they are successful and group them into 3 classes :
+<ul>
+<li>V=1 for projects with lowest value,</li>
+<li>V=2 for projects of medium value</li>
+<li>V=3 of highly valuable projects</li>
+</ul>
+</li>
+<li>Do the same with their probability of success in 10 years
+<ul>
+<li>P=1 for the most risky projects</li>
+<li>P=2 for mediumly risky projects</li>
+<li>P=3 for projects with a higher chance of success</li>
+</ul>
+</li>
+<li>Pick the project with the highest P*V value. In case of tied projects, restart steps 2 and 3 with these projects only and discriminate them. If you can&#8217;t make up your mind, go on with step 5 for each of the remaining projects and pick the one with the cheapest first test.</li>
+<li>Hopefully you selected one project. Rate the costs and probabilities of its 9 hypotheses, pick the one hypothesis with the lowest product of cost and probability (or further discriminate your best hypotheses by rating them once again).</li>
+<li>Test this hypothesis.</li>
+<li>Hopefully your test was a success, meaning that you know your hypothesis was true (you should be surprised given it was the least probable in this canvas) or false (which still means the test was a success: this is validated learning). What to do now ? If the hypothesis is false, this canvas is invalidated and you have to pick another one. If the hypothesis is validated as true, this project just turned even more probable. But maybe your portfolio now contains new projects or this test gave you ideas for even more valuable versions of the canvas of this project ? So get back to step 1 !</li>
+<li>Finally, what if your test takes a long time before validating or invalidating its hypothesis (e.g. you have to wait for an appointment or for the next season of activity) ? Which hypothesis to test next ? You should get back to step 1 but consider that the hypothesis which is still being tested still has the same probability but its cost is now null (or diminished by the amount of time and effort spent on starting its test and waiting for results). So the probability of its canvas is still the same as before but its cost is approximately the cost for testing its next hypothesis plus the cost for finishing the first test.</li>
+</ol>
+<p>That&#8217;s it. Now how do YOU proceed practically speaking for ordering your portfolio ? How do you optimize the ordering of tests in your portfolio of hypotheses without wasting time and effort and over-optimizing ?</p>
+]]></content:encoded>
+			<wfw:commentRss>http://www.akasig.org/2014/04/20/how-to-test-lean-canvases-in-the-optimal-order/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>Découvrir reddit en français.</title>
+		<link>http://www.akasig.org/2013/05/15/decouvrir-reddit-en-francais/</link>
+		<comments>http://www.akasig.org/2013/05/15/decouvrir-reddit-en-francais/#comments</comments>
+		<pubDate>Wed, 15 May 2013 09:30:03 +0000</pubDate>
+		<dc:creator><![CDATA[Sig]]></dc:creator>
+				<category><![CDATA[Ecrit en français]]></category>
+		<category><![CDATA[Humains en réseaux]]></category>
+
+		<guid isPermaLink="false">http://www.akasig.org/?p=1312</guid>
+		<description><![CDATA[Qu&#8217;est-ce que reddit ? Une introduction en français&#8230; C&#8217;est un site de social bookmarking qui : a connu récemment un essor important mais reste méconnu en France, malgré 400 millions de visiteurs uniques en 2012, réunit des communautés avec des règles distinctes, surtout anglophones, même si il y a quelques communautés francophones (cf. ci-après), permet [&#8230;]]]></description>
+				<content:encoded><![CDATA[<p>Qu&#8217;est-ce que reddit ? Une introduction en français&#8230;</p>
+<p>C&#8217;est un site de social bookmarking qui :</p>
+<ul>
+<li>a connu récemment un essor important mais reste méconnu en France, malgré 400 millions de visiteurs uniques en 2012,</li>
+<li>réunit des communautés avec des règles distinctes, surtout anglophones, même si il y a quelques communautés francophones (cf. ci-après),</li>
+<li>permet de commenter et voter sur les commentaires et sur les liens ou textes postés dans les communautés, avec un système de points de réputation (karma) pour réguler et filtrer les conversations,</li>
+<li>réunit des communautés débiles voire illégales, mais aussi des communautés très intéressantes y compris pour les professionnels de l&#8217;éducation, de la formation, de l&#8217;innovation et du numérique,</li>
+<li>fournit les fonctionnalités d&#8217;une plate-forme d&#8217;innovation participative et d&#8217;une plate-forme de veille collaborative</li>
+</ul>
+<p>Je vous invite à découvrir reddit via ces articles en français :</p>
+<ul>
+<li><a href="http://www.madmoizelle.com/fantome-emmerder-monde-question-reddit-156272">http://www.madmoizelle.com/fantome-emmerder-monde-question-reddit-156272</a></li>
+<li><a href="http://www.narominded.com/2013/03/comment-bien-utiliser-reddit/">http://www.narominded.com/2013/03/comment-bien-utiliser-reddit/</a></li>
+<li><a href="http://www.natifs.ca/blogue/medias-sociaux/utiliser-reddit-pour-sa-campagne-de-marketing-en-ligne.html">http://www.natifs.ca/blogue/medias-sociaux/utiliser-reddit-pour-sa-campagne-de-marketing-en-ligne.html</a></li>
+<li><a href="http://fr.wikipedia.org/wiki/Reddit">http://fr.wikipedia.org/wiki/Reddit</a></li>
+</ul>
+<p>Pour éviter de vous noyer dans les photos de <a title="Photos de lolcatz proposées par Google" href="https://www.google.fr/search?q=lolcatz&amp;tbm=isch">lolcatz </a>et autres <a title="Mème, définition sur la wikipédia" href="http://fr.wikipedia.org/wiki/M%C3%A8me_%28internet%29">memes</a>, le mieux est de personnaliser la page d&#8217;accueil en créant votre compte puis de vous abonner à des communautés intéressantes et de vous désabonner des communautés les plus polluantes. Voici ma sélection de communautés.</p>
+<p>Les reddits (anglophones) les plus en liens avec l&#8217;éducation et la formation (je bosse dans ce secteur) :</p>
+<ul>
+<li><a href="http://www.reddit.com/r/AdultEducation">/r/AdultEducation</a></li>
+<li><a href="http://www.reddit.com/r/AdultLearning">/r/AdultLearning</a></li>
+<li><a href="http://www.reddit.com/r/Edtech">/r/Edtech</a></li>
+<li><a href="http://www.reddit.com/r/Education">/r/Education</a></li>
+<li><a href="http://www.reddit.com/r/Elearning">/r/Elearning</a></li>
+<li><a href="http://www.reddit.com/r/HigherEducation">/r/HigherEducation</a></li>
+<li><a href="http://www.reddit.com/r/HomeSchool">/r/HomeSchool</a></li>
+<li><a href="http://www.reddit.com/r/IWantToLearn">/r/IWantToLearn</a></li>
+<li><a href="http://www.reddit.com/r/Lectures">/r/Lectures</a></li>
+<li><a href="http://www.reddit.com/r/MathEducation">/r/MathEducation</a></li>
+<li><a href="http://www.reddit.com/r/OnlineEducation">/r/OnlineEducation</a></li>
+<li><a href="http://www.reddit.com/r/Professors">/r/Professors</a></li>
+<li><a href="http://www.reddit.com/r/Scholar">/r/Scholar</a></li>
+<li><a href="http://www.reddit.com/r/ScienceTeachers">/r/ScienceTeachers</a></li>
+<li><a href="http://www.reddit.com/r/SpecialEd">/r/SpecialEd</a></li>
+<li><a href="http://www.reddit.com/r/teachers">/r/teachers</a></li>
+<li><a href="http://www.reddit.com/r/teaching">/r/teaching</a></li>
+<li><a href="http://www.reddit.com/r/UniversityOfReddit">/r/UniversityOfReddit</a></li>
+</ul>
+<p>Quelques reddits liés à l&#8217;accessibilité (handicap) :</p>
+<ul>
+<li><a href="http://www.reddit.com/r/Accessibility">/r/Accessibility</a></li>
+<li><a href="http://www.reddit.com/r/Autism">/r/Autism</a></li>
+<li><a href="http://www.reddit.com/r/Disability">/r/Disability</a></li>
+</ul>
+<p>Quelques reddits francophones :</p>
+<ul>
+<li><a href="http://www.reddit.com/r/France">/r/France</a></li>
+<li><a href="http://www.reddit.com/r/Livres">/r/Livres</a></li>
+<li><a href="http://www.reddit.com/r/EntraideInformatique">/r/EntraideInformatique</a></li>
+<li><a href="http://www.reddit.com/r/Programmation">/r/Programmation</a></li>
+<li><a href="http://www.reddit.com/r/FrenchImmersion">/r/FrenchImmersion</a></li>
+<li><a href="http://www.reddit.com/r/Rue89">/r/Rue89</a></li>
+<li><a href="http://www.reddit.com/r/LeMonde">/r/LeMonde</a></li>
+<li><a href="http://www.reddit.com/r/LeFigaro">/r/LeFigaro</a></li>
+</ul>
+<p>Mais aussi :</p>
+<ul>
+<li><a href="http://www.reddit.com/r/Ligue1">/r/Ligue1</a></li>
+<li><a href="http://www.reddit.com/r/JeMeMarre">/r/JeMeMarre</a></li>
+<li><a href="http://www.reddit.com/r/JeuxVideo">/r/JeuxVideo</a></li>
+</ul>
+<p>Les autres reddits qui m&#8217;intéressent le plus :</p>
+<ul>
+<li><a href="http://www.reddit.com/r/3DPrinting">/r/3DPrinting</a></li>
+<li><a href="http://www.reddit.com/r/DataIsBeautiful">/r/Agile</a></li>
+<li><a href="http://www.reddit.com/r/Copyleft">/r/Copyleft</a></li>
+<li><a href="http://www.reddit.com/r/DataIsBeautiful">/r/DataIsBeautiful</a></li>
+<li><a href="http://www.reddit.com/r/Entrepreneur">/r/Entrepreneur</a></li>
+<li><a href="http://www.reddit.com/r/ExplainLifeImFive">/r/ExplainLikeImFive</a></li>
+<li><a href="http://www.reddit.com/r/France">/r/France</a></li>
+<li><a href="http://www.reddit.com/r/Innovation">/r/Innovation</a></li>
+<li><a href="http://www.reddit.com/r/LifeHacks">/r/Kanban</a></li>
+<li><a href="http://www.reddit.com/r/LifeHacks">/r/LifeHacks</a></li>
+<li><a href="http://www.reddit.com/r/LifeProTips">/r/LifeProTips</a></li>
+<li><a href="http://www.reddit.com/r/MachineLearning">/r/MachineLearning</a></li>
+<li><a href="http://www.reddit.com/r/Management">/r/Management</a></li>
+<li><a href="http://www.reddit.com/r/NewReddits">/r/Meta</a></li>
+<li><a href="http://www.reddit.com/r/NewReddits">/r/MethodHub</a></li>
+<li><a href="http://www.reddit.com/r/Kanban">/r/NewReddits</a></li>
+<li><a href="http://www.reddit.com/r/Kanban">/r/NonProfit</a></li>
+<li><a href="http://www.reddit.com/r/ProjectManagement">/r/ProjectManagement</a></li>
+<li><a href="http://www.reddit.com/r/Python">/r/Python</a></li>
+<li><a href="http://www.reddit.com/r/Reddits">/r/Reddits</a></li>
+<li><a href="http://www.reddit.com/r/Reprap">/r/Reprap</a></li>
+<li><a href="http://www.reddit.com/r/Science">/r/Science</a></li>
+<li><a href="http://www.reddit.com/r/ScienceParents">/r/ScienceParents</a></li>
+<li><a href="http://www.reddit.com/r/SocialPreneur">/r/SocialPreneur</a></li>
+<li><a href="http://www.reddit.com/r/Startups">/r/Startups</a></li>
+<li><a href="http://www.reddit.com/r/Webdev">/r/Webdev</a></li>
+<li><a href="http://www.reddit.com/r/YouShouldKnow">/r/YouShouldKnow</a></li>
+</ul>
+<p>Les reddits les plus polluants à mon sens :</p>
+<ul>
+<li><a href="http://www.reddit.com/r/aww">/r/aww (photos d&#8217;animaux mignons)</a></li>
+<li><a href="http://www.reddit.com/r/funny">/r/funny (blagues)</a></li>
+<li><a href="http://www.reddit.com/r/gifs">/r/gifs (images diverses)</a></li>
+<li><a href="http://www.reddit.com/r/pics">/r/pics (autres images)</a></li>
+<li><a href="http://www.reddit.com/r/videos">/r/videos (comme le nom l&#8217;indique)</a></li>
+<li><a href="http://www.reddit.com/r/AdviceAnimals">/r/AdviceAnimals (memes)</a></li>
+<li><a href="http://www.reddit.com/r/trees">/r/trees (titre trompeur : pour fumeurs de cannabis)</a></li>
+<li><a href="http://www.reddit.com/r/gaming">/r/gaming (jeux videos)</a></li>
+<li><a href="http://www.reddit.com/r/WTF">/r/WTF (What The Fuck ?!!! trucs crados-dingos)</a></li>
+</ul>
+<p>Et vous, quels sont les reddits que vous trouvez les plus intéressants ?</p>
+]]></content:encoded>
+			<wfw:commentRss>http://www.akasig.org/2013/05/15/decouvrir-reddit-en-francais/feed/</wfw:commentRss>
+		<slash:comments>1</slash:comments>
+		</item>
+		<item>
+		<title>A/B split testing with Plone</title>
+		<link>http://www.akasig.org/2013/05/01/ab-split-testing-with-plone/</link>
+		<comments>http://www.akasig.org/2013/05/01/ab-split-testing-with-plone/#comments</comments>
+		<pubDate>Wed, 01 May 2013 21:19:06 +0000</pubDate>
+		<dc:creator><![CDATA[Sig]]></dc:creator>
+				<category><![CDATA[Développement]]></category>
+		<category><![CDATA[Informatique]]></category>
+		<category><![CDATA[My hacks]]></category>
+		<category><![CDATA[Open source]]></category>
+		<category><![CDATA[written in English]]></category>
+		<category><![CDATA[Zope & Plone]]></category>
+
+		<guid isPermaLink="false">http://www.akasig.org/?p=1307</guid>
+		<description><![CDATA[I have a deep interest in the lean startup method. One of the favorite tools of the lean startuper is A/B split testing. My favorite software package is Plone. Can Plone be used for A/B split testing without having to develop a specific python product ? The answer is probably yes. Here is my recipe [&#8230;]]]></description>
+				<content:encoded><![CDATA[<p>I have a deep interest in the lean startup method. One of the favorite tools of the lean startuper is A/B split testing. My favorite software package is Plone. Can Plone be used for A/B split testing without having to develop a specific python product ? The answer is probably yes.</p>
+<p>Here is my recipe for a starter toward A/B split testing with Plone :</p>
+<ol>
+<li>take a fresh Plone</li>
+<li>add a PloneFormGen</li>
+<li>add a &#8220;Thank you&#8221; page for each and every option you want to test ; note the ID of the pages (e.g. page &#8220;optionA&#8221; and page optionB&#8221;) ; the user will be redirected to one of these pages</li>
+<li>add a text field to the form (multiple-lines text field not one-line string field)</li>
+<li>override the default value of this field with the following tales expression :<br />
+<blockquote><p>python:[random.seed(str(request.AUTHENTICATED_USER) + request.REMOTE_ADDR), random.choice([i.getId() for i in here.aq_parent.aq_inner.listFolderContents(contentFilter={&#8220;portal_type&#8221; : &#8220;FormThanksPage&#8221;})])][1]</p></blockquote>
+</li>
+<li>make the text field a hidden and server-side field</li>
+<li>overrides the form&#8217;s custom validation action with the following expression :<br />
+<blockquote><p>redirect_to:request/form/page</p></blockquote>
+<p>where &#8220;page&#8221; is the ID of the text field you set up above.</li>
+<li>add a Data Recorder to the form so that the value of the &#8220;page&#8221; field gets recorded</li>
+</ol>
+<p>What do we have now ? We have a form with a button. When the user clicks on the button, she is randomly redirected toward one the several &#8220;Thank You Pages&#8221; that you have defined. The redirection is based on the IP address of the user and her username if she is authenticated. The redirections are uniformly distributed against your destination pages. And they are recorded in the data record field.</p>
+<p>You A/B split test is not complete and several further steps must be taken before this is a fully operational solution but that was an enjoyable hack to make for me. Have fun with it and tell me how you would proceed with split testing and continuous deployment using Plone !</p>
+]]></content:encoded>
+			<wfw:commentRss>http://www.akasig.org/2013/05/01/ab-split-testing-with-plone/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>Lifeventure.me makes your wisdom shareable and actionable</title>
+		<link>http://www.akasig.org/2013/04/07/lifeventure-me-makes-your-wisdom-shareable-and-actionable/</link>
+		<comments>http://www.akasig.org/2013/04/07/lifeventure-me-makes-your-wisdom-shareable-and-actionable/#comments</comments>
+		<pubDate>Sun, 07 Apr 2013 21:38:33 +0000</pubDate>
+		<dc:creator><![CDATA[Sig]]></dc:creator>
+				<category><![CDATA[Humains en réseaux]]></category>
+		<category><![CDATA[Innovation]]></category>
+		<category><![CDATA[written in English]]></category>
+
+		<guid isPermaLink="false">http://www.akasig.org/?p=1300</guid>
+		<description><![CDATA[Jose is a former colleague of mine (Motorola&#8230;), experienced business developer and social entrepreneur. His new startup LifeVenture.me has a mission. It &#8220;will make the wisdom of the world&#8217;s citizens searchable and actionable&#8221; by capturing the memories and wisdom of ageing persons on a tablet. You should check the video presenting his iPad app here. [&#8230;]]]></description>
+				<content:encoded><![CDATA[<p>Jose is a former colleague of mine (Motorola&#8230;), experienced business developer and social entrepreneur. His new startup LifeVenture.me has a mission. It &#8220;will make the wisdom of the world&#8217;s citizens searchable and actionable&#8221; by capturing the memories and wisdom of ageing persons on a tablet. You should <a title="LifeVenture.me lets the elders share their wisdom from a tablet" href="http://lifeventure.me/">check the video presenting his iPad app here</a>.</p>
+<p>The topic of his new venture sounds very much exciting and I can relate to it. In a few days this month, my grandfather will be exactly 100 years old ! It will be a huge family celebration and he certainly will enjoy it even though he will claim he is in his 101st year now and we are one year late (as he always says at his birthday celebrations).</p>
+<p>He wrote his memoirs. My sister and my mother compiled them as a family book along with some pictures of him. We had it printed about 50 times and every family member got its book. We also regularly celebrate him with sorts of &#8220;derived&#8221; family products such as a tee-shirt with the portraits of his children, grand-children and grand-grand-children printed all over the back of the shirt.</p>
+<p>The daughter of my grandfather (i.e. my mother) has been building our family tree online for years. His other daughter (my aunt) tried to start a public writer freelance career lately. Her old customers want to have their memories written by means of her interviewing them and the audio then being transcribed and edited.</p>
+<p>My other grandfather died without written memories and his son (my father) and I do regret this.</p>
+<p>As a member of a somewhat large latin-styled family, I sometimes have discussions with my parents and relatives about how to best share the collective wisdom of our elders and build on it. But we haven&#8217;t found any convenient-enough solution. Writing memories and compiling memoirs is quite a hard and tedious process. It also sounds vain to some (hence possibly the reason why my other grandfather didn&#8217;t bother writing his).</p>
+<p>Some thoughts about the LifeVenture app now :</p>
+<p>At first glance (I just watched the video and the iPad app has not been released yet), the process of filling the questionnaire sounds a bit tedious and a bit cumbersome. Especially given the fact that once it&#8217;s filled you can&#8217;t go back to it. I can guess this questionnaire may relate to the experience of Jose in the field of personal health records management. Couldn&#8217;t writing one&#8217;s memories rather be turned into an enjoyable and social or familial activity through some sort of gamified interviewing process ? Maybe it would give more opportunities to have conversations and visits from grand-children who would get a solid collective project to share with their ancestor. I remember having had cumbersome conversations with my now-gone grandmother on the phone. What to ask her beside how she feels (bad&#8230;) and how her day was (as the day before&#8230;) ?</p>
+<p>It also makes me think of these japanese community organizations where younger adults visit elders in the neighbourhood and ask them to make paper flowers which are then sold even though the price does not cover the cost of the visit and hide the real reason of this system : getting a solid excuse for multiplying social activities with some isolated ageing persons. Good excuses are important sometimes.</p>
+<p>Maybe the LifeVenture app would also give the opportunity to distribute all sorts of derived personalized products for the birthday or christmas of the ageing person or for family celebrations. Another business model option may also be to have the app act as some kind of controlled marketplace for &#8220;public writers&#8221; who would offer families the option of having memories recorded, transcribed and edited through the app. These writers may be living in developping countries and offer low cost services. Such a business model may also create jobs for people in the need, <a href="http://samasource.org/">Samasource-styled</a>. Interviews may be recorded and controlled in order to prevent abuse of older people. Interviewers may require some accreditation and privacy should be strictly enforced.</p>
+<p>Some more suggestions for entrepreneurs such as Jose, from my recent experience founding Wecena and then at the Cned innovation department : has he heard about <a href="https://en.wikipedia.org/wiki/Lean_Startup">the &#8220;lean startup&#8221; movement</a> ? he must have. Did he take 30 minutes to write down his business assumptions under the form of a<a href="http://businessmodelgeneration.com/canvas"> business model canvas</a> ? He should have. Does he start his new venture by validating his assumptions about customers problems before building his iPad app ? He most probably should. Does he try to get pre-sales for his app before building it ? He should. Does he read <a href="http://steveblank.com/">Steve Blank&#8217;s blog</a> ? He should ! Did he follow the <a href="https://www.udacity.com/course/ep245">Lean Launchpad MOOC</a> and buy <a href="http://www.amazon.com/Startup-Owners-Manual-Step-Step/dp/0984999302">Steve Blank&#8217;s Startup&#8217;s Owner Manual</a> ? He may find them much useful even as the experienced entrepreneur and business developper he is.</p>
+<p>You&#8217;ve got it : I am now a big fan of Steve Blank&#8217;s take on how to search for a valid business model. I sincerely regret not having known this when I launched my 2nd startup 4 years ago. Maybe my love for the Lean Startup hype is making me blind and won&#8217;t last long. I don&#8217;t think so but time will tell. Meanwhile I&#8217;d be more than happy hearing from Jose on such topics.</p>
+<p>Jose, let&#8217;s have a call soon so that I can share with you my enthusiasm about your project ! See you soon, Jose !</p>
+]]></content:encoded>
+			<wfw:commentRss>http://www.akasig.org/2013/04/07/lifeventure-me-makes-your-wisdom-shareable-and-actionable/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>vers du wecena 2.0 ?</title>
+		<link>http://www.akasig.org/2012/03/31/vers-du-wecena-2-0/</link>
+		<comments>http://www.akasig.org/2012/03/31/vers-du-wecena-2-0/#comments</comments>
+		<pubDate>Sat, 31 Mar 2012 17:07:13 +0000</pubDate>
+		<dc:creator><![CDATA[Sig]]></dc:creator>
+				<category><![CDATA[Ecrit en français]]></category>
+		<category><![CDATA[Entreprises responsables]]></category>
+		<category><![CDATA[Humains en réseaux]]></category>
+		<category><![CDATA[Informatique]]></category>
+		<category><![CDATA[Innovation]]></category>
+		<category><![CDATA[le wecena]]></category>
+		<category><![CDATA[Mécénat]]></category>
+		<category><![CDATA[My wishlist]]></category>
+
+		<guid isPermaLink="false">http://www.akasig.org/?p=1283</guid>
+		<description><![CDATA[64 informaticiens ont fait du wecena pendant leur intercontrat depuis notre démarrage il y a 4 ans, pour un total d&#8217;environ 700 jours.hommes de prestations numériques au profit d&#8217;associations dédiées à l&#8217;accessibilité (handicap), l&#8217;éducation ou l&#8217;insertion sociale. C&#8217;est bien. Mais c&#8217;est loin d&#8217;être assez. C&#8217;est notamment insuffisant pour continuer à faire bouillir la marmite familiale [&#8230;]]]></description>
+				<content:encoded><![CDATA[<p>64 informaticiens ont fait du wecena pendant leur intercontrat depuis notre démarrage il y a 4 ans, pour un total d&#8217;environ 700 jours.hommes de prestations numériques au profit d&#8217;associations dédiées à l&#8217;accessibilité (handicap), l&#8217;éducation ou l&#8217;insertion sociale. C&#8217;est bien. Mais c&#8217;est loin d&#8217;être assez. C&#8217;est notamment insuffisant pour continuer à faire bouillir la marmite familiale et je ne peux tout simplement pas continuer à en vivre. Il me faudrait au moins 3 équivalents-temps-plein de contributeurs en intercontrat pour être à l&#8217;équilibre. Cet équilibre a été atteint et dépassé au premier semestre puis 2 des 3 SSII mécènes les plus importantes ont suspendu leurs envois de nouveaux contributeurs et ne reprennent que petit à petit. Depuis début 2012, je tourne à 1 équivalent-temps-plein, soit une rémunération d&#8217;un tiers seulement de ce qui est nécessaire pour ma famille. Du point de vue chiffres, il est temps de tirer une conclusion : le wecena est un échec.</p>
+<p>Que peut-on en apprendre ? Voici mes impressions :</p>
+<ul>
+<li><strong>Le wecena est un modèle économique innovant et compliqué. Il nécessite un effort d&#8217;éducation des SSII que j&#8217;avais sous-estimé.</strong> Je tablais sur des délais de vente initiaux d&#8217;environ 9 mois à 1 an (classique pour de la vente de service en B2B) mais, bien souvent, il a fallu entre 18 mois et 2 ans entre la rencontre initiale avec la SSII (&#8220;Le wecena ? J&#8217;ai compris, quelle bonne idée ! Ça va motiver nos salariés et ça ne va pas nous coûter grand chose !&#8221;) et le premier contributeur en intercontrat effectivement mobilisé pour une association. Bien souvent, mon interlocuteur à la communication ou aux RH doit convaincre son comité de direction et ce n&#8217;est pas choses facile. Sur des aspects plus techniques, comme par exemple le calcul des économies d&#8217;impôts permises par le mécénat, la plupart des SSII vérifient le calcul avec moi et se l&#8217;approprient. Mais j&#8217;ai été surpris dans 10% des cas, de rencontrer des &#8220;comptables&#8221; d&#8217;entreprises (internes à l&#8217;entreprise et non des cabinets d&#8217;expertise comptable) qui n&#8217;arrivaient pas à comprendre comment calculer correctement l&#8217;économie d&#8217;impôts sur les sociétés permise d&#8217;une part par un don en nature (avec perte de déductibilité des charges faisant l&#8217;objet du don) et d&#8217;autre part par un don en numéraire (pour laquelle l&#8217;impact de la réintégration extra-comptable est nul puisqu&#8217;il s&#8217;agit de donner une part de bénéfices qui sont imposés dans tous les cas, avec ou sans don). Les entreprises françaises ne sont pas habituées au mécénat. Elles sont encore moins habituées au mécénat de compétences. C&#8217;est encore moins le cas dans le secteur des SSII. Et lorsqu&#8217;il s&#8217;agit de calculer quel montant d&#8217;économie d&#8217;impôts peut être consacré au financement d&#8217;un projet, certains contrôleurs de gestion ou chargés de comptabilité s&#8217;arrachent les cheveux. C&#8217;est compréhensible.</li>
+<li><strong>La RSE et le mécénat ne sont pas une urgence pour les SSII. </strong>Lorsque le wecena est mis à l&#8217;ordre du jour du comité de direction, c&#8217;est en tout dernier item sur la liste et il est donc reporté de CODIR en CODIR&#8230; Quand la décision est prise, les choses trainent, le passage à l&#8217;acte souffre d&#8217;autant plus de l&#8217;inertie de l&#8217;organisation que la conduite de ce changement ne revêt aucun caractère d&#8217;urgence pour le business : RH, image, éthique, convictions personnelles, les enjeux sont trop &#8220;soft&#8221; et pas assez cash. Le wecena est relégué sur la voie des véhicules lents. Aux yeux du business, la moindre affaire sera toujours plus urgente que l&#8217;optimisation des intercontrats (à moins que celle-ci ne rapporte du cash, mais c&#8217;est une autre histoire).</li>
+<li><strong>La RSE et le mécénat sont parfois réduits à un outil de communication corporate.</strong> Pour pouvoir communiquer sur sa RSE, il suffit parfois de recueillir un témoignage de salarié, inutile d&#8217;en mobiliser 100 sur l&#8217;opération. Il n&#8217;y a pas besoin de s&#8217;engager sur du volume, ou de faire bouger son entreprise pour mobiliser un grand nombre de salariés. Communication corporate ne rime pas avec volume, valeur économique et impact social. Donc une fois qu&#8217;un contributeur a été envoyé sur un projet (voire même avant), la SSII communique publiquement sur son engagement et ne se sent pas vraiment obligée de traduire son engagement par du volume ou de la régularité. Ce n&#8217;est pas de l&#8217;engagement sérieux.</li>
+<li><strong>Un projet RSE qui ne rapporte pas de cash a une valeur quasi-nulle pour les dirigeants de SSII.</strong> De nombreuses SSII ont refusé de faire du wecena au motif que le mécénat ne rapporte d&#8217;argent immédiatement : le mécanisme fiscal est utilisé pour financer la formation et l&#8217;encadrement des contributeurs en intercontrat, pas pour être encaissé par l&#8217;entreprise mécène. L&#8217;utilité sociale auprès des personnes démunies n&#8217;a pas de valeur pour la plupart des dirigeants de SSII. Pire, les bénéfices qu&#8217;en tirent sa société sur le plan de la gestion des ressources humaines (motivation des salariés, fierté d&#8217;appartenance, &#8230;) sont négligeables pour la plupart d&#8217;entre eux. Les dirigeants les mieux renseignés au sujet du développement durable et du concept de &#8220;triple bottom line&#8221; argumentent : &#8221; Si le mécénat ne rapporte pas d&#8217;argent, c&#8217;est qu&#8217;il ne s&#8217;agit pas de développement durable puisqu&#8217;il ne produit pas un impact positif sur la bottom line financière&#8221; et en concluent : &#8221; On veut bien faire du wecena, mais uniquement si ça rapporte du cash&#8221;. Autrement dit : &#8221; Si le wecena ne nous rapporte pas de cash, ça ne nous intéresse pas, et ce même si ça ne nous coûte rien. &#8221; Au final, seuls les plus convaincus acceptent d&#8217;en faire. Mais un peu trop &#8220;à la légère&#8221; pour la plupart d&#8217;entre eux.</li>
+<li><strong>Convaincre une SSII de faire du mécénat, ça ne suffit pas à la convaincre d&#8217;en faire beaucoup et régulièrement.</strong> Il y a celles qui en font &#8220;pour la communication&#8221; et se satisfont donc d&#8217;un maigre volume. Et il y a celles qui en font &#8220;pour les RH&#8221; mais, même dans ce cas, la frustration des porteurs RH est grande devant l&#8217;incompréhension et le manque d&#8217;enthousiasme et d&#8217;attention des dirigeants commerciaux. Dans le secteur de sous-traitance qu&#8217;est celui des SSII, la culture commerciale l&#8217;emporte largement sur celle du développement des ressources humaines. Et même quand le comité de direction est enthousiaste et partant, le moindre coût de Trafalgar sur le business met le mécénat en danger : ce n&#8217;est pas une priorité et ça passe à la trappe si le RH a d&#8217;autres soucis à gérer pour un temps. Le mécénat est la dernière roue du carrosse, juste après les RH vus comme centre de coût voire comme un luxe inutile. &#8220;Faire de la RSE&#8221; en soi ne suffit pas, &#8220;occuper utilement les intercontrats&#8221; non plus, rendre ses salariés heureux ou fiers d&#8217;eux-même ou de leur société est un luxe.</li>
+<li><strong>Ce qui freine la RSE, ce n&#8217;est pas son coût mais la difficulté à en percevoir et à en communiquer la valeur aux parties prenantes.</strong> Dans ce contexte, le modèle économique du wecena est trop compliqué. Ce DG de SSII l&#8217;avait bien compris : &#8221; Monsieur Millerat, j&#8217;ai beaucoup de sympathie pour votre projet !&#8221; me dit-il tout sourire en me confiant une coupe de champagne lors du cocktail d&#8217;assemblée générale de Syntec Numérique. Plusieurs mois après, une responsable RH de sa société m&#8217;avoue : &#8221; Nous avons bien compris que le coût du wecena est remboursé par des économies d&#8217;impôts. Mais, finalement, nous ne ferons pas de wecena car, même si cela ne nous coûte rien, notre DG serait alors obligé d&#8217;expliquer à la maison mère pourquoi notre résultat avant impôts a baissé même si cette baisse est compensée à 100% par l&#8217;économie d&#8217;impôts. Les échanges avec la holding corporate sont déjà assez compliqués comme ça, notre &#8216;bande passante&#8217; est limitée, on ne va pas ajouter le wecena en plus, les actionnaires ne prendraient pas la peine de comprendre. De plus, comme les bonus de nos managers sont indexés sur notre résultat avant impôts, cela nous obligerait à expliquer à nos managers pourquoi nous modifions la définition de leur bonus et donc pourquoi nous faisons du wecena. Le jeu n&#8217;en vaut pas la chandelle&#8230; &#8220;. Le wecena, même si il ne coûte rien en soi, revêt un caractère d&#8217;engagement social de toute l&#8217;entreprise et de toutes ses parties prenantes. Dans une culture dominante éloignée de l&#8217;innovation sociale, la communication sur le wecena risque soit d&#8217;être insuffisante et donc inefficace, soit trop coûteuse car le message serait trop éloigné des réalités et réflexes habituels de l&#8217;entreprise qui n&#8217;est pas habituée à ce genre d&#8217;initiative.</li>
+<li><strong>Une forte proportion des grosses SSII ne paie pas d&#8217;impôts sur les sociétés.</strong> Même bénéficiaires, les grandes entreprises ont tiré partie de règles fiscales leur permettant d&#8217;éviter l&#8217;impôt sur les sociétés. Il s&#8217;agit notamment des mécanismes de report de déficit : si une société avait un gros déficit une certaine année, elle pouvait reporter son déficit pour compenser les bénéfices des années suivantes et, ainsi, ne jamais avoir d&#8217;impôts sur les sociétés à payer jusqu&#8217;au moment où ses bénéfices excèderaient largement les déficits des années passées.</li>
+<li><strong>Le montage contractuel du wecena est trop compliqué</strong> : une convention de mécénat entre chaque SSII et chaque association, ça fait beaucoup de paperasses, des négociations contractuelles parfois disproportionnées en temps (au regard du volume des dons obtenus par la suite), des délais de gestion administratives, des reçus fiscaux et des flux financiers qui se multiplient.</li>
+</ul>
+<p><strong>Conclusion pour faire au plus court : le wecena version 1.0 est trop compliqué et pas assez stratégique.</strong></p>
+<p>Alors que faire ?</p>
+<p>Première chose à faire, pallier aux urgences :</p>
+<ul>
+<li><strong>refaire bouillir la marmite familiale</strong> en prenant un job salarié, je deviens à partir de ce lundi directeur de l&#8217;innovation du CNED (de l&#8217;innovation numérique à finalité sociale, je poursuis dans mon élément),</li>
+<li><strong>suspendre le remboursement de mes 2 prêts Antropia</strong> : l&#8217;incubateur social Antropia m&#8217;avait permis de financer cette phase de vente initiale aux SSII qui s&#8217;était avérée plus longue que prévue, grâce à un prêt d&#8217;honneur à Wecena SARL. L&#8217;activité n&#8217;est pas suffisante pour continuer à rembourser. Antropia m&#8217;aide à trouver la meilleure solution pour la suite.</li>
+<li><strong>faire l&#8217;économie de la prospection des SSII</strong> : trop de temps passé à essayer de convaincre sur une offre qui n&#8217;emporte pas assez d&#8217;enthousiasme, mes moyens commerciaux ont été dépassés par l&#8217;ampleur de la tâche ; il faudra s&#8217;y remettre mais sous une autre forme qui reste à définir et à maintenir dans les limites d&#8217;un emploi secondaire (puisque mon engagement professionnel principal devient mon job salarié au CNED)&#8230;</li>
+<li><strong>imaginer un wecena plus simple et/ou plus stratégique :</strong> centraliser les dons en créant un fonds de dotation unique et d&#8217;intérêt général ? simplifier la tarification ? appuyer le développement des dons sur un réseau d&#8217;affiliés (cf. les 20.000 € de cadeaux que vous pouvez gagner et partager sur <a href="http://defi.wecena.com/via/jean">http://defi.wecena.com/via/jean</a>) ? construire avec un partenaire comme LIENS une offre à plus forte valeur stratégique pour les SSII et lui confier le &#8220;développement commercial&#8221; ? se focaliser sur des projets de solidarité plus proches des métiers et mettant les contributeurs en contact direct avec des populations en difficulté ? proposer aux SSII de conserver une part de l&#8217;économie d&#8217;impôts mécénat progressant avec leur engagement et espérer que cela suffise à déclencher un bouche à oreilles plus efficace et vertueux ? proposer aux SSII des contreparties plus &#8220;stratégiques&#8221; telles que des actions de formation technique au bénéfice de leurs salariés, des actions de recrutement de nouveaux salariés issus de la diversité, des actions d&#8217;animation et de communication en lien avec des directions achats de grands comptes &#8230; ? vous demander votre avis pour imaginer ce que serait une opération de mécénat de compétences qui pourrait revêtir un caractère réellement stratégique pour une SSII ? Sans doute un peu de tout cela et d&#8217;autres choses encore (vos suggestions seront les bienvenues)&#8230;</li>
+<li><strong>poursuivre le wecena au quotidien</strong> : plusieurs SSII continuent à jouer le jeu, malgré toute la frustration que je peux ressentir au vu du faible volume d&#8217;engagement, et leurs salariés contributeurs continuent à s&#8217;activer au quotidien de manière extrêmement utile et appréciée auprès des associations de solidarité. Il faut donc continuer à les accueillir, les former, les encadrer, assister l&#8217;association bénéficiaire dans la conduite des projets. Je continue à m&#8217;en charger : pour le flux actuel de 1 équivalent-temps-plein, ça me prend environ 2 demi-journées par semaine, réparties entre les mêlées téléphoniques qui ont lieu entre midi et deux, et les travaux du soir, sans compter que mon nouvel employeur accepte que je consacre quelques jours de congés sans solde à cette période de transition. Des amis consultants sont prêts à prendre le relais dans ce rôle d&#8217;assistance à la conduite de projets agiles et à distance. Pour moi, il s&#8217;agit également de maintenir en conditions opérationnelles la plate-forme wecena.com et de continuer à l&#8217;exploiter pour la production des reçus fiscaux et des éléments de reporting nécessaires aux associations et aux SSII.</li>
+</ul>
+<p>Voila, voila. Vous l&#8217;aurez compris, c&#8217;est la crise aussi pour le wecena. Le wecena se poursuit malgré tout et, tant qu&#8217;il reste des SSII prêtes à remonter les manches de leurs salariés pour les faire contribuer à des projets de solidarité, le wecena continuera à exister. Le fait de reprendre un boulot de salarié me permet d&#8217;envisager avec plus de sérénité l&#8217;avenir du wecena (je n&#8217;ai plus le couteau sous la gorge), cela se traduira peut-être par un rythme d&#8217;évolution plus modeste, mais cela se traduira sans doute également par une plus grande ouverture et l&#8217;implication d&#8217;un plus grand nombre de partenaires.</p>
+<p>Qu&#8217;est-ce que tout cela vous inspire ? À vous lire !</p>
+]]></content:encoded>
+			<wfw:commentRss>http://www.akasig.org/2012/03/31/vers-du-wecena-2-0/feed/</wfw:commentRss>
+		<slash:comments>3</slash:comments>
+		</item>
+		<item>
+		<title>Partagez 20.000 euros de cadeaux solidaires avec votre réseau d&#8217;amis</title>
+		<link>http://www.akasig.org/2012/03/05/partagez-20-000-euros-de-cadeaux-solidaires-avec-votre-reseau-damis/</link>
+		<comments>http://www.akasig.org/2012/03/05/partagez-20-000-euros-de-cadeaux-solidaires-avec-votre-reseau-damis/#comments</comments>
+		<pubDate>Mon, 05 Mar 2012 11:11:03 +0000</pubDate>
+		<dc:creator><![CDATA[Sig]]></dc:creator>
+				<category><![CDATA[Ecrit en français]]></category>
+		<category><![CDATA[Humains en réseaux]]></category>
+		<category><![CDATA[Informatique]]></category>
+		<category><![CDATA[Innovation]]></category>
+		<category><![CDATA[le wecena]]></category>
+
+		<guid isPermaLink="false">http://www.akasig.org/?p=1281</guid>
+		<description><![CDATA[Mobilisez votre réseau d&#8217;amis pour une association de solidarité et partagez jusqu&#8217;à 20.000 EUR de chèques cadeaux bios, solidaires et équitables. L&#8217;entreprise sociale Wecena offre des chèques cadeaux aux personnes qui s&#8217;inscrivent sur son  site, invitent leurs amis à s&#8217;inscrire à leur tour, jusqu&#8217;à ce qu&#8217;un ami d&#8217;ami d&#8217;ami (etc.) réussisse à convaincre un informaticien [&#8230;]]]></description>
+				<content:encoded><![CDATA[<p lang="x-western"><strong>Mobilisez votre réseau d&#8217;amis pour une association de solidarité et       partagez jusqu&#8217;à 20.000 EUR de chèques cadeaux bios, solidaires et       équitables.</strong></p>
+<p lang="x-western">L&#8217;entreprise sociale Wecena offre des chèques cadeaux aux personnes     qui s&#8217;inscrivent sur son  site, invitent leurs amis à s&#8217;inscrire à     leur tour, jusqu&#8217;à ce qu&#8217;un ami d&#8217;ami d&#8217;ami (etc.) réussisse à     convaincre un informaticien d&#8217;offrir au moins 2 jours de travail     gratuit à une association de solidarité Wecena. Les associations     soutenues par Wecena œuvrent dans le domaine du handicap, de     l&#8217;éducation et de la lutte contre la pauvreté. Plus vos amis d&#8217;amis     d&#8217;amis (etc.) réussissent à convaincre des informaticiens d&#8217;aider     les associations dans le cadre du wecena, plus vous et votre réseau     d&#8217;amis gagnez de cadeaux. Ces associations ont besoin de compétences     numériques, elles ont besoin de vos réseaux.</p>
+<p lang="x-western">Alors si vous avez des amis :</p>
+<div lang="x-western">
+<ol>
+<li>Inscrivez-vous en cliquant sur le lien envoyé par votre ami :<a href="http://defi.wecena.com/via/jean"><br />
+http://defi.wecena.com/via/<strong>jean</strong></a></li>
+<li>Vous obtenez un lien personnalisé avec votre propre pseudo, par     exemple :<br />
+<a href="http://defi.wecena.com/via/">http://defi.wecena.com/via/</a><strong>francoise</strong></li>
+<li>Faites suivre ce lien personnalisé à plusieurs amis pour qu&#8217;ils     s&#8217;inscrivent à leur tour et obtiennent leur propre lien personnalisé     à faire suivre</li>
+<li><strong>À chaque fois</strong> qu&#8217;un nouvel informaticien offre 2 jours de     travail gratuit à l&#8217;une des associations dans le cadre du wecena, sa     chaîne d&#8217;amis partage <strong>200 EUR de cadeaux</strong> !</li>
+</ol>
+</div>
+<p lang="x-western">Pour une fois, il s&#8217;agit d&#8217;une chaîne de l&#8217;amitié qui sert vraiment     à quelque chose : à mobiliser des informaticiens pour des     associations de solidarité qui ont besoin d&#8217;eux, et à partager avec     vos amis quelques cadeaux bios, équitables et solidaires. (Les     cadeaux peuvent aussi être convertis en dons pour les associations.)</p>
+<p lang="x-western">Faites bouger des informaticiens et recevez vos cadeaux&#8230; Inscrivez-vous en cliquant sur le lien envoyé par votre ami, recevez votre propre lien     puis offrez-le à vos amis !</p>
+]]></content:encoded>
+			<wfw:commentRss>http://www.akasig.org/2012/03/05/partagez-20-000-euros-de-cadeaux-solidaires-avec-votre-reseau-damis/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>Le calcul causal peut prouver l&#8217;utilité d&#8217;une innovation sociale sans expérimentation</title>
+		<link>http://www.akasig.org/2012/01/26/le-calcul-causal-peut-prouver-lutilite-dune-innovation-sociale-sans-experimentation/</link>
+		<comments>http://www.akasig.org/2012/01/26/le-calcul-causal-peut-prouver-lutilite-dune-innovation-sociale-sans-experimentation/#comments</comments>
+		<pubDate>Thu, 26 Jan 2012 16:30:38 +0000</pubDate>
+		<dc:creator><![CDATA[Sig]]></dc:creator>
+				<category><![CDATA[Ecrit en français]]></category>
+		<category><![CDATA[Humains en réseaux]]></category>
+		<category><![CDATA[Innovation]]></category>
+		<category><![CDATA[My wishlist]]></category>
+
+		<guid isPermaLink="false">http://www.akasig.org/?p=1276</guid>
+		<description><![CDATA[Quand on est décideur politique, entrepreneur social ou financeur d&#8217;innovations sociales (fondations,&#8230;), on aimerait bien savoir si l&#8217;innovation sociale ou la politique publique que l&#8217;on décide de financer ou de mettre en œuvre sera réellement utile ou non pour la société. Par exemple, si je promets un sac de lentilles gratuit à toute famille africaine [&#8230;]]]></description>
+				<content:encoded><![CDATA[<p>Quand on est décideur politique, entrepreneur social ou financeur d&#8217;innovations sociales (fondations,&#8230;), on aimerait bien savoir si l&#8217;innovation sociale ou la politique publique que l&#8217;on décide de financer ou de mettre en œuvre sera réellement utile ou non pour la société. Par exemple, si <a href="http://www.ted.com/talks/lang/fr/esther_duflo_social_experiments_to_fight_poverty.html">je promets un sac de lentilles gratuit à toute famille africaine qui vient au dispensaire pour faire vacciner son enfant</a>, est-ce qu&#8217;il y aura plus d&#8217;enfants vaccinés que si je ne fais pas cet effort ? Cet effort en vaut-il la peine ?</p>
+<p>On aimerait mesurer (et même prédire) l&#8217;impact social de sa nouvelle initiative, de sa nouvelle intervention. Il y a des méthodes pour cela, comme par exemple la méthode du <a href="https://en.wikipedia.org/wiki/Social_return_on_investment">Social Return On Investment (SROI)</a>. Mais l&#8217;un des points faibles de ces méthodes (outre leur important coût de mise en œuvre) est qu&#8217;elles ne permettent pas d&#8217;évaluer de manière très fiable si l&#8217;effet obtenu (il y a plus d&#8217;enfants vaccinés qu&#8217;auparavant ou bien qu&#8217;ailleurs) est réellement causé par son intervention (la distribution du sac de lentilles) ou bien si elle n&#8217;est pas due à d&#8217;autres facteurs (une meilleure information des familles par le bouche à oreilles, le fait que les familles aient pris l&#8217;habitude de se rencontrer sur les lieux de vaccination, ou l&#8217;influence astrale de la position des planètes&#8230;). On peut raisonnablement supposer que le sac de lentilles a contribué à une meilleure vaccination. Mais peut-on attribuer cet accroissement de la vaccination à cette intervention ? Difficile à dire&#8230;</p>
+<p>Alors on recourt souvent à des hypothèses contestables et peu solides sur &#8220;ce qui se serait passé si mon innovation sociale n&#8217;avait pas été mise en œuvre&#8221; et sur &#8220;ce qui, maintenant que mon innovation sociale existe, contribue à produire le même effet ou à le renforcer&#8221;. <a href="https://secure.wikimedia.org/wikipedia/fr/wiki/Causalit%C3%A9_%28histoire%29">Comme les historiens qui cherchent à identifier la cause d&#8217;un événement</a>, on essaie de faire preuve d&#8217;imagination et on formule des hypothèses peu solides car difficilement prouvables : &#8221; Et si mon innovation n&#8217;existait pas, que se passerait-il ?&#8221;. Malheureusement, la méthode SROI a un niveau de complexité tellement inhabituel pour le champ de l&#8217;innovation sociale, que ces hypothèses au cœur de la méthode restent souvent cachées, réduites à un 1 ou 2 ratios rapidement posés dans un coin du calcul et sont rarement contestés par les décideurs et financeurs, déjà impressionnés de voir que tel innovateur a mis en marche une telle méthode aux apparences de rigueur scientifique&#8230; Bref, le SROI, c&#8217;est très bien et généralement vertueux, c&#8217;est assez bluffant et utile, mais c&#8217;est loin d&#8217;être parfait.</p>
+<p>Alors comment aller plus loin ? Et comment prouver que le projet que l&#8217;on promeut (distribuer des sacs de lentilles) est bien la cause que l&#8217;on peut attribuer à l&#8217;effet que l&#8217;on promet (avoir plus d&#8217;enfants vaccinés) ? Pour pouvoir prouver la cause réelle de l&#8217;effet attendu, il est préférable, et souvent indispensable, de mettre en place une <a href="https://secure.wikimedia.org/wikipedia/fr/wiki/Double_aveugle">expérimentation randomisée en double aveugle</a>, comme le promeut par exemple le <a href="http://www.povertyactionlab.org/">Poverty Lab</a> d&#8217;Esther Duflo. C&#8217;est le même genre de problème, et de rigueur expérimentale nécessaire, que dans le domaine médical où l&#8217;on veut être sûr de l&#8217;impact d&#8217;une nouvelle thérapie avant de la mettre sur le marché.</p>
+<p>Cependant, les études randomisées en double aveugle sont elles-mêmes coûteuses à mettre en œuvre puisqu&#8217;il faut étudier deux fois plus de personnes. Il faut comparer l&#8217;effet attendu sur un groupe de personnes qui bénéficient de l&#8217;innovation (combien de familles font vacciner leur enfant parmi celles  à qui on promet le sac de lentilles) et le même effet sur un groupe de personnes que l&#8217;on prive de notre intervention (combien de familles font vacciner leur enfant en l&#8217;absence d&#8217;une promesse de sac de lentilles). Ce doublement du coût de la mesure est-il vain ? Certainement pas, il est indispensable sinon l&#8217;expérimentation ne démontre rien. Mais ce coût est à prévoir et donc à financer&#8230;</p>
+<p>Et ces situations posent aussi des problèmes éthiques et de relations publiques : allez-vous priver &#8220;pour la science&#8221; des enfants d&#8217;une chance supplémentaire de se faire vacciner en décidant que leur famille ne se verra pas motivée par un sac de lentilles ? Allez-vous laisser mourir des enfants du &#8220;groupe témoin&#8221; pour pouvoir prouver que votre sac de lentilles est vraiment efficace et aurait pu les sauver si vous aviez été moins rigoureux ? Un raisonnement éthique bien posé devrait permettre de trouver rapidement la réponse. Mais ce raisonnement n&#8217;en reste pas moins difficile à communiquer.</p>
+<p>Une solution nouvelle à ce problèmes semble émerger d&#8217;<a href="https://en.wikipedia.org/wiki/Causality#Causal_calculus">une théorie mathématique appelée la théorie du calcul causal, en probabilité</a>. En effet, <a href="http://www.michaelnielsen.org/ddi/if-correlation-doesnt-imply-causation-then-what-does/">cette théorie permet, dans certains cas, de &#8220;remplacer&#8221; de manière tout aussi rigoureuse l&#8217;étude randomisée en double-aveugle par l&#8217;étude statistiques de données supplémentaires</a>. Cette théorie aide à déterminer quels sont les indicateurs qui, si ils sont mesurés dans la situation actuelle (donc sans expérimentation randomisée en double aveugle), permettent par le biais de calculs, de démontrer l&#8217;efficacité d&#8217;une intervention. C&#8217;est presque magique, l&#8217;application de cette théorie permet de répondre de manière rigoureuse à des questions du type &#8221; Que se serait-il passé si ces personnes avaient été privées de mon innovation ?&#8221; ou bien, à l&#8217;inverse, &#8220;Que se serait-il passé si ces personnes avaient été forcées à bénéficier de mon innovation ?&#8221;. Le prix à payer réside dans la nécessité de devoir formuler des hypothèses plus précises sur la  manière dont la cause promue (le projet, l&#8217;intervention, l&#8217;innovation, le sac de lentilles) produit l&#8217;effet promis (l&#8217;impact social, le nombre d&#8217;enfants vaccinés), par exemple par quelles étapes intermédiaires la cause produit son effet. Et ces hypothèse peuvent à leur tour être contestées. L&#8217;autre prix à payer, c&#8217;est qu&#8217;il faut mesurer un plus grand nombre d&#8217;indicateurs, correspondants aux hypothèses supplémentaires qui ont été formulées. Enfin, la théorie du calcul causal ne s&#8217;applique pas à tous les cas de figure. Mais l&#8217;avantage est énorme : pas besoin d&#8217;expérimentation !</p>
+<p>Je découvre tout juste cette théorie et je ne saurais pas la mettre en œuvre. D&#8217;ailleurs, je ne pense pas qu&#8217;elle ait déjà été mise en pratique par qui que ce soit dans le domaine de la mesure d&#8217;impact social (si ?). Mais quelle formidable découverte si elle permet, par l&#8217;analyse de données (vive l&#8217;<a href="https://secure.wikimedia.org/wikipedia/fr/wiki/Open_data">open data</a>), de s&#8217;économiser la mise en œuvre d&#8217;une procédure expérimentale coûteuse, longue et à l&#8217;éthique parfois douloureuse.</p>
+<p>Vivement que des chercheurs et des ingénieurs puissent outiller cette théorie et en faire bénéficier le champ de l&#8217;entrepreneuriat social !</p>
+<p>NB : au passage, j&#8217;ai découvert le <a href="https://secure.wikimedia.org/wikipedia/fr/wiki/Paradoxe_de_simpson">paradoxe de Simpson</a> (rien à voir avec Bart) qui démontre combien notre intuition interprète mal la signification des probabilités.</p>
+]]></content:encoded>
+			<wfw:commentRss>http://www.akasig.org/2012/01/26/le-calcul-causal-peut-prouver-lutilite-dune-innovation-sociale-sans-experimentation/feed/</wfw:commentRss>
+		<slash:comments>1</slash:comments>
+		</item>
+		<item>
+		<title>Adapter des documents texte pour des travailleurs handicapés</title>
+		<link>http://www.akasig.org/2011/12/21/adapter-des-documents-texte-pour-des-travailleurs-handicapes/</link>
+		<comments>http://www.akasig.org/2011/12/21/adapter-des-documents-texte-pour-des-travailleurs-handicapes/#comments</comments>
+		<pubDate>Wed, 21 Dec 2011 14:06:03 +0000</pubDate>
+		<dc:creator><![CDATA[Sig]]></dc:creator>
+				<category><![CDATA[Ecrit en français]]></category>
+		<category><![CDATA[le wecena]]></category>
+		<category><![CDATA[My wishlist]]></category>
+
+		<guid isPermaLink="false">http://www.akasig.org/?p=1274</guid>
+		<description><![CDATA[À partir de ce mois-ci, Wecena n&#8217;adapte plus de livres pour BrailleNet notamment car BrailleNet expérimente un nouveau mode d&#8217;adaptation d&#8217;ouvrages, appuyé sur des bénévoles intervenant sur leur temps libre (plutôt que des volontaires intervenant sur leur temps d&#8217;intercontrat). Mais j&#8217;ai encore des volontaires qui désirent faire de l&#8217;adaptation de documents pour les déficients visuels. [&#8230;]]]></description>
+				<content:encoded><![CDATA[<p>À partir de ce mois-ci, <a title="Qu'est-ce que le wecena ?" href="http://www.wecena.com/apropos">Wecena</a> n&#8217;adapte plus de livres pour <a href="http://www.braillenet.org/">BrailleNet</a> notamment car BrailleNet expérimente un nouveau mode d&#8217;adaptation d&#8217;ouvrages, appuyé sur des bénévoles intervenant sur leur temps libre (plutôt que des volontaires intervenant sur leur temps d&#8217;intercontrat). Mais j&#8217;ai encore des volontaires qui désirent faire de l&#8217;adaptation de documents pour les déficients visuels. Nous nous rapprochons donc de la communauté <a href="http://fr.wikisource.org/">Wikisource</a> pour adapter des ouvrages du domaine public.</p>
+<p>Cependant, j&#8217;aimerais mettre l&#8217;accent sur l&#8217;adaptation de documents ayant une utilité professionnelle, pour faciliter l&#8217;embauche ou le maintien dans l&#8217;emploi de travailleurs handicapés. Je me pose donc la question suivante : dans la vie professionnelle de travailleurs handicapés, en général ou bien dans des cas très spécifiques, quels sont les types de documents professionnels les plus utiles à rendre accessibles ?</p>
+<p>J&#8217;élimine d&#8217;office les documents trop difficiles à adapter pour les volontaires débutants : documents graphiques, documents riches en tableaux ou diagramme. Je me limite donc volontairement aux documents très riches en texte, et avec de la structure comme dans un roman (plan, notes de bas de page, annexes, etc.).</p>
+<p>Je pense donc à des documents comme :</p>
+<ul>
+<li>contrats de travail</li>
+<li>contrats commerciaux</li>
+<li>notes administratives, circulaires,</li>
+<li>textes de loi (mais ne sont-ils pas déjà tous accessibles sur legifrance ?)</li>
+<li>décisions de jurisprudence (déjà accessibles quelque part ?)</li>
+<li>devis, propositions commerciales,</li>
+<li>brevets (sauf les diagrammes)</li>
+<li>documentation technique (si pas trop riche en diagrammes)</li>
+<li>documentation commerciale, catalogue (si pas trop graphiques)</li>
+</ul>
+<p>Vous connaissez un travailleur handicapé dans la lecture de certains documents : pourriez-vous m&#8217;aider à compléter cette liste ? En dehors des livres, sachant qu&#8217;il y a des volontaires pour rendre plus accessibles des documents textes, quels seraient les adaptations sur lesquelles ces volontaires seraient les plus utiles, en particulier pour des travailleurs handicapés ?</p>
+]]></content:encoded>
+			<wfw:commentRss>http://www.akasig.org/2011/12/21/adapter-des-documents-texte-pour-des-travailleurs-handicapes/feed/</wfw:commentRss>
+		<slash:comments>4</slash:comments>
+		</item>
+		<item>
+		<title>Crowd sourcing, machine learning et intérêt général</title>
+		<link>http://www.akasig.org/2011/12/15/crowd-sourcing-machine-learning-et-interet-general/</link>
+		<comments>http://www.akasig.org/2011/12/15/crowd-sourcing-machine-learning-et-interet-general/#comments</comments>
+		<pubDate>Thu, 15 Dec 2011 09:58:31 +0000</pubDate>
+		<dc:creator><![CDATA[Sig]]></dc:creator>
+				<category><![CDATA[Ecrit en français]]></category>
+		<category><![CDATA[Informatique]]></category>
+		<category><![CDATA[Innovation]]></category>
+		<category><![CDATA[le wecena]]></category>
+		<category><![CDATA[My wishlist]]></category>
+
+		<guid isPermaLink="false">http://www.akasig.org/?p=1265</guid>
+		<description><![CDATA[[ J&#8217;avais envie d&#8217;envoyer ce message par mail à mes anciens collègues du laboratoire de recherche Personalization and Knowledge Lab de Motorola mais je me suis dit que ça pourrait inspirer d&#8217;autres personnes alors je le poste sur mon blog&#8230; ] Salut les ex-PKLers&#8230; J&#8221;ai une idée tordue et j&#8217;aimerais avoir votre avis à son [&#8230;]]]></description>
+				<content:encoded><![CDATA[<p>[ J&#8217;avais envie d&#8217;envoyer ce message par mail à mes anciens collègues du laboratoire de recherche Personalization and Knowledge Lab de Motorola mais je me suis dit que ça pourrait inspirer d&#8217;autres personnes alors je le poste sur mon blog&#8230; ]</p>
+<p>Salut les ex-PKLers&#8230;</p>
+<p>J&#8221;ai une idée tordue et j&#8217;aimerais avoir votre avis à son sujet, si vous avez le temps et que le cœur vous en dit&#8230; C&#8217;est un peu long, je vous préviens, on ne se refait pas&#8230;</p>
+<p>La finalité de mon idée est de faire bénéficier certaines associations humanitaires (ou d&#8217;autres organismes d&#8217;intérêt général) des possibilités de prédiction et de recommandation offertes par les technos du <a title="Machine Learning" href="https://secure.wikimedia.org/wikipedia/fr/wiki/Apprentissage_automatique">machine learning</a>.</p>
+<p>La raison pour laquelle je réfléchis à ce sujet est triple :</p>
+<ol>
+<li>le machine learning, c&#8217;est vachement rigolo et ça me manque&#8230;</li>
+<li>il y a une grosse SSII qui me propose des informaticiens mais uniquement si c&#8217;est sur des projets ayant une dimension plutôt innovante sur le plan scientifique,</li>
+<li>je rêve de trouver un moyen d&#8217;utiliser mes notions de  machine learning pour des projets humanitaires ou d&#8217;intérêt général.</li>
+</ol>
+<p>Pour avoir encore un peu de contexte, mes sources d&#8217;inspirations, pour cette idée, sont :</p>
+<ul>
+<li><a title="Data Without Borders" href="http://datawithoutborders.cc/">une association US qui essaie déjà de faire du machine learning pour des ONG</a> mais qui a comme inconvénient de ne rien proposer d&#8217;industriel pour le moment, et de s&#8217;adresser surtout à des gens qui sont déjà des &#8220;data scientists&#8221;,</li>
+<li><a title="Kaggle" href="http://www.kaggle.com/">une plate-forme de compétition de machine learning qui généralise le principe du Netflix prize</a> avec, parfois, des projets d&#8217;intérêt général mais qui a comme inconvénient de s&#8217;adresser uniquement à des &#8220;data scientists&#8221; de bon niveau. La barrière à l&#8217;entrée est trop haute pour mes informaticiens en intercontrat.</li>
+</ul>
+<p>Mon idée est de trouver un moyen pour faire travailler de nombreux salariés de SSII en intercontrat sur la production de services de prédiction/recommandation, pour des ONG, via une plate-forme conçue à cet effet. Ma question est : est-ce faisable et si oui comment ?</p>
+<p>Autrement dit, peut-on abaisser la &#8220;barrière à l&#8217;entrée&#8221; pour permettre à des informaticiens non spécialistes du machine learning et qui ont peu de temps à consacrer à ce projet, de contribuer de manière utile pour produire à plusieurs un service de prédiction/recommandation ?</p>
+<p>Autrement dit encore et avec quelques détails en plus : en supposant que j&#8217;ai chaque jour 20 informaticiens en intercontrat à ma disposition, que chacun reste sur le projet sur une durée de 2 à 5 semaines, est-ce que je peux utilement les faire travailler via une plate-forme conçue à cet effet pour produire un service de prédiction/recommandation ? Est-ce que les résultats produits risquent de converger très rapidement (en 1 ou 2 mois) vers un certain niveau de qualité médiocre et ne jamais en décoller pendant le reste de l&#8217;année ? Ou bien est-ce que je peux espérer, en les faisant travailler de manière adéquate, produire une progression qui se poursuive pendant 1 an sur le même dataset ? jusqu&#8217;à obtenir des prédictions de qualité acceptable ?</p>
+<p>Là où mon idée commence à devenir tordue, c&#8217;est que les informaticiens en question n&#8217;ont aucune compétence en machine learning. Ça va de l&#8217;analyste-réalisateur mainframe senior au spécialiste du module SAP dédié à la comptabilité des amortissements des sociétés de transports, en passant par le développeur J2EE junior et l&#8217;administrateur réseau Cisco. Comment faire travailler ensemble sur ce projet une foule d&#8217;informaticiens non spécialisés en analyse de données ?</p>
+<p>Or, à la fois dans le Netflix prize et dans les prix de kaggle, il semble y avoir comme un leitmotiv :</p>
+<ol>
+<li>bien sûr, la qualité et la taille du dataset d&#8217;origine est absolument essentielle,</li>
+<li>au final, c&#8217;est l&#8217;approche &#8220;<a href="https://en.wikipedia.org/wiki/Ensemble_learning">ensemble learning</a>&#8221; qui semble marcher le mieux,</li>
+<li>les types d&#8217;algorithmes à mettre dans cet ensemble (réseaux de neurones, classifieurs bayésiens, ou autres) n&#8217;importent pas tant que ça, et il y a des algorithmes généralistes assez robustes qui donnent des résultats souvent pas trop mauvais (les decision trees mis en random forests par exemple), l&#8217;important c&#8217;est d&#8217;avoir une bonne diversité d&#8217;algorithmes et de paramétrage de ces algorithmes,</li>
+<li>la différence entre les gagnants se fait en grande partie sur leur capacité à traiter les données en amont de ces algorithmes : pour en extraire des indicateurs et des paramètres qui seront pertinents pour les algorithmes (normalisation, moyennage, discrétisation, combinaison de données, réduction/sélection des données, dérivation des données éventuellement en faisant intervenir des jeux de données de référence supplémentaires, etc.)</li>
+<li>pour avoir de bonnes intuitions quand aux enrichissements/dérivations/réductions à apporter au dataset en amont des algorithmes d&#8217;apprentissage, une certaine connaissance du métier ou du domaine fonctionnel dont parlent les données peut aider, mais ce n&#8217;est pas indispensable et une absence de connaissance du métier peut être partiellement compensée par la mise en place de bonnes visualisations de ces données.</li>
+</ol>
+<p>Résumé de l&#8217;approche qui est sensée marcher le mieux : Bon dataset =&gt; Visualisation inspirantes =&gt; Nombreuses et diverses dérivation ou réductions =&gt; Divers algos d&#8217;apprentissage =&gt; Ensemble.</p>
+<p>Est-ce que ce que je dis là vous semble plutôt vrai ? ou est-ce que le démon se cache dans le détail de mes erreurs ?</p>
+<p>En continuant sur cette lancée, je me dit que des informaticiens qui ne sont pas des &#8220;data scientists&#8221; mais ont 3 ou 4 semaines à consacrer à ce type de problèmes pourraient commencer par apprendre à produire des visualisation du jeu de données pour chercher des intuitions quant à la manière dont il faudrait l&#8217;enrichir (point 5 ci-dessus). Ensuite, ils pourraient écrire des petits scripts dans le langage de leur choix pour enrichir le dataset avec des données dérivées (point 4 ci-dessus) ou pour en réduire la dimension en sélectionnant certaines de ces données. Leur travail s&#8217;arrêterait là.</p>
+<p>Ensuite, une batterie <strong>pré-définie</strong> de quelques algorithmes plutôt pas mauvais en général pourrait mouliner ces datasets enrichis et, en mettant le tout dans un Ensemble, fournir des résultats pas trop médiocres ? En ayant un nombre et une diversité suffisamment grands de contributeurs, en les faisant partager leurs intuitions via une bonne animation en ligne (rencontres, discussions, forum, wiki,&#8230;) et en les faisant travailler avec les bons outils collaboratifs (partage de code, &#8230;), qu&#8217;est-ce que ça donnerait ?</p>
+<p>Autrement dit, est-ce qu&#8217;on peut compenser une absence d&#8217;expertise en machine learning par :</p>
+<ul>
+<li>une population suffisamment grande et diverse d&#8217;informaticiens non experts et ne pouvant rester plus d&#8217;1 mois ou 2 sur le sujet,</li>
+<li>et une plate-forme de machine learning bien pensée.</li>
+</ul>
+<p>Est-ce que, ainsi, pour un dataset donné et moyennant un travail initial de quelques semaines pour mettre en place la plate-forme puis pour la &#8220;régler&#8221; pour ce dataset, je pourrais faire utilement travailler pendant un an 20 informaticiens disponibles chacun pour une durée de 2 à 6 semaines ?</p>
+<p>Ou bien est-ce que je ne fais qu&#8217;énoncer <a title="Paradoxe du singe savant" href="https://secure.wikimedia.org/wikipedia/fr/wiki/Paradoxe_du_singe_savant">le paradoxe du singe savant</a> ?</p>
+<p>Voila. Si jamais cela inspire quelqu&#8217;un, qu&#8217;il réagisse en commentaire SVP !</p>
+]]></content:encoded>
+			<wfw:commentRss>http://www.akasig.org/2011/12/15/crowd-sourcing-machine-learning-et-interet-general/feed/</wfw:commentRss>
+		<slash:comments>5</slash:comments>
+		</item>
+	</channel>
+</rss>
