@@ -20,20 +20,12 @@ We want to connect to IMAP server. Its parameters are to be stored in the config
 
 We should be able to connect to an IMAP account with these settings.
 
-    >>> import imaplib
-    >>> M = imaplib.IMAP4(config.servername,config.port)
-    >>> status, message = M.login(config.username,config.password)
-    >>> status
+    >>> from main import Yarss2imapAgent
+    >>> agent = Yarss2imapAgent()
+    >>> agent.login()
     'OK'
-    >>> status, message = M.select()
-    >>> status
+    >>> agent.select()
     'OK'
-    >>> status, message = M.close()
-    >>> status
-    'OK'
-    >>> status, message = M.logout()
-    >>> status
-    'BYE'
 
 And we can load an example feed from a local atom file.
 
@@ -41,3 +33,13 @@ And we can load an example feed from a local atom file.
     >>> stuff = feedparser.parse('akasig.atom')
     >>> stuff.feed.title
     'Jean, aka Sig(gg)'
+
+import pdb ; pdb.set_trace()
+
+# Logout from imap
+
+    >>> agent.close()
+    'OK'
+    >>> agent.logout()
+    'BYE'
+
