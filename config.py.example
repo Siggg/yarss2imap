@@ -3,4 +3,4 @@ servername = 'imap.somedomain'
 port = 143
 username = 'someusername'
 password = 'somepassword'
-
+authorizedSender = 'someone@somewhere'
