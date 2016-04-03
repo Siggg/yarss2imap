@@ -101,6 +101,7 @@ class Yarss2imapAgent(imaplib.IMAP4):
                 msg['From'] = entry.author
                 msg['Subject'] = entry.title
                 msg['To'] = config.username
+                msg['Date'] = entry.published
                 msg.set_payload(entry.link + '\n' + entry.content[0]['value'], feed.encoding)
                 
                 self.append(path, '', imaplib.Time2Internaldate(time.time()), msg.as_bytes())

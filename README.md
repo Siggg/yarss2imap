@@ -98,23 +98,32 @@ Each folder item is a message.
 Let's have a look at one of these messages.
 Its Subject line is the title of the corresponding feed item.
 
-
+    >>> msgId = agent.uid('search', None, 'HEADER From "Sig"')[1][0].split()[-1]
+    >>> msgBin = agent.uid('fetch', b'2', '(RFC822)')[1][0][1]
+    >>> msg = email.message_from_bytes(msgBin)
+    >>> entry = feed.entries[0]
+    >>> msg['Subject'] == entry.title
+    True
 
 Its From line gives the author of the corresponding feed item.
 
-
+    >>> msg['From'] == entry.author
+    True
 
 Its body starts with the URL of the corresponding feed item.
 
-
+    >>> msg.get_payload().split('\r\n')[0][:75] == entry.link[:75]
+    True
 
 Its body contains the content of the corresponding feed item.
 
+    >>> len(msg.get_payload()) > len(entry.link) + len(entry.content[0]['value'])
+    True
 
+Its date corresponds to the date the feed was published.
 
-It has as many attachments as the corresponding feed item.
-
-
+    >>> msg['Date']
+    'Mon, 14 Mar 2016 08:32:00 +0000'
 
 
 # Cleanup and logout 
