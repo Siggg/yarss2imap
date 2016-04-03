@@ -110,6 +110,11 @@ Its From line gives the author of the corresponding feed item.
     >>> msg['From'] == entry.author
     True
 
+The URL of the corresponding feed item is stored as a X-Link field.
+
+    >>> msg['X-Entry-Link'].split()[-1] == entry.link
+    True
+
 Its body starts with the URL of the corresponding feed item.
 
     >>> msg.get_payload().split('\r\n')[0][:75] == entry.link[:75]
