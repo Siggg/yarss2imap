@@ -77,16 +77,16 @@ The agent created an IMAP folder with this feed.
     >>> True in [title in folderName.decode() for folderName in folders]
     True
 
-It moved the command message from the in inbox to that folder.
+It moved the command message from the in inbox to that new folder.
 
     >>> agent.select(mailbox='INBOX')
     'OK'
-    >>> agent.uid('search', None, 'HEADER Subject "feed ' + feed.feed.links[0].href + '"')
-    ('OK', [b''])
-    >>> agent.select(mailbox='INBOX.testyarss2imap')
+    >>> agent.uid('search', None, 'HEADER Subject "feed ' + feed.feed.links[0].href + '"')[1] in [[None], [b'']]
+    True
+    >>> agent.select(mailbox='INBOX.testyarss2imap.' + title)
     'OK'
-    >>> agent.uid('search', None, 'HEADER Subject "feed ' + feed.feed.links[0].href + '"')[1] 
-    [b'']
+    >>> agent.uid('search', None, 'HEADER Subject "feed ' + feed.feed.links[0].href + '"')[1] in [[None], [b'']]
+    False
 
 The folder contains as many items as there are items in this feed.
 Each folder item is a message.
