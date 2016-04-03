@@ -88,14 +88,34 @@ It moved the command message from the in inbox to that new folder.
     >>> agent.uid('search', None, 'HEADER Subject "feed ' + feed.feed.links[0].href + '"')[1] in [[None], [b'']]
     False
 
-The folder contains as many items as there are items in this feed.
+The folder contains more items than how many there are in this feed.
+
+    >>> nbOfItems = len(agent.uid('search', None, 'HEADER Subject ""')[1][0].split())
+    >>> nbOfItems > len(feed.entries)
+    True
+
 Each folder item is a message.
 Let's have a look at one of these messages.
-Its Subject: line is the title of the corresponding feed item.
-Its From: line gives the author of the corresponding feed item.
+Its Subject line is the title of the corresponding feed item.
+
+
+
+Its From line gives the author of the corresponding feed item.
+
+
+
 Its body starts with the URL of the corresponding feed item.
+
+
+
 Its body contains the content of the corresponding feed item.
+
+
+
 It has as many attachments as the corresponding feed item.
+
+
+
 
 # Cleanup and logout 
 

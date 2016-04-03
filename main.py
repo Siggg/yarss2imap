@@ -1,9 +1,10 @@
 import imaplib
 import config
-import email
+import email, email.message
 import re
 import feedparser
 import urllib.parse
+import time
 
 class Yarss2imapAgent(imaplib.IMAP4):
     def __init__(self):
@@ -93,6 +94,17 @@ class Yarss2imapAgent(imaplib.IMAP4):
                 self.moveUID(uid, fromMailbox='INBOX', toMailbox=path)
             self.select(mailbox='INBOX')
             self.expunge()
+
+            # Create one message per feed item
+            for entry in feed.entries:
+                msg = email.message.Message()
+                msg['From'] = entry.author
+                msg['Subject'] = entry.title
+                msg['To'] = config.username
+                msg.set_payload(entry.link + '\n' + entry.content[0]['value'], feed.encoding)
+                
+                self.append(path, '', imaplib.Time2Internaldate(time.time()), msg.as_bytes())
+
         return 'OK'
 
 
