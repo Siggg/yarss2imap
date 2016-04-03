@@ -24,12 +24,15 @@ We should be able to connect to an IMAP account with these settings.
     >>> agent = Yarss2imapAgent()
     >>> agent.login()
     'OK'
-    >>> agent.select()
-    'OK'
 
-There is an yarss2imap default folder in the INBOX.
-But this agent knows no feed by default.
-There is no IMAP folder for our example feed yet.
+Let's create an empty test mailbox.
+
+    >>> agent.select(mailbox='INBOX.testyarss2imap')
+    'OK'
+    >>> agent.uid('search', None, 'HEADER Subject ""')
+    ('OK', [b''])
+    >>> agent.list('INBOX.testyarss2imap')
+    ('OK', [None])
 
 We can load the example feed from a local atom file.
 
@@ -47,9 +50,9 @@ The message is from an authorized sender given in the config file.
 The subject line of the message contains the URL of the feed.
 
     >>> msg['From'] = config.authorizedSender
-    >>> msg['Subject'] = 'feed ' + feed.feed.link
+    >>> msg['Subject'] = 'feed ' + feed.feed.links[0].href
     >>> msg['Subject']
-    'feed http://www.akasig.org'
+    'feed http://www.akasig.org/feed/'
     >>> import imaplib, time
     >>> status, data = agent.append('INBOX', '', imaplib.Time2Internaldate(time.time()), msg.as_bytes())
     >>> status
@@ -57,15 +60,19 @@ The subject line of the message contains the URL of the feed.
 
 Now the message is received by the agent.
 
-    >>> status, data = agent.uid('search', None,'HEADER Subject "feed ' + feed.feed.link + '"') 
-    >>> status
+    >>> agent.select(mailbox='INBOX')
     'OK'
+    >>> len(agent.uid('search', None,'HEADER Subject "feed ' + feed.feed.links[0].href + '"')[1])>0
+    True
 
-email.message_from_string(agent.fetch('1', '(RFC822)')[1][0][1].decode())['subject']
+The agent created an IMAP folder with this feed.
 
-Now the agent knows that feed indicated in the message.
+    >>> agent.list('INBOX.testyarss2imap')
+    ('OK', [None])
+    >>> agent.update(mailbox='INBOX.testyarss2imap')
+    >>> agent.list('INBOX.testyarss2imap')[1] == [None]
+    False
 
-And there is an IMAP folder with this feed.
 The folder contains as many items as there are items in this feed.
 Each folder item is a message.
 Let's have a look at one of these messages.
@@ -75,8 +82,10 @@ Its body starts with the URL of the corresponding feed item.
 Its body contains the content of the corresponding feed item.
 It has as many attachments as the corresponding feed item.
 
-# Logout from imap
+# Cleanup and logout 
 
+    >>> agent.purge(mailbox='INBOX.testyarss2imap')
+    'OK'
     >>> agent.close()
     'OK'
     >>> agent.logout()

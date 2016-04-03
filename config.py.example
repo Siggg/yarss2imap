@@ -4,3 +4,4 @@ port = 143
 username = 'someusername'
 password = 'somepassword'
 authorizedSender = 'someone@somewhere'
+mailbox = 'yarss2imap'     # this mailbox will be created under 'INBOX.'
