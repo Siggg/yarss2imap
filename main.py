@@ -55,24 +55,37 @@ class Yarss2imapAgent(imaplib.IMAP4):
         self.uid('copy', uid, toMailbox)
         self.uid('store', uid, '+FLAGS', '\\Deleted')
 
+    def update(self, mailbox='INBOX.' + config.mailbox):
+        # Did we receive any new command message in the INBOX or in the given mailbox ?
+        mailboxes = ['INBOX', mailbox]
+        # Or are there older command messages already stored under their own folders ?
+        mbs = self.list(mailbox)[1]
+        for mb in mbs:
+            if mb is not None:
+                mailboxName = re.search('\(.*\) ".*" "(.*)"', mb.decode()).groups()[0]
+                mailboxes.append(mailboxName)
 
-    def update(self,mailbox='INBOX.' + config.mailbox):
-        # Did we receive any new command message ?
-        self.IMAP.select(self,'INBOX')
-        self.recent()
-        status, data = self.uid('search', None,'HEADER Subject "feed "')
+        # Search for such messages and their command line in those mailboxes
+        subjectFromUIDs = {}
+        for mb in mailboxes:
+            self.IMAP.select(self, mb)
+            self.recent()
+            status, data = self.uid('search', None, 'HEADER Subject "feed "')
+            uids = data[0].decode().split()
+            for uid in uids:
+                msgBin = self.uid('fetch', uid, '(RFC822)')[1][0][1]
+                msg = email.message_from_bytes(msgBin)
+                subjectFromUIDs[(mb,uid)] = msg['Subject']
+
+        # Build the list of feed URL to be checked for new items
         feeds = {}
-        for uid in data[0].decode().split():  # for each feed to be added
-            # Get the feed URL from the subject line
-            msgStr = self.uid('fetch',uid,'(RFC822)')[1][0][1].decode()
-            msg = email.message_from_string(msgStr)
-            subject = msg['subject']
+        for msgPath, subject in subjectFromUIDs.items():
             feedURL = re.search('feed (.*)', subject).groups()[0]
 
-            # store the message uid under this URL
+            # store the message mailbox and uid under this URL
             if feedURL not in feeds.keys():
                  feeds[feedURL] = []
-            feeds[feedURL].append(uid)
+            feeds[feedURL].append(msgPath)
 
         # Now back to our mailbox
         for url in feeds.keys():
@@ -90,13 +103,18 @@ class Yarss2imapAgent(imaplib.IMAP4):
             self.subscribe(path)
             
             # Move corresponding command messages from INBOX to that new folder
-            for uid in feeds[url]:
-                self.moveUID(uid, fromMailbox='INBOX', toMailbox=path)
-            self.select(mailbox='INBOX')
+            for mb, uid in feeds[url]:
+                self.moveUID(uid, fromMailbox=mb, toMailbox=path)
+            self.select(mailbox=mb)
             self.expunge()
 
             # Create one message per feed item
             for entry in feed.entries:
+                # Is there already a message for this entry ?
+                status, data = self.uid('search', None, 'HEADER X-Entry-Link "' + entry.link + '"')
+                if data[0] not in [None, b'']:
+                    # There is already one, move on !
+                    continue
                 msg = email.message.Message()
                 msg['From'] = entry.author
                 msg['Subject'] = entry.title

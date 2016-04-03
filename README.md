@@ -12,6 +12,8 @@ or
 
     python3 main.py -v
 
+# Configuration
+
 We want to connect to IMAP server. Its parameters are to be stored in the config.py file. You should copy config.py.example to config.py and update its contents according to your environment.
 
     >>> import config
@@ -24,6 +26,8 @@ We should be able to connect to an IMAP account with these settings.
     >>> agent = Yarss2imapAgent()
     >>> agent.login()
     'OK'
+
+# Test setup
 
 Let's create an empty test mailbox.
 
@@ -41,13 +45,15 @@ We can load the example feed from a local atom file.
     >>> feed.feed.title
     'Jean, aka Sig(gg)'
 
-Let's ask our agent to add this same feed by sending an email to this IMAP account.
+# How to add feeds
+
+You just have to send an email to your IMAP account.
 
     >>> import email.message
     >>> msg = email.message.Message()
 
-The message is from an authorized sender given in the config file.
-The subject line of the message contains the URL of the feed.
+The message must be from an authorized sender given in the config file.
+The subject line of the message must start with "feed" then a whitespace then the URL of the feed, e.g. "feed http://www.akasig.org/feed/".
 
     >>> msg['From'] = config.authorizedSender
     >>> msg['Subject'] = 'feed ' + feed.feed.links[0].href
@@ -65,7 +71,8 @@ Now the message is received by the agent.
     >>> agent.uid('search', None, 'HEADER Subject "feed ' + feed.feed.links[0].href + '"')[1] in [[None],[b'']]
     False
 
-The agent created an IMAP folder with this feed.
+You then have to ask the agent for an update.
+It creates an IMAP folder with this feed.
 
     >>> agent.list('INBOX.testyarss2imap')
     ('OK', [None])
@@ -77,7 +84,7 @@ The agent created an IMAP folder with this feed.
     >>> True in [title in folderName.decode() for folderName in folders]
     True
 
-It moved the command message from the in inbox to that new folder.
+It moved the command message from the inbox to that new folder.
 
     >>> agent.select(mailbox='INBOX')
     'OK'
@@ -129,6 +136,20 @@ Its date corresponds to the date the feed was published.
 
     >>> msg['Date']
     'Mon, 14 Mar 2016 08:32:00 +0000'
+
+# Next update
+
+Next time the agent updates...
+
+    >>> agent.update(mailbox='INBOX.testyarss2imap')
+    'OK'
+
+There are as many items in that folder as before. No more, no less.
+
+    >>> agent.select(mailbox='INBOX.testyarss2imap.' + title)
+    'OK'
+    >>> nbOfItems == len(agent.uid('search', None, 'HEADER Subject ""')[1][0].split())
+    True
 
 
 # Cleanup and logout 
