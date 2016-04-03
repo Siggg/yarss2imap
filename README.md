@@ -62,16 +62,31 @@ Now the message is received by the agent.
 
     >>> agent.select(mailbox='INBOX')
     'OK'
-    >>> len(agent.uid('search', None,'HEADER Subject "feed ' + feed.feed.links[0].href + '"')[1])>0
-    True
+    >>> agent.uid('search', None, 'HEADER Subject "feed ' + feed.feed.links[0].href + '"')[1] in [[None],[b'']]
+    False
 
 The agent created an IMAP folder with this feed.
 
     >>> agent.list('INBOX.testyarss2imap')
     ('OK', [None])
     >>> agent.update(mailbox='INBOX.testyarss2imap')
-    >>> agent.list('INBOX.testyarss2imap')[1] == [None]
-    False
+    'OK'
+    >>> import urllib.parse
+    >>> title = urllib.parse.quote_plus('Jean, aka Sig(gg)')
+    >>> folders = agent.list('INBOX.testyarss2imap')[1] 
+    >>> True in [title in folderName.decode() for folderName in folders]
+    True
+
+It moved the command message from the in inbox to that folder.
+
+    >>> agent.select(mailbox='INBOX')
+    'OK'
+    >>> agent.uid('search', None, 'HEADER Subject "feed ' + feed.feed.links[0].href + '"')
+    ('OK', [b''])
+    >>> agent.select(mailbox='INBOX.testyarss2imap')
+    'OK'
+    >>> agent.uid('search', None, 'HEADER Subject "feed ' + feed.feed.links[0].href + '"')[1] 
+    [b'']
 
 The folder contains as many items as there are items in this feed.
 Each folder item is a message.

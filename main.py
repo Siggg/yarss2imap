@@ -49,6 +49,12 @@ class Yarss2imapAgent(imaplib.IMAP4):
         self.delete(mailbox)
         return 'OK'
 
+    def moveUID(self, uid, fromMailbox='INBOX', toMailbox='INBOX'):
+        self.select(fromMailbox)
+        self.uid('copy', uid, toMailbox)
+        self.uid('store', uid, '+FLAGS', '\\Deleted')
+
+
     def update(self,mailbox='INBOX.' + config.mailbox):
         # Did we receive any new command message ?
         self.IMAP.select(self,'INBOX')
@@ -56,16 +62,21 @@ class Yarss2imapAgent(imaplib.IMAP4):
         status, data = self.uid('search', None,'HEADER Subject "feed "')
         feeds = {}
         for uid in data[0].decode().split():  # for each feed to be added
-            # let's get its URL
+            # Get the feed URL from the subject line
             msgStr = self.uid('fetch',uid,'(RFC822)')[1][0][1].decode()
             msg = email.message_from_string(msgStr)
             subject = msg['subject']
             feedURL = re.search('feed (.*)', subject).groups()[0]
-            feeds[feedURL] = None
+
+            # store the message uid under this URL
+            if feedURL not in feeds.keys():
+                 feeds[feedURL] = []
+            feeds[feedURL].append(uid)
+
         # Now back to our mailbox
-        self.select(mailbox=mailbox)
         for url in feeds.keys():
-            # Let's create a folder for that feed
+
+            # Create a folder for that feed
             feed = feedparser.parse(url)
             title = 'No title'
             try:
@@ -73,8 +84,16 @@ class Yarss2imapAgent(imaplib.IMAP4):
             except AttributeError:
                 pass
             path = mailbox + '.' + urllib.parse.quote_plus(title)
+            self.select(mailbox=mailbox)
             self.create(path) 
             self.subscribe(path)
+            
+            # Move corresponding command messages from INBOX to that new folder
+            for uid in feeds[url]:
+                self.moveUID(uid, fromMailbox='INBOX', toMailbox=path)
+            self.select(mailbox='INBOX')
+            self.expunge()
+        return 'OK'
 
 
 if __name__ == "__main__":
