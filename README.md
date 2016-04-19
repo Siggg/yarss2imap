@@ -1,8 +1,17 @@
 # yarss2imap
+
 Yet another RSS2imap feed aggregator. Runs as a python IMAP client that pushes RSS items into IMAP folders.
 Distributed under the GNU Affero General Public License v.3.0 (or later). Copyright 2016 Jean Millerat
 
-# Here it goes
+# Quickstart
+
+Copy config.py.example and rename it into config.py
+Edit config.py according to your IMAP settings.
+Then run the client
+
+    python3 main.py
+
+# Documented test
 
 You can run the tests below with this command line :
 
