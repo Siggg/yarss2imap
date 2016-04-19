@@ -1,11 +1,12 @@
 import imaplib
 import config
-import email, email.message
+import email, email.message, email.mime.multipart, email.mime.text
 import re
 import feedparser
 import urllib.parse
 import time
 import sys
+import html2text
 import logging
 logging.basicConfig(filename=config.logfile, format='%(levelname)s:%(asctime)s %(message)s', level=logging.DEBUG)
 
@@ -153,13 +154,21 @@ class Yarss2imapAgent(imaplib.IMAP4):
                     # There is already one, move on !
                     continue
                 logging.info("Creating message about: " + entry.title)
-                msg = email.message.Message()
+                msg = email.mime.multipart.MIMEMultipart('alternative')
+                msg.set_charset(feed.encoding)
                 msg['From'] = entry.author
                 msg['Subject'] = entry.title
                 msg['To'] = config.username
                 msg['Date'] = entry.published
                 msg['X-Entry-Link'] = entry.link
-                msg.set_payload(entry.link + '\n' + entry.content[0]['value'], feed.encoding)
+                html = '<p><a href="' + entry.link + '">Retrieved from ' + entry.link + '</a></p>'
+                html += entry.content[0]['value']
+                text = html2text.html2text(html)
+                part1 = email.mime.text.MIMEText(text, 'plain')
+                part2 = email.mime.text.MIMEText(html, 'html')
+                msg.attach(part1)
+                msg.attach(part2)
+                # msg.set_payload(text, feed.encoding)
                 
                 self.append(path, '', imaplib.Time2Internaldate(time.time()), msg.as_bytes())
 

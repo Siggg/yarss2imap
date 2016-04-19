@@ -130,14 +130,32 @@ The URL of the corresponding feed item is stored as a X-Link field.
     >>> msg['X-Entry-Link'].split()[-1] == entry.link
     True
 
-Its body starts with the URL of the corresponding feed item.
+It has two parts.
 
-    >>> msg.get_payload().split('\r\n')[0][:75] == entry.link[:75]
+    >>> len(msg.get_payload())
+    2
+    >>> part1, part2 = msg.get_payload()
+
+First part is the plain text version of the feed entry.
+
+    >>> part1.get_content_type()
+    'text/plain'
+
+Second part is the HTML version.
+
+    >>> part2.get_content_type()
+    'text/html'
+
+The HTML version contains the feed item.
+
+    >>> htmlFromEmail = part2.get_payload(decode=True).decode()
+    >>> htmlFromFeed = entry.content[0]['value']
+    >>> htmlFromFeed in htmlFromEmail
     True
 
-Its body contains the content of the corresponding feed item.
+Its body starts with the link to the corresponding feed item.
 
-    >>> len(msg.get_payload()) > len(entry.link) + len(entry.content[0]['value'])
+    >>> htmlFromEmail.split('Retrieved from')[0] == '<p><a href="' + entry.link + '">'
     True
 
 The date of this feed items precedes the date the feed was updated.
