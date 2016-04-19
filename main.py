@@ -167,7 +167,7 @@ class Yarss2imapAgent(imaplib.IMAP4):
                 self.create(path) 
                 self.subscribe(path)
             else:
-                path = paths[0]
+                path = '"' + paths[0] +'"'
             
             # Move corresponding command messages from INBOX to that new folder
             for mb, uid in feeds[url]:
@@ -188,7 +188,10 @@ class Yarss2imapAgent(imaplib.IMAP4):
                 logging.info("Creating message about: " + entry.title)
                 msg = email.mime.multipart.MIMEMultipart('alternative')
                 msg.set_charset(feed.encoding)
-                msg['From'] = entry.author
+                try:
+                    msg['From'] = entry.author
+                except AttributeError:
+                    msg['From'] = title
                 msg['Subject'] = entry.title
                 msg['To'] = config.username
                 msg['Date'] = entry.published
@@ -209,7 +212,9 @@ class Yarss2imapAgent(imaplib.IMAP4):
                 msg.attach(part2)
                 # msg.set_payload(text, feed.encoding)
                 
-                self.append(path, '', imaplib.Time2Internaldate(time.time()), msg.as_bytes())
+                status, error = self.append(path, '', imaplib.Time2Internaldate(time.time()), msg.as_bytes())
+                if status != 'OK':
+                     logging.error('Could not append message, with this error message: ' + error)
 
         return 'OK'
 
