@@ -37,11 +37,14 @@ class Yarss2imapAgent(imaplib.IMAP4):
         return status
 
     def purge(self, mailbox=None):
+        """ Deletes given mailbox and its content. """
         if mailbox is None:
             return None
         list = self.list(mailbox)[1]
         self.select(mailbox='INBOX')
         for line in list:
+            if line is None:
+                continue
             line = line.decode()
             path = re.search('\(.*\) ".*" "(.*)"', line).groups()[0]
             self.unsubscribe(path)

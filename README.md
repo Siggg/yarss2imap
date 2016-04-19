@@ -29,6 +29,11 @@ We should be able to connect to an IMAP account with these settings.
 
 # Test setup
 
+Let's remove any test mailbox left from previous tests.
+
+    >>> agent.purge(mailbox='INBOX.testyarss2imap')
+    'OK'
+
 Let's create an empty test mailbox.
 
     >>> agent.select(mailbox='INBOX.testyarss2imap')
@@ -38,10 +43,10 @@ Let's create an empty test mailbox.
     >>> agent.list('INBOX.testyarss2imap')
     ('OK', [None])
 
-We can load the example feed from a local atom file.
+We can load the example feed from my blog.
 
     >>> import feedparser
-    >>> feed = feedparser.parse('akasig.atom')
+    >>> feed = feedparser.parse('http://www.akasig.org/feed/')
     >>> feed.feed.title
     'Jean, aka Sig(gg)'
 
@@ -109,7 +114,10 @@ Its Subject line is the title of the corresponding feed item.
     >>> msgBin = agent.uid('fetch', b'2', '(RFC822)')[1][0][1]
     >>> msg = email.message_from_bytes(msgBin)
     >>> entry = feed.entries[0]
-    >>> msg['Subject'] == entry.title
+    >>> subject_header = msg['Subject']
+    >>> from email.header import decode_header
+    >>> decoded_subject = decode_header(subject_header)[0]
+    >>> decoded_subject[0].decode(decoded_subject[1]) == entry.title
     True
 
 Its From line gives the author of the corresponding feed item.
@@ -132,10 +140,10 @@ Its body contains the content of the corresponding feed item.
     >>> len(msg.get_payload()) > len(entry.link) + len(entry.content[0]['value'])
     True
 
-Its date corresponds to the date the feed was published.
+The date of this feed items precedes the date the feed was updated.
 
-    >>> msg['Date']
-    'Mon, 14 Mar 2016 08:32:00 +0000'
+    >>> msg['Date'] < feed.updated
+    True
 
 # Next update
 
@@ -150,7 +158,6 @@ There are as many items in that folder as before. No more, no less.
     'OK'
     >>> nbOfItems == len(agent.uid('search', None, 'HEADER Subject ""')[1][0].split())
     True
-
 
 # Cleanup and logout 
 
