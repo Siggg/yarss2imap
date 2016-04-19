@@ -7,6 +7,7 @@ import urllib.parse
 import time
 import sys
 import html2text
+import unicodedata
 import logging
 logging.basicConfig(filename=config.logfile, format='%(levelname)s:%(asctime)s %(message)s', level=logging.DEBUG)
 
@@ -27,7 +28,7 @@ class Yarss2imapAgent(imaplib.IMAP4):
 
     def select(self, mailbox='INBOX.' + config.mailbox):
         logging.info("Selecting mailbox: " + mailbox)
-        mbox = mailbox
+        mbox = unicodedata.normalize('NFKD', mailbox).encode('ASCII','ignore')
         if mailbox[0] != '"':
             mbox = '"' + mailbox + '"'
         status, message = self.IMAP.select(self, mbox)
@@ -77,7 +78,7 @@ class Yarss2imapAgent(imaplib.IMAP4):
         return 'OK'
 
     def moveUID(self, uid, fromMailbox='INBOX', toMailbox='INBOX'):
-        if fromMailbox == toMailbox:
+        if fromMailbox == toMailbox or '"' + fromMailbox + '"' == toMailbox :
             return
         logging.info("Moving message from " + fromMailbox + " to " + toMailbox)
         self.select(fromMailbox)
@@ -133,7 +134,8 @@ class Yarss2imapAgent(imaplib.IMAP4):
             except AttributeError:
                 pass
             # path = mailbox + '.' + urllib.parse.quote_plus(title)
-            path = '"' + mailbox + '.' + title.replace("/","?").replace(".","-") + '"'
+            title = unicodedata.normalize('NFKD', title).encode('ASCII','ignore')
+            path = '"' + mailbox + '.' + title.decode().replace("/","?").replace(".","-") + '"'
             logging.info("Creating mailbox path: " + path)
             self.select(mailbox=mailbox)
             self.create(path) 
@@ -161,8 +163,15 @@ class Yarss2imapAgent(imaplib.IMAP4):
                 msg['To'] = config.username
                 msg['Date'] = entry.published
                 msg['X-Entry-Link'] = entry.link
+                try:
+                    content = entry.content[0]['value']
+                except AttributeError:
+                    try:
+                        content = entry.summary
+                    except AttributeError:
+                        content = entry.description
                 html = '<p><a href="' + entry.link + '">Retrieved from ' + entry.link + '</a></p>'
-                html += entry.content[0]['value']
+                html += content
                 text = html2text.html2text(html)
                 part1 = email.mime.text.MIMEText(text, 'plain')
                 part2 = email.mime.text.MIMEText(html, 'html')
@@ -179,6 +188,7 @@ class Yarss2imapAgent(imaplib.IMAP4):
         try:
             while True:
                 self.update()
+                logging.info("Sleeping for 60 seconds.")
                 time.sleep(60)
         except:
             logging.warning("Unexpected error: %s" % sys.exc_info()[0])
