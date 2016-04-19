@@ -186,6 +186,28 @@ There are as many items in that folder as before. No more, no less.
     >>> nbOfItems == len(agent.uid('search', None, 'HEADER Subject ""')[1][0].split())
     True
 
+# OPML import
+
+    We have a local example of an OPML file (downloaded from http://www.howtocreate.co.uk/tutorials/jsexamples/sampleOPML.xml).
+
+    >>> f = open('sampleOPML.xml','rt')
+    >>> from xml.etree import ElementTree
+    >>> tree = ElementTree.parse(f)
+    >>> root = tree.getroot()
+    
+    There are 3 OPML outlines there.
+
+    >>> len(root.findall('.//outline'))
+    3
+
+    Our agent can load this OPML file. It then creates one new mailbox per OPML outline.
+
+    >>> nbBefore = len(agent.list('INBOX.testyarss2imap')[1])
+    >>> agent.loadOPML(filename = 'sampleOPML.xml', mailbox='INBOX.testyarss2imap')
+    >>> nbAfter = len(agent.list('INBOX.testyarss2imap')[1])
+    >>> nbAfter - nbBefore
+    3
+
 # Cleanup and logout 
 
     >>> agent.purge(mailbox='INBOX.testyarss2imap')

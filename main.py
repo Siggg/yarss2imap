@@ -10,6 +10,7 @@ import html2text
 import unicodedata
 import logging
 logging.basicConfig(filename=config.logfile, format='%(levelname)s:%(asctime)s %(message)s', level=logging.DEBUG)
+from xml.etree import ElementTree
 
 class YFeed():
 
@@ -18,9 +19,11 @@ class YFeed():
         self.feed = feedparser.parse(url)
 
 
-    def title(self):
+    def title(self, title = None):
         """ Returns the title of the feed. """
 
+        if title is not None:
+            self._title = title
         if hasattr(self, '_title'):
             return self._title
         self._title = 'No title'
@@ -170,8 +173,10 @@ class Yarss2imapAgent(imaplib.IMAP4):
         status, message = self.IMAP.logout(self)
         return status
 
+
     def purge(self, mailbox=None):
         """ Deletes given mailbox and its content. """
+
         if mailbox is None:
             return None
         logging.info("Erasing mailbox: " + mailbox)
@@ -194,7 +199,9 @@ class Yarss2imapAgent(imaplib.IMAP4):
         self.delete(mailbox)
         return 'OK'
 
+
     def moveUID(self, uid, fromMailbox='INBOX', toMailbox='INBOX'):
+
         fromMb = fromMailbox
         if fromMb[0] != '"':
             fromMb = '"' + fromMb + '"' # make it safe
@@ -216,8 +223,10 @@ class Yarss2imapAgent(imaplib.IMAP4):
             logging.error("Could not delete message with UID: " + uid)
             logging.error("   error message was: " + msg)
 
+
     def listMailboxes(self, mailbox='INBOX' + config.mailbox, pattern='*'):
         """ lists mailbox paths under given mailbox and with names matching given pattern. """
+
         mailboxes = []
         mbs = self.list(mailbox, pattern=pattern)[1]
         for mb in mbs:
@@ -226,7 +235,9 @@ class Yarss2imapAgent(imaplib.IMAP4):
                 mailboxes.append(mailboxName)
         return mailboxes
 
+
     def update(self, mailbox='INBOX.' + config.mailbox):
+
         logging.info("Updating mailbox: " + mailbox)
 
         # Did we receive any new command message in the INBOX or in the given mailbox ?
@@ -263,7 +274,7 @@ class Yarss2imapAgent(imaplib.IMAP4):
         for url in feeds.keys():
 
             logging.info("Updating feed from URL: " + url)
-            # Create a folder for that feed
+            # Create a mailbox for that feed
             feed = YFeed(url)
             logging.info("This feed has this title: " + feed.title())
 
@@ -280,6 +291,41 @@ class Yarss2imapAgent(imaplib.IMAP4):
 
         return 'OK'
 
+    def createFeed(self, mailbox = 'INBOX.' + config.mailbox, name = None, url = None):
+        """ Creates a mailbox with a given name and a command message for a feed at the given URL.
+        If no name but a URL is given, the name is the title of feed at this URL.
+        If no URL but a name is given, the mailbox is created without any command message."""
+
+        logging.info("Creating a feed named '" + str(name) + "' and this URL: " + str(url))
+        if url is None and name is None:
+            logging.error('Could not create mailbox without a feed nor a name.')
+        feed = YFeed(url)
+        feed.title(title = name)
+        path = '"' + mailbox.strip('"') + '.' + feed.safeTitle() + '"'
+        self.select(mailbox = path)
+        return path
+
+
+    def loadOPML(self, filename = None, mailbox = 'INBOX.' + config.mailbox):
+
+        if filename is None:
+            return
+        f = open(filename, 'rt')
+        tree = ElementTree.parse(f)
+        root = tree.getroot()
+
+        def createMailboxes(root, rootMailbox):
+            for child in root.getchildren():
+                childMailbox = rootMailbox
+                if child.tag == 'outline':
+                    url = child.get('xmlUrl')
+                    title = child.get('title')
+                    childMailbox = self.createFeed(mailbox = rootMailbox, name = title, url = url)
+                createMailboxes(child, childMailbox)
+        
+        createMailboxes(root, mailbox)
+
+
     def loop(self):
         logging.info("Agent starting loop.")
         try:
@@ -290,6 +336,7 @@ class Yarss2imapAgent(imaplib.IMAP4):
         except:
             logging.warning("Unexpected error: %s" % sys.exc_info()[0])
         logging.info("Agent stopping loop.")
+
 
 if __name__ == "__main__":
     agent = Yarss2imapAgent()
