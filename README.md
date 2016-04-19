@@ -6,15 +6,16 @@ Distributed under the GNU Affero General Public License v.3.0 (or later). Copyri
 
 You can run the tests below with this command line :
 
-    python3 main.py
+    python3 -m doctest README.md
 
-or
+or, for more verbosity :
 
-    python3 main.py -v
+    python3 -m doctest README.md -v
 
 # Configuration
 
-We want to connect to IMAP server. Its parameters are to be stored in the config.py file. You should copy config.py.example to config.py and update its contents according to your environment.
+We want to connect to IMAP server. Its parameters are to be stored in the config.py file.
+You should copy config.py.example to config.py and update its contents according to your environment.
 
     >>> import config
     >>> config.test
@@ -83,8 +84,7 @@ It creates an IMAP folder with this feed.
     ('OK', [None])
     >>> agent.update(mailbox='INBOX.testyarss2imap')
     'OK'
-    >>> import urllib.parse
-    >>> title = urllib.parse.quote_plus('Jean, aka Sig(gg)')
+    >>> title = feed.feed.title
     >>> folders = agent.list('INBOX.testyarss2imap')[1] 
     >>> True in [title in folderName.decode() for folderName in folders]
     True
@@ -95,7 +95,7 @@ It moved the command message from the inbox to that new folder.
     'OK'
     >>> agent.uid('search', None, 'HEADER Subject "feed ' + feed.feed.links[0].href + '"')[1] in [[None], [b'']]
     True
-    >>> agent.select(mailbox='INBOX.testyarss2imap.' + title)
+    >>> agent.select(mailbox='"INBOX.testyarss2imap.' + title + '"')
     'OK'
     >>> agent.uid('search', None, 'HEADER Subject "feed ' + feed.feed.links[0].href + '"')[1] in [[None], [b'']]
     False
