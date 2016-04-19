@@ -12,9 +12,11 @@ import logging
 logging.basicConfig(filename=config.logfile, format='%(levelname)s:%(asctime)s %(message)s', level=logging.DEBUG)
 
 class YFeed():
+
     def __init__(self, url=None):
         self.url = url
         self.feed = feedparser.parse(url)
+
 
     def title(self):
         """ Returns the title of the feed. """
@@ -28,6 +30,7 @@ class YFeed():
             pass
         return self._title
 
+
     def safeTitle(self):
 
         if hasattr(self, '_safeTitle'):
@@ -36,14 +39,30 @@ class YFeed():
         self._safeTitle = self._safeTitle.decode().replace("/","?").replace(".","-")
         return self._safeTitle
 
-    def path(self, agent=None, mailbox='INBOX.' + config.mailbox):
+
+    def path(self, commandPaths = [], agent = None, mailbox = 'INBOX.' + config.mailbox):
         """ Returns the path of the mailbox associated with this feed. """
 
         if hasattr(self, '_path'):
             return self._path
         if agent is None:
             return None
-        # Does this feed have a dedicated mailbox ?
+
+        # Several mailboxes may contain a "feed" command with the URL of this feed.
+        # The one with the longest path is the one to be associated with this feed.
+        # Unless it is the main mailbox, then we are to look for one based on a matching name.
+        longestPath = mailbox
+        for path in commandPaths:
+            if len(path) > len(longestPath):
+                longestPath = path
+        self._path = longestPath
+        if self._path != mailbox:
+            if self._path[0] != '"':
+                self._path = '"' + self._path + '"'
+            return self._path
+
+        # OK. So. No matching mailbox with a "feed" command for the URL of this feed.
+        # Does this feed have a mailbox with a name matching its title ?
         paths = agent.listMailboxes(mailbox, pattern='"*' + self.safeTitle() + '"')
         if len(paths) == 0: # no mailbox with that name, let's create one
             path = '"' + mailbox + '.' + self.safeTitle() + '"' 
@@ -54,7 +73,10 @@ class YFeed():
         else:
             path = '"' + paths[0] +'"'
         self._path = path
+        if self._path[0] != '"':
+            self._path = '"' + self._path + '"'
         return self._path
+
 
     def updateEntries(self, agent = None, mailbox = 'INBOX.' + config.mailbox):
     
@@ -65,6 +87,7 @@ class YFeed():
 
         # Create one message per feed item
         logging.info("Examining " + str(len(self.feed.entries)) + " feed entries.")
+        agent.select(mailbox = path)
         for entry in self.feed.entries:
 
             # Is there already a message for this entry ?
@@ -105,6 +128,7 @@ class YFeed():
 
 
 class Yarss2imapAgent(imaplib.IMAP4):
+
     def __init__(self):
         logging.info("Initializing new agent.")
         try:
@@ -242,8 +266,9 @@ class Yarss2imapAgent(imaplib.IMAP4):
             # Create a folder for that feed
             feed = YFeed(url)
             logging.info("This feed has this title: " + feed.title())
-            
-            path = feed.path(agent = self, mailbox = mailbox) 
+
+            commandPaths = [mbx for (mbx, uid) in feeds[url]]
+            path = feed.path(commandPaths = commandPaths, agent = self, mailbox = mailbox) 
             # Move corresponding command messages from INBOX to that new folder
             for mb, uid in feeds[url]:
                 if mb[0] != '"':
@@ -251,7 +276,6 @@ class Yarss2imapAgent(imaplib.IMAP4):
                 self.moveUID(uid, fromMailbox=mb, toMailbox=path)
                 self.select(mailbox=mb)
                 self.expunge()
-
             feed.updateEntries(agent = self, mailbox = mailbox)
 
         return 'OK'
