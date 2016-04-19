@@ -11,6 +11,99 @@ import unicodedata
 import logging
 logging.basicConfig(filename=config.logfile, format='%(levelname)s:%(asctime)s %(message)s', level=logging.DEBUG)
 
+class YFeed():
+    def __init__(self, url=None):
+        self.url = url
+        self.feed = feedparser.parse(url)
+
+    def title(self):
+        """ Returns the title of the feed. """
+
+        if hasattr(self, '_title'):
+            return self._title
+        self._title = 'No title'
+        try:
+            self._title = self.feed.feed.title
+        except AttributeError:
+            pass
+        return self._title
+
+    def safeTitle(self):
+
+        if hasattr(self, '_safeTitle'):
+            return self._safeTitle
+        self._safeTitle = unicodedata.normalize('NFKD', self.title()).encode('ASCII','ignore')
+        self._safeTitle = self._safeTitle.decode().replace("/","?").replace(".","-")
+        return self._safeTitle
+
+    def path(self, agent=None, mailbox='INBOX.' + config.mailbox):
+        """ Returns the path of the mailbox associated with this feed. """
+
+        if hasattr(self, '_path'):
+            return self._path
+        if agent is None:
+            return None
+        # Does this feed have a dedicated mailbox ?
+        paths = agent.listMailboxes(mailbox, pattern='"*' + self.safeTitle() + '"')
+        if len(paths) == 0: # no mailbox with that name, let's create one
+            path = '"' + mailbox + '.' + self.safeTitle() + '"' 
+            logging.info("Creating mailbox path: " + path)
+            agent.select(mailbox=mailbox)
+            agent.create(path)
+            agent.subscribe(path)
+        else:
+            path = '"' + paths[0] +'"'
+        self._path = path
+        return self._path
+
+    def updateEntries(self, agent = None, mailbox = 'INBOX.' + config.mailbox):
+    
+        if agent is None:
+            return
+
+        path = self.path(agent = agent, mailbox = mailbox)
+
+        # Create one message per feed item
+        logging.info("Examining " + str(len(self.feed.entries)) + " feed entries.")
+        for entry in self.feed.entries:
+
+            # Is there already a message for this entry ?
+            status, data = agent.uid('search', None, 'HEADER X-Entry-Link "' + entry.link + '"')
+            if data[0] not in [None, b'']:
+                # There is already one, move on !
+                continue
+
+            logging.info("Creating message about: " + entry.title)
+            msg = email.mime.multipart.MIMEMultipart('alternative')
+            msg.set_charset(self.feed.encoding)
+            try:
+                msg['From'] = entry.author
+            except AttributeError:
+                msg['From'] = self.title()
+            msg['Subject'] = entry.title
+            msg['To'] = config.username
+            msg['Date'] = entry.published
+            msg['X-Entry-Link'] = entry.link
+            try:
+                content = entry.content[0]['value']
+            except AttributeError:
+                try:
+                    content = entry.summary
+                except AttributeError:
+                    content = entry.description
+            html = '<p><a href="' + entry.link + '">Retrieved from ' + entry.link + '</a></p>'
+            html += content
+            text = html2text.html2text(html)
+            part1 = email.mime.text.MIMEText(text, 'plain')
+            part2 = email.mime.text.MIMEText(html, 'html')
+            msg.attach(part1)
+            msg.attach(part2)
+
+            status, error = agent.append(path, '', imaplib.Time2Internaldate(time.time()), msg.as_bytes())
+            if status != 'OK':
+                 logging.error('Could not append message, with this error message: ' + error)
+
+
 class Yarss2imapAgent(imaplib.IMAP4):
     def __init__(self):
         logging.info("Initializing new agent.")
@@ -93,7 +186,6 @@ class Yarss2imapAgent(imaplib.IMAP4):
         status, msg = self.uid('copy', uid, toMb)
         if status != 'OK':
             logging.error("Could not copy a message to mailbox: " + toMb)
-            import pdb; pdb.set_trace()
             logging.error("   error message was: " + msg)
         status, msg = self.uid('store', uid, '+FLAGS', '\\Deleted')
         if status != 'OK':
@@ -148,27 +240,10 @@ class Yarss2imapAgent(imaplib.IMAP4):
 
             logging.info("Updating feed from URL: " + url)
             # Create a folder for that feed
-            feed = feedparser.parse(url)
-            title = 'No title'
-            try:
-                title = feed.feed.title
-            except AttributeError:
-                pass
-            logging.info("This feed has this title: " + title)
-            safeTitle = unicodedata.normalize('NFKD', title).encode('ASCII','ignore')
-            safeTitle = safeTitle.decode().replace("/","?").replace(".","-")
+            feed = YFeed(url)
+            logging.info("This feed has this title: " + feed.title())
             
-            # Does this feed have a dedicated mailbox ?
-            paths = self.listMailboxes(mailbox, pattern='"*' + safeTitle + '"')
-            if len(paths) == 0: # no mailbox with that name, let's create one
-                path = '"' + mailbox + '.' + safeTitle + '"'
-                logging.info("Creating mailbox path: " + path)
-                self.select(mailbox=mailbox)
-                self.create(path) 
-                self.subscribe(path)
-            else:
-                path = '"' + paths[0] +'"'
-            
+            path = feed.path(agent = self, mailbox = mailbox) 
             # Move corresponding command messages from INBOX to that new folder
             for mb, uid in feeds[url]:
                 if mb[0] != '"':
@@ -177,44 +252,7 @@ class Yarss2imapAgent(imaplib.IMAP4):
                 self.select(mailbox=mb)
                 self.expunge()
 
-            # Create one message per feed item
-            logging.info("Examining " + str(len(feed.entries)) + " feed entries.")
-            for entry in feed.entries:
-                # Is there already a message for this entry ?
-                status, data = self.uid('search', None, 'HEADER X-Entry-Link "' + entry.link + '"')
-                if data[0] not in [None, b'']:
-                    # There is already one, move on !
-                    continue
-                logging.info("Creating message about: " + entry.title)
-                msg = email.mime.multipart.MIMEMultipart('alternative')
-                msg.set_charset(feed.encoding)
-                try:
-                    msg['From'] = entry.author
-                except AttributeError:
-                    msg['From'] = title
-                msg['Subject'] = entry.title
-                msg['To'] = config.username
-                msg['Date'] = entry.published
-                msg['X-Entry-Link'] = entry.link
-                try:
-                    content = entry.content[0]['value']
-                except AttributeError:
-                    try:
-                        content = entry.summary
-                    except AttributeError:
-                        content = entry.description
-                html = '<p><a href="' + entry.link + '">Retrieved from ' + entry.link + '</a></p>'
-                html += content
-                text = html2text.html2text(html)
-                part1 = email.mime.text.MIMEText(text, 'plain')
-                part2 = email.mime.text.MIMEText(html, 'html')
-                msg.attach(part1)
-                msg.attach(part2)
-                # msg.set_payload(text, feed.encoding)
-                
-                status, error = self.append(path, '', imaplib.Time2Internaldate(time.time()), msg.as_bytes())
-                if status != 'OK':
-                     logging.error('Could not append message, with this error message: ' + error)
+            feed.updateEntries(agent = self, mailbox = mailbox)
 
         return 'OK'
 
