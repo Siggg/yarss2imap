@@ -78,12 +78,37 @@ class Yarss2imapAgent(imaplib.IMAP4):
         return 'OK'
 
     def moveUID(self, uid, fromMailbox='INBOX', toMailbox='INBOX'):
-        if fromMailbox == toMailbox or '"' + fromMailbox + '"' == toMailbox :
+        fromMb = fromMailbox
+        if fromMb[0] != '"':
+            fromMb = '"' + fromMb + '"' # make it safe
+        toMb = toMailbox
+        if toMb[0] != '"':
+            toMb = '"' + toMb + '"' # make it safe
+        if fromMb == toMb:
             return
-        logging.info("Moving message from " + fromMailbox + " to " + toMailbox)
-        self.select(fromMailbox)
-        self.uid('copy', uid, toMailbox)
-        self.uid('store', uid, '+FLAGS', '\\Deleted')
+        logging.info("Moving message from " + fromMb + " to " + toMb)
+        status = self.select(fromMb)
+        if status != 'OK':
+            logging.error("Could not select mailbox: " + fromMb)
+        status, msg = self.uid('copy', uid, toMb)
+        if status != 'OK':
+            logging.error("Could not copy a message to mailbox: " + toMb)
+            import pdb; pdb.set_trace()
+            logging.error("   error message was: " + msg)
+        status, msg = self.uid('store', uid, '+FLAGS', '\\Deleted')
+        if status != 'OK':
+            logging.error("Could not delete message with UID: " + uid)
+            logging.error("   error message was: " + msg)
+
+    def listMailboxes(self, mailbox='INBOX' + config.mailbox, pattern='*'):
+        """ lists mailbox paths under given mailbox and with names matching given pattern. """
+        mailboxes = []
+        mbs = self.list(mailbox, pattern=pattern)[1]
+        for mb in mbs:
+            if mb is not None:
+                mailboxName = re.search('\(.*\) ".*" "(.*)"', mb.decode()).groups()[0]
+                mailboxes.append(mailboxName)
+        return mailboxes
 
     def update(self, mailbox='INBOX.' + config.mailbox):
         logging.info("Updating mailbox: " + mailbox)
@@ -91,11 +116,7 @@ class Yarss2imapAgent(imaplib.IMAP4):
         # Did we receive any new command message in the INBOX or in the given mailbox ?
         mailboxes = ['INBOX', mailbox]
         # Or are there older command messages already stored under their own folders ?
-        mbs = self.list(mailbox)[1]
-        for mb in mbs:
-            if mb is not None:
-                mailboxName = re.search('\(.*\) ".*" "(.*)"', mb.decode()).groups()[0]
-                mailboxes.append(mailboxName)
+        mailboxes += self.listMailboxes(mailbox)
 
         # Search for such messages and their command line in those mailboxes
         subjectFromUIDs = {}
@@ -133,19 +154,28 @@ class Yarss2imapAgent(imaplib.IMAP4):
                 title = feed.feed.title
             except AttributeError:
                 pass
-            # path = mailbox + '.' + urllib.parse.quote_plus(title)
-            title = unicodedata.normalize('NFKD', title).encode('ASCII','ignore')
-            path = '"' + mailbox + '.' + title.decode().replace("/","?").replace(".","-") + '"'
-            logging.info("Creating mailbox path: " + path)
-            self.select(mailbox=mailbox)
-            self.create(path) 
-            self.subscribe(path)
+            logging.info("This feed has this title: " + title)
+            safeTitle = unicodedata.normalize('NFKD', title).encode('ASCII','ignore')
+            safeTitle = safeTitle.decode().replace("/","?").replace(".","-")
+            
+            # Does this feed have a dedicated mailbox ?
+            paths = self.listMailboxes(mailbox, pattern='"*' + safeTitle + '"')
+            if len(paths) == 0: # no mailbox with that name, let's create one
+                path = '"' + mailbox + '.' + safeTitle + '"'
+                logging.info("Creating mailbox path: " + path)
+                self.select(mailbox=mailbox)
+                self.create(path) 
+                self.subscribe(path)
+            else:
+                path = paths[0]
             
             # Move corresponding command messages from INBOX to that new folder
             for mb, uid in feeds[url]:
+                if mb[0] != '"':
+                    mb = '"' + mb + '"'
                 self.moveUID(uid, fromMailbox=mb, toMailbox=path)
-            self.select(mailbox=mb)
-            self.expunge()
+                self.select(mailbox=mb)
+                self.expunge()
 
             # Create one message per feed item
             logging.info("Examining " + str(len(feed.entries)) + " feed entries.")
