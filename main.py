@@ -282,23 +282,55 @@ class Yarss2imapAgent(imaplib.IMAP4):
         mailboxes += self.listMailboxes(mailbox)
 
         # Search for such messages and their command line in those mailboxes
-        subjectFromUIDs = {}
+        feedCommands = {}
+        opmlCommands = {}
+        opmlPayloads = {}
         for mb in mailboxes:
             logging.info("Looking for command messages in: " + mb)
             self.select(mb)
             self.recent()
+
+            # Search "feed http://...." command messages
             status, data = self.uid('search', None, 'HEADER Subject "feed "')
-            uids = data[0].decode().split()
-            logging.info("Found " + str(len(uids)) + " feed messages in mailbox: " + mb)
-            for uid in uids:
+            feedMsgUIDs = data[0].decode().split()
+            logging.info("Found " + str(len(feedMsgUIDs)) + " feed messages in mailbox: " + mb)
+            for uid in feedMsgUIDs:
                 msgBin = self.uid('fetch', uid, '(RFC822)')[1][0][1]
                 msg = email.message_from_bytes(msgBin)
-                subjectFromUIDs[(mb,uid)] = msg['Subject']
+                feedCommands[(mb,uid)] = msg['Subject']
+
+            # Search "OPML" command messages
+            status, data = self.uid('search', None, 'HEADER Subject "OPML"')
+            opmlMsgUIDs = data[0].decode().split()
+            logging.info("Found " + str(len(opmlMsgUIDs)) + " OPML messages in mailbox: " + mb)
+            for uid in opmlMsgUIDs:
+                msgBin = self.uid('fetch', uid, '(RFC822)')[1][0][1]
+                msg = email.message_from_bytes(msgBin)
+                if msg.get_content_maintype() == 'multipart':
+                    parts = msg.get_payload()
+                    for part in parts:
+                        if part.get_content_type() == 'text/xml':
+                            opmlPayloads[part.get_payload()] = True
+                elif msg.get_content_type() == 'text/xml':
+                    opmlPayloads[msg.get_payload()] = True
+                opmlCommands[(mb, uid)] = True
+
+        # Create mailboxes for OPML content
+        for opml in opmlPayloads.keys():
+            self.loadOPML(opml = opml)
+        # Remove OPML messages
+        for mailbox, uid in opmlCommands.keys():
+            self.select(mailbox)
+            status, msg = self.uid('store', uid, '+FLAGS', '\\Deleted')
+            if status != 'OK':
+                logging.error("Could not delete message with UID: " + uid + " in mailbox: " + mailbox)
+                logging.error("   error message was: " + msg)
+
 
         # Build the list of feed URL to be checked for new items
         feeds = {}
-        for msgPath, subject in subjectFromUIDs.items():
-            feedURL = re.search('feed (.*)', subject).groups()[0]
+        for msgPath, feedCommand in feedCommands.items():
+            feedURL = re.search('feed (.*)', feedCommand).groups()[0]
 
             # store the message mailbox and uid under this URL
             if feedURL not in feeds.keys():
@@ -328,13 +360,12 @@ class Yarss2imapAgent(imaplib.IMAP4):
         return 'OK'
 
 
-    def loadOPML(self, filename = None, mailbox = 'INBOX.' + config.mailbox):
+    def loadOPML(self, opml = None, mailbox = 'INBOX.' + config.mailbox):
+        """ Creates mailboxes corresponding to the outlines of the given OPML string. """
 
-        if filename is None:
+        if opml is None:
             return
-        f = open(filename, 'rt')
-        tree = ElementTree.parse(f)
-        root = tree.getroot()
+        root = ElementTree.fromstring(opml)
 
         def createMailboxes(root, rootMailbox):
             for child in root.getchildren():

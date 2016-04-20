@@ -191,8 +191,8 @@ There are as many items in that folder as before. No more, no less.
 
     >>> f = open('sampleOPML.xml','rt')
     >>> from xml.etree import ElementTree
-    >>> tree = ElementTree.parse(f)
-    >>> root = tree.getroot()
+    >>> opml = f.read()
+    >>> root = ElementTree.fromstring(opml)
     
     There are 3 OPML outlines there.
 
@@ -202,7 +202,7 @@ There are as many items in that folder as before. No more, no less.
     Our agent can load this OPML file. It then creates one new mailbox per OPML outline.
 
     >>> mailboxesBefore = agent.list('INBOX.testyarss2imap')[1]
-    >>> agent.loadOPML(filename = 'sampleOPML.xml', mailbox='INBOX.testyarss2imap')
+    >>> agent.loadOPML(opml = opml, mailbox='INBOX.testyarss2imap')
     >>> mailboxesAfter = agent.list('INBOX.testyarss2imap')[1]
     >>> newMailboxes = [mailbox for mailbox in mailboxesAfter if mailbox not in mailboxesBefore]
     >>> len(newMailboxes)
