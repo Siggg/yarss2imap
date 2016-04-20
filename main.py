@@ -12,6 +12,7 @@ import logging
 logging.basicConfig(filename=config.logfile, format='%(levelname)s:%(asctime)s %(message)s', level=logging.DEBUG)
 from xml.etree import ElementTree
 
+
 class YFeed():
 
     def __init__(self, url=None):
@@ -160,6 +161,7 @@ class YFeed():
 class Yarss2imapAgent(imaplib.IMAP4):
 
     def __init__(self):
+
         logging.info("Initializing new agent.")
         try:
             imaplib.IMAP4_SSL.__init__(self, config.servername, config.port)
@@ -168,12 +170,16 @@ class Yarss2imapAgent(imaplib.IMAP4):
             imaplib.IMAP4.__init__(self, config.servername, config.port)
             self.IMAP = imaplib.IMAP4
 
+
     def login(self):
+
         logging.info("Logging in.")
         status, message = self.IMAP.login(self, config.username, config.password)
         return status
 
+
     def select(self, mailbox='INBOX.' + config.mailbox):
+
         logging.info("Selecting mailbox: " + mailbox)
         mbox = unicodedata.normalize('NFKD', mailbox).encode('ASCII','ignore')
         if mailbox[0] != '"':
@@ -190,12 +196,16 @@ class Yarss2imapAgent(imaplib.IMAP4):
                logging.error("Could not select mailbox: " + mbox)
         return status 
 
+
     def close(self):
+
         logging.info("Closing connexion.")
         status, message = self.IMAP.close(self)
         return status
 
+
     def logout(self):
+
         logging.info("Logging out.")
         status, message = self.IMAP.logout(self)
         return status
@@ -342,6 +352,7 @@ class Yarss2imapAgent(imaplib.IMAP4):
 
 
     def loop(self):
+
         logging.info("Agent starting loop.")
         try:
             while True:
@@ -354,6 +365,7 @@ class Yarss2imapAgent(imaplib.IMAP4):
 
 
 if __name__ == "__main__":
+
     agent = Yarss2imapAgent()
     agent.login()
     agent.select()

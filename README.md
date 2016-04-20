@@ -244,9 +244,11 @@ There are as many items in that folder as before. No more, no less.
 
     Our command message must be titled OPML and have the OPML file as an attachment.
 
-    >>> msg = email.mime.multipart.MIMEMultipart('alternative')
+    >>> msg = email.mime.multipart.MIMEMultipart()
     >>> msg['From'] = config.authorizedSender
     >>> msg['Subject'] = 'OPML'
+    >>> msg['To'] = config.authorizedSender
+    >>> msg.preamble = 'OPML file to be imported'
     >>> opmlFile  = f
     >>> opmlFile.seek(0)
     0
