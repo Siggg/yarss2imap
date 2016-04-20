@@ -223,8 +223,7 @@ class Yarss2imapAgent(imaplib.IMAP4):
             if status != 'OK':
                 logging.error("Could not delete path: " + path)
         self.unsubscribe(mailbox)
-        self.delete(mailbox)
-        return 'OK'
+        return self.delete(mailbox)[0]
 
 
     def moveUID(self, uid, fromMailbox='INBOX', toMailbox='INBOX'):

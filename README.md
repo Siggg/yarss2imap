@@ -41,8 +41,7 @@ We should be able to connect to an IMAP account with these settings.
 
 Let's remove any test mailbox left from previous tests.
 
-    >>> agent.purge(mailbox='INBOX.testyarss2imap')
-    'OK'
+    >>> result = agent.purge(mailbox='INBOX.testyarss2imap')
 
 Let's create an empty test mailbox.
 
@@ -216,7 +215,7 @@ There are as many items in that folder as before. No more, no less.
     >>> len(urls)
     3
     >>> import re # get ready for mailbox names extraction
-    >>> newMailboxes = [re.search('\(.*\) ".*" "(.*)"', mb.decode()).groups()[0] for mb in newMailboxes]
+    >>> newMailboxes = ['"' + re.search('\(.*\) ".*" "(.*)"', mb.decode()).groups()[0] + '"' for mb in newMailboxes]
     >>> for mailbox in newMailboxes:
     ...     result = agent.select(mailbox)
     ...     status, data = agent.uid('search', None, 'HEADER Subject "feed "')
@@ -225,6 +224,51 @@ There are as many items in that folder as before. No more, no less.
     Found
     Found
     Found
+
+    So far so good for loading an OPML file using the API. But we can load OPML files via a command message, too.
+    Let's retry this way and start with erasing our newly created mailboxes.
+
+    >>> for mailbox in newMailboxes:
+    ...     agent.purge(mailbox)
+    'OK'
+    'OK'
+    'OK'
+
+    Feed messages for theses mailboxes have disappeared.
+
+    >>> for mailbox in newMailboxes:
+    ...     result = agent.select(mailbox)
+    ...     status, data = agent.uid('search', None, 'HEADER Subject "feed "')
+    ...     if len(data[0]) > 0:
+    ...         print("Found")
+
+    Our command message must be titled OPML and have the OPML file as an attachment.
+
+    >>> msg = email.mime.multipart.MIMEMultipart('alternative')
+    >>> msg['From'] = config.authorizedSender
+    >>> msg['Subject'] = 'OPML'
+    >>> opmlFile  = f
+    >>> opmlFile.seek(0)
+    0
+    >>> opmlPart = email.mime.text.MIMEText(opmlFile.read(), 'xml')
+    >>> msg.attach(opmlPart)
+    >>> status, data = agent.append('INBOX', '', imaplib.Time2Internaldate(time.time()), msg.as_bytes())
+    >>> status
+    'OK'
+
+    The feed messages corresponding to the OPML outlines contained in this file do reappear at the next update.
+
+    >>> agent.update(mailbox = 'INBOX.testyarss2imap')
+    'OK'
+    >>> for mailbox in newMailboxes:
+    ...     result = agent.select(mailbox)
+    ...     status, data = agent.uid('search', None, 'HEADER Subject "feed "') 
+    ...     if len(data[0]) > 0:
+    ...         print("Found")
+    Found
+    Found
+    Found
+
 
 # Cleanup and logout 
 
