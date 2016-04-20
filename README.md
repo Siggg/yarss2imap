@@ -202,11 +202,29 @@ There are as many items in that folder as before. No more, no less.
 
     Our agent can load this OPML file. It then creates one new mailbox per OPML outline.
 
-    >>> nbBefore = len(agent.list('INBOX.testyarss2imap')[1])
+    >>> mailboxesBefore = agent.list('INBOX.testyarss2imap')[1]
     >>> agent.loadOPML(filename = 'sampleOPML.xml', mailbox='INBOX.testyarss2imap')
-    >>> nbAfter = len(agent.list('INBOX.testyarss2imap')[1])
-    >>> nbAfter - nbBefore
+    >>> mailboxesAfter = agent.list('INBOX.testyarss2imap')[1]
+    >>> newMailboxes = [mailbox for mailbox in mailboxesAfter if mailbox not in mailboxesBefore]
+    >>> len(newMailboxes)
     3
+
+    There are 3 outlines with an XML URL in this OPML example file. Each outline with an XML URL got its "feed" message.
+
+    >>> outlines = root.findall('.//outline[@xmlUrl]')
+    >>> urls = [outline.get('xmlUrl') for outline in outlines]
+    >>> len(urls)
+    3
+    >>> import re # get ready for mailbox names extraction
+    >>> newMailboxes = [re.search('\(.*\) ".*" "(.*)"', mb.decode()).groups()[0] for mb in newMailboxes]
+    >>> for mailbox in newMailboxes:
+    ...     result = agent.select(mailbox)
+    ...     status, data = agent.uid('search', None, 'HEADER Subject "feed "')
+    ...     if len(data[0]) > 0:
+    ...         print("Found")
+    Found
+    Found
+    Found
 
 # Cleanup and logout 
 

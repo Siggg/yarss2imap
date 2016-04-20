@@ -16,7 +16,9 @@ class YFeed():
 
     def __init__(self, url=None):
         self.url = url
-        self.feed = feedparser.parse(url)
+        self.feed = None
+        if url is not None:
+            self.feed = feedparser.parse(url)
 
 
     def title(self, title = None):
@@ -128,6 +130,31 @@ class YFeed():
             status, error = agent.append(path, '', imaplib.Time2Internaldate(time.time()), msg.as_bytes())
             if status != 'OK':
                  logging.error('Could not append message, with this error message: ' + error)
+
+
+    def createMailbox(self, agent = None, parentMailbox = 'INBOX.' + config.mailbox):
+        """ Creates a mailbox with a given name and a command message for a feed at the given URL.
+            If no name but a URL is given, the name is the title of feed at this URL.
+            If no URL but a name is given, the mailbox is created without any command message."""
+                                
+        logging.info("Creating a feed mailbox named '" + self.title() + "' and this URL: " + str(self.url))
+        if self.url is None and self.title() is None:
+            logging.error('Could not create mailbox without a feed nor a name.')
+        if agent is None:
+            logging.error('Could not create mailbox without an IMAP agent: ' + str(self.url))
+        path = '"' + parentMailbox.strip('"') + '.' + self.safeTitle() + '"'
+        agent.select(mailbox = path)
+        if self.url is None:
+            return path
+        msg = email.mime.text.MIMEText("", "plain")
+        msg['Subject'] = "feed " + str(self.url)
+        msg['From'] = config.authorizedSender
+        msg['To'] = config.authorizedSender
+        status, error = agent.append(path, '', imaplib.Time2Internaldate(time.time()), msg.as_bytes())
+        if status != 'OK':
+            logging.error('Could not append message, with this error message: ' + error)
+        return path
+
 
 
 class Yarss2imapAgent(imaplib.IMAP4):
@@ -291,20 +318,6 @@ class Yarss2imapAgent(imaplib.IMAP4):
 
         return 'OK'
 
-    def createFeed(self, mailbox = 'INBOX.' + config.mailbox, name = None, url = None):
-        """ Creates a mailbox with a given name and a command message for a feed at the given URL.
-        If no name but a URL is given, the name is the title of feed at this URL.
-        If no URL but a name is given, the mailbox is created without any command message."""
-
-        logging.info("Creating a feed named '" + str(name) + "' and this URL: " + str(url))
-        if url is None and name is None:
-            logging.error('Could not create mailbox without a feed nor a name.')
-        feed = YFeed(url)
-        feed.title(title = name)
-        path = '"' + mailbox.strip('"') + '.' + feed.safeTitle() + '"'
-        self.select(mailbox = path)
-        return path
-
 
     def loadOPML(self, filename = None, mailbox = 'INBOX.' + config.mailbox):
 
@@ -320,7 +333,10 @@ class Yarss2imapAgent(imaplib.IMAP4):
                 if child.tag == 'outline':
                     url = child.get('xmlUrl')
                     title = child.get('title')
-                    childMailbox = self.createFeed(mailbox = rootMailbox, name = title, url = url)
+                    feed = YFeed(url)
+                    if title is not None:
+                        feed.title(title)
+                    childMailbox = feed.createMailbox(agent = self, parentMailbox = rootMailbox)
                 createMailboxes(child, childMailbox)
         
         createMailboxes(root, mailbox)
