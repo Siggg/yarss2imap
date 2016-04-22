@@ -154,6 +154,8 @@ class YFeed():
         status, error = agent.append(path, '', imaplib.Time2Internaldate(time.time()), msg.as_bytes())
         if status != 'OK':
             logging.error('Could not append message, with this error message: ' + error)
+        else:
+            logging.info('Created feed message in mailbox: ' + path)
         return path
 
 
@@ -317,8 +319,8 @@ class Yarss2imapAgent(imaplib.IMAP4):
 
         # Create mailboxes for OPML content
         for opml in opmlPayloads.keys():
-            self.loadOPML(opml = opml)
-        # Remove OPML messages
+            self.loadOPML(opml = opml, mailbox = mailbox)
+        # Remove OPML command messages
         for mailbox, uid in opmlCommands.keys():
             self.select(mailbox)
             status, msg = self.uid('store', uid, '+FLAGS', '\\Deleted')

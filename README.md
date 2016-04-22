@@ -57,7 +57,7 @@ We can load the example feed from my blog.
     >>> import feedparser
     >>> feed = feedparser.parse('http://www.akasig.org/feed/')
     >>> feed.feed.title
-    'Jean, aka Sig(gg)'
+    "Jean Millerat's bytes for good"
 
 # How to add feeds
 
