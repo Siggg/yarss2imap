@@ -105,6 +105,48 @@ class YFeed(object):
         return self._path
 
 
+    def createMessage(self, entry=None):
+        """ Creates a message representing a given feed entry. """
+
+        logging.info("Creating message about: " + entry.title)
+        msg = email.mime.multipart.MIMEMultipart('alternative')
+        msg.set_charset(self.feed.encoding)
+        try:
+            msg['From'] = entry.author + " / " + self.title()
+        except AttributeError:
+            msg['From'] = self.title()
+            msg['Subject'] = entry.title
+            msg['To'] = config.username
+        try:
+            msg['Date'] = entry.published
+        except AttributeError:
+            pass
+        entryLinkHeader = email.header.Header(entry.link, 'utf-8')
+        msg['X-Entry-Link'] = entryLinkHeader
+        try:
+            content = entry.content[0]['value']
+        except AttributeError:
+            try:
+                content = entry.summary
+            except AttributeError:
+                content = entry.description
+        html = content
+        text = html2text.html2text(html)
+        text = 'Retrieved from ' + entry.link + '\n' + text
+        html = html + \
+               '<p><a href="' + \
+               entry.link + \
+               '">Retrieved from ' + \
+               entry.link + \
+               '</a></p>'
+        part1 = email.mime.text.MIMEText(text, 'plain')
+        part2 = email.mime.text.MIMEText(html, 'html')
+        msg.attach(part1)
+        msg.attach(part2)
+
+        return msg
+
+
     def updateEntries(self, agent=None, mailbox='INBOX.' + config.mailbox):
         """ Guarantees that there is one message in the given mailbox
         for each entry in the feed. """
@@ -135,41 +177,7 @@ class YFeed(object):
                 # There is already one, move on !
                 continue
 
-            logging.info("Creating message about: " + entry.title)
-            msg = email.mime.multipart.MIMEMultipart('alternative')
-            msg.set_charset(self.feed.encoding)
-            try:
-                msg['From'] = entry.author + " / " + self.title()
-            except AttributeError:
-                msg['From'] = self.title()
-            msg['Subject'] = entry.title
-            msg['To'] = config.username
-            try:
-                msg['Date'] = entry.published
-            except AttributeError:
-                pass
-            entryLinkHeader = email.header.Header(entry.link, 'utf-8')
-            msg['X-Entry-Link'] = entryLinkHeader
-            try:
-                content = entry.content[0]['value']
-            except AttributeError:
-                try:
-                    content = entry.summary
-                except AttributeError:
-                    content = entry.description
-            html = content
-            text = html2text.html2text(html)
-            text = 'Retrieved from ' + entry.link + '\n' + text
-            html = html \
-                + '<p><a href="' \
-                + entry.link \
-                + '">Retrieved from ' \
-                + entry.link + '</a></p>'
-            part1 = email.mime.text.MIMEText(text, 'plain')
-            part2 = email.mime.text.MIMEText(html, 'html')
-            msg.attach(part1)
-            msg.attach(part2)
-
+            msg = self.createMessage(entry=entry)
             status, error = agent.append(path,
                                          '',
                                          imaplib.Time2Internaldate(time.time()),
@@ -205,7 +213,8 @@ class YFeed(object):
         msg['To'] = config.authorizedSender
         status, error = agent.append(path,
                                      '',
-                                     imaplib.Time2Internaldate(time.time()), msg.as_bytes())
+                                     imaplib.Time2Internaldate(time.time()),
+                                     msg.as_bytes())
         if status != 'OK':
             logging.error('Could not append message: ' + error)
         else:
@@ -214,7 +223,7 @@ class YFeed(object):
 
 
 
-class Yarss2imapAgent(imaplib.IMAP4):
+class Yarss2imapAgent(imaplib.IMAP4):       #pylint: disable-msg=R0904
     """ An IMAP4 agent that can manage RSS feeds as mailboxes. """
 
     def __init__(self):
@@ -232,7 +241,9 @@ class Yarss2imapAgent(imaplib.IMAP4):
         """ Logs in using credentials given in config file. """
 
         logging.info("Logging in.")
-        status, message = self.IMAP.login(self, config.username, config.password)
+        status, message = self.IMAP.login(self,
+                                          config.username,
+                                          config.password)
         return status
 
 
@@ -246,7 +257,7 @@ class Yarss2imapAgent(imaplib.IMAP4):
         status, message = self.IMAP.select(self, mbox)
         if status == 'NO': # there's no such mailbox, let's create one
             self.IMAP.select(self)
-            status, msg = self.IMAP.create(self, mbox) 
+            status, message = self.IMAP.create(self, mbox)
             if status != "OK":
                 import pdb; pdb.set_trace()
                 logging.error("Could not create mailbox: " + str(mbox))
@@ -283,13 +294,13 @@ class Yarss2imapAgent(imaplib.IMAP4):
             if line is None:
                 continue
             line = line.decode()
-            path = re.search('\(.*\) ".*" "(.*)"', line).groups()[0]
+            path = re.search(r'\(.*\) ".*" "(.*)"', line).groups()[0]
             if path[0] != '"':
                 path = '"' + path + '"'
-            status, msg = self.unsubscribe(path)
+            status, message = self.unsubscribe(path)
             if status != 'OK':
                 logging.error("Could not unsubscribe from: " + path)
-            status, msg = self.delete(path)
+            status, message = self.delete(path)
             if status != 'OK':
                 logging.error("Could not delete path: " + path)
         self.unsubscribe(mailbox)
@@ -329,65 +340,103 @@ class Yarss2imapAgent(imaplib.IMAP4):
         mailboxes = self.list(mailbox, pattern=pattern)[1]
         for mailboxFound in mailboxes:
             if mailboxFound is not None:
-                mailboxName = re.search('\(.*\) ".*" "(.*)"',
+                mailboxName = re.search(r'\(.*\) ".*" "(.*)"',
                                         mailboxFound.decode()).groups()[0]
                 mailboxNames.append(mailboxName)
         return mailboxNames
 
 
     def update(self, mailbox='INBOX.' + config.mailbox):
+        """ Looks for command messages in the INBOX and under the given
+        mailbox. Then executes these commands. Commands are given
+        in the subject line of messages. Arguments can be given in the
+        subject line or can be attachments.
+
+        Only 2 commands are supported so far :
+
+            feed http://...
+
+            will update the feed with this URL. The corresponding
+            mailbox will be created if it does not exist.
+
+        and
+
+            OPML
+
+            will take an OPML file given as the body of or as an
+            attachment to the message. A hierarchy of mailboxes will
+            be created according to the hierarchy of outlines described
+            in the OPML files. outlines with an xmlUrl attribute will
+            be created as mailboxes with a "feed <xmlUrl>"-titled
+            message within.
+
+        """
 
         logging.info("Updating mailbox: " + mailbox)
 
-        # Did we receive any new command message in the INBOX or in the given mailbox ?
-        mailboxes = ['INBOX', mailbox]
-        # Or are there older command messages already stored under their own folders ?
-        mailboxes += self.listMailboxes(mailbox)
+        # Did we receive any new command message in the INBOX
+        # or in the given mailbox ?
+        listedMailboxes = ['INBOX', mailbox]
+        # Or are there older command messages already stored under
+        # their own folders ?
+        listedMailboxes += self.listMailboxes(mailbox)
 
         # Search for such messages and their command line in those mailboxes
         feedCommands = {}
         opmlCommands = {}
         opmlPayloads = {}
-        for mb in mailboxes:
-            logging.info("Looking for command messages in: " + mb)
-            self.select(mb)
+        for listedMailbox in listedMailboxes:
+            logging.info("Looking for command messages in: " + listedMailbox)
+            self.select(listedMailbox)
             self.recent()
 
             # Search "feed http://...." command messages
             status, data = self.uid('search', None, 'HEADER Subject "feed "')
             feedMsgUIDs = data[0].decode().split()
-            logging.info("Found " + str(len(feedMsgUIDs)) + " feed messages in mailbox: " + mb)
+            logging.info("Found " + \
+                         str(len(feedMsgUIDs)) + \
+                         " feed messages in mailbox: " + \
+                         listedMailbox)
             for uid in feedMsgUIDs:
                 msgBin = self.uid('fetch', uid, '(RFC822)')[1][0][1]
                 msg = email.message_from_bytes(msgBin)
-                feedCommands[(mb,uid)] = msg['Subject']
+                feedCommands[(listedMailbox, uid)] = msg['Subject']
 
             # Search "OPML" command messages
             status, data = self.uid('search', None, 'HEADER Subject "OPML"')
             opmlMsgUIDs = data[0].decode().split()
-            logging.info("Found " + str(len(opmlMsgUIDs)) + " OPML messages in mailbox: " + mb)
+            logging.info("Found " + \
+                         str(len(opmlMsgUIDs)) + \
+                         " OPML messages in mailbox: " + \
+                         listedMailbox)
+            opmlMimeTypes = ['text/xml', 'text/x-opml+xml']
             for uid in opmlMsgUIDs:
                 msgBin = self.uid('fetch', uid, '(RFC822)')[1][0][1]
                 msg = email.message_from_bytes(msgBin)
                 if msg.get_content_maintype() == 'multipart':
                     parts = msg.get_payload()
                     for part in parts:
-                        if part.get_content_type() in ['text/xml', 'text/x-opml+xml']:
+                        if part.get_content_type() in opmlMimeTypes:
                             opmlPayloads[part.get_payload(decode=True)] = True
-                elif msg.get_content_type() in ['text/xml', 'text/x-opml+xml']:
+                elif msg.get_content_type() in opmlMimeTypes:
                     opmlPayloads[msg.get_payload(decode=True)] = True
-                opmlCommands[(mb, uid)] = True
+                opmlCommands[(listedMailbox, uid)] = True
 
         # Create mailboxes for OPML content
-        logging.info("Importing " + str(len(opmlPayloads.keys())) + " OPML file(s).")
+        logging.info("Importing " + \
+                     str(len(opmlPayloads.keys())) + \
+                     " OPML file(s).")
         for opml in opmlPayloads.keys():
-            self.loadOPML(opml = opml, mailbox = mailbox)
+            self.loadOPML(opml=opml, mailbox=mailbox)
         # Remove OPML command messages
         for mailbox, uid in opmlCommands.keys():
             self.select(mailbox)
             status, msg = self.uid('store', uid, '+FLAGS', '\\Deleted')
             if status != 'OK':
-                logging.error("Could not delete message with UID: " + uid + " in mailbox: " + mailbox)
+                logging.error("Could not delete message with UID: " + \
+                              uid + \
+                              " in mailbox: " + \
+                              mailbox)
                 logging.error("   error message was: " + msg)
 
 
@@ -395,13 +444,14 @@ class Yarss2imapAgent(imaplib.IMAP4):
         feeds = {}
         for msgPath, feedCommand in feedCommands.items():
             try:
-                feedURL = re.search('feed\s+(.*)', feedCommand).groups()[0]
+                feedURL = re.search(r'feed\s+(.*)', feedCommand).groups()[0]
             except AttributeError:
-                logging.error('Could not parse this feed command: ' + str(feedCommand))
+                logging.error('Could not parse this feed command: ' + \
+                              str(feedCommand))
 
             # store the message mailbox and uid under this URL
             if feedURL not in feeds.keys():
-                 feeds[feedURL] = []
+                feeds[feedURL] = []
             feeds[feedURL].append(msgPath)
 
         logging.info("Updating " + str(len(feeds.keys())) + " feed(s).")
@@ -414,27 +464,33 @@ class Yarss2imapAgent(imaplib.IMAP4):
             logging.info("This feed has this title: " + feed.title())
 
             commandPaths = [mbx for (mbx, uid) in feeds[url]]
-            path = feed.path(commandPaths = commandPaths, agent = self, mailbox = mailbox) 
+            path = feed.path(commandPaths=commandPaths,
+                             agent=self,
+                             mailbox=mailbox)
             # Move corresponding command messages from INBOX to that new folder
-            for mb, uid in feeds[url]:
-                if mb[0] != '"':
-                    mb = '"' + mb + '"'
-                self.moveUID(uid, fromMailbox=mb, toMailbox=path)
-                self.select(mailbox=mb)
+            for feedMailbox, uid in feeds[url]:
+                if feedMailbox[0] != '"':
+                    feedMailbox = '"' + feedMailbox + '"'
+                self.moveUID(uid, fromMailbox=feedMailbox, toMailbox=path)
+                self.select(mailbox=feedMailbox)
                 self.expunge()
-            feed.updateEntries(agent = self, mailbox = mailbox)
+            feed.updateEntries(agent=self, mailbox=mailbox)
 
         return 'OK'
 
 
-    def loadOPML(self, opml = None, mailbox = 'INBOX.' + config.mailbox):
-        """ Creates mailboxes corresponding to the outlines of the given OPML string. """
+    def loadOPML(self, opml=None, mailbox='INBOX.' + config.mailbox):
+        """ Creates mailboxes corresponding to the outlines
+            of the given OPML string. """
 
         if opml is None:
             return
         root = ElementTree.fromstring(opml)
 
         def createMailboxes(root, rootMailbox):
+            """ Creates a mailbox under the given rootMailbox
+            for each child of the given root outline. """
+
             for child in root.getchildren():
                 childMailbox = rootMailbox
                 if child.tag == 'outline':
@@ -443,13 +499,15 @@ class Yarss2imapAgent(imaplib.IMAP4):
                     feed = YFeed(url)
                     if title is not None:
                         feed.title(title)
-                    childMailbox = feed.createMailbox(agent = self, parentMailbox = rootMailbox)
+                    childMailbox = feed.createMailbox(agent=self,
+                                                      parentMailbox=rootMailbox)
                 createMailboxes(child, childMailbox)
-        
+
         createMailboxes(root, mailbox)
 
 
     def loop(self):
+        """ Main loop. """
 
         logging.info("Agent starting loop.")
         try:
@@ -458,7 +516,7 @@ class Yarss2imapAgent(imaplib.IMAP4):
                 logging.info("Sleeping for 60 seconds.")
                 time.sleep(60)
         except:
-            logging.warning("Unexpected error: %s" % sys.exc_info()[0])
+            logging.warning("Unexpected error:" + str(sys.exc_info()[0]))
             self.close()
             self.logout()
             raise
@@ -467,9 +525,9 @@ class Yarss2imapAgent(imaplib.IMAP4):
 
 if __name__ == "__main__":
 
-    agent = Yarss2imapAgent()
-    agent.login()
-    agent.select()
-    agent.loop()
-    agent.close()
-    agent.logout()
+    AGENT = Yarss2imapAgent()
+    AGENT.login()
+    AGENT.select()
+    AGENT.loop()
+    AGENT.close()
+    AGENT.logout()
