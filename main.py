@@ -151,7 +151,9 @@ class YFeed(object):
         from io import BytesIO
         from email.generator import BytesGenerator
         bytesIO = BytesIO()
-        bytesGenerator = BytesGenerator(bytesIO, mangle_from_=True, maxheaderlen=60)
+        bytesGenerator = BytesGenerator(bytesIO,
+                                        mangle_from_=True,
+                                        maxheaderlen=60)
         bytesGenerator.flatten(msg)
         text = bytesIO.getvalue()
 
@@ -176,11 +178,11 @@ class YFeed(object):
             # Is there already a message for this entry ?
             headerName = 'X-Entry-Link'
             try:
-                #import pdb; pdb.set_trace()
-                entryLinkHeader = email.header.Header(s=entry.link,
-                                                      charset=self.feed.encoding)
-                entryLinkHeader = entryLinkHeader.encode(linesep='\r\n')
-                agent.literal = entryLinkHeader.encode() # undocumented imaplib feature
+                elHeader = email.header.Header(s=entry.link,
+                                               charset=self.feed.encoding)
+                entryLinkHeader = elHeader.encode(linesep='\r\n')
+                agent.literal = entry.link.encode()
+                # ^-- this is an undocumented imaplib feature
                 status, data = agent.uid(
                     'search',
                     None,
@@ -192,7 +194,6 @@ class YFeed(object):
                 continue
 
             msg = self.createMessage(entry=entry)
-            #import pdb; pdb.set_trace()
             status, error = agent.append(path,
                                          '',
                                          imaplib.Time2Internaldate(time.time()),
@@ -274,7 +275,6 @@ class Yarss2imapAgent(imaplib.IMAP4):       #pylint: disable-msg=R0904
             self.IMAP.select(self)
             status, message = self.IMAP.create(self, mbox)
             if status != "OK":
-                import pdb; pdb.set_trace()
                 logging.error("Could not create mailbox: " + str(mbox))
             self.IMAP.subscribe(self, mbox)
             status, message = self.IMAP.select(self, mbox)

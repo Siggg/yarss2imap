@@ -186,7 +186,6 @@ There are as many items in that folder as before. No more, no less.
     'OK'
     >>> nbOfItems == len(agent.uid('search', None, 'ALL')[1][0].split())
     True
-    >>> import pdb; pdb.set_trace()
 
 # OPML import
 
