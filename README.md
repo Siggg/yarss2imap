@@ -110,7 +110,7 @@ It moved the command message from the inbox to that new folder.
 
 The folder contains more items than how many there are in this feed.
 
-    >>> nbOfItems = len(agent.uid('search', None, 'HEADER Subject ""')[1][0].split())
+    >>> nbOfItems = len(agent.uid('search', None, 'ALL')[1][0].split())
     >>> nbOfItems > len(feed.entries)
     True
 
@@ -128,14 +128,16 @@ Its Subject line is the title of the corresponding feed item.
     >>> decoded_subject[0].decode(decoded_subject[1]) == entry.title
     True
 
-Its From line gives the author of the corresponding feed item.
+Its From line gives the author of the corresponding feed item and the feed title.
 
-    >>> msg['From'] == entry.author
+    >>> msg['From'] == entry.author + ' @ ' + feed.feed.title
     True
 
-The URL of the corresponding feed item is stored as a X-Link field.
+The URL of the corresponding feed item is stored as a X-Entry-Link field.
 
-    >>> msg['X-Entry-Link'].split()[-1] == entry.link
+    >>> from email.header import decode_header, make_header
+    >>> header = str(make_header(decode_header(msg['X-Entry-Link'])))
+    >>> header == entry.link
     True
 
 It has two parts.
@@ -161,9 +163,9 @@ The HTML version contains the feed item.
     >>> htmlFromFeed in htmlFromEmail
     True
 
-Its body starts with the link to the corresponding feed item.
+Its body ends with the link to the corresponding feed item.
 
-    >>> htmlFromEmail.split('Retrieved from')[0] == '<p><a href="' + entry.link + '">'
+    >>> htmlFromEmail.split('Retrieved from ')[-1] == entry.link + '</a></p>'
     True
 
 The date of this feed items precedes the date the feed was updated.
@@ -182,8 +184,9 @@ There are as many items in that folder as before. No more, no less.
 
     >>> agent.select(mailbox='INBOX.testyarss2imap.' + title)
     'OK'
-    >>> nbOfItems == len(agent.uid('search', None, 'HEADER Subject ""')[1][0].split())
+    >>> nbOfItems == len(agent.uid('search', None, 'ALL')[1][0].split())
     True
+    >>> import pdb; pdb.set_trace()
 
 # OPML import
 

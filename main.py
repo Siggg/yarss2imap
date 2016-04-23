@@ -34,7 +34,7 @@ class YFeed(object):
 
         if title is not None:
             self._title = title
-        if hasattr(self, '_title'):
+        if self._title is not None:
             return self._title
         self._title = 'No title'
         try:
@@ -48,7 +48,7 @@ class YFeed(object):
         """ Returns a version of the feed title that can safely be used
         as the name of an IMAP mailbox. """
 
-        if hasattr(self, '_safeTitle'):
+        if self._safeTitle is not None:
             return self._safeTitle
         self._safeTitle = unicodedata.normalize('NFKD', self.title())
         self._safeTitle = self._safeTitle.encode('ASCII', 'ignore')
@@ -63,7 +63,7 @@ class YFeed(object):
              mailbox='INBOX.' + config.mailbox):
         """ Returns the path of the mailbox associated with this feed. """
 
-        if hasattr(self, '_path'):
+        if self._path is not None:
             return self._path
         if agent is None:
             return None
@@ -111,18 +111,22 @@ class YFeed(object):
         logging.info("Creating message about: " + entry.title)
         msg = email.mime.multipart.MIMEMultipart('alternative')
         msg.set_charset(self.feed.encoding)
+        author = self.title()
         try:
-            msg['From'] = entry.author + " / " + self.title()
+            author = entry.author + " @ " + author
         except AttributeError:
-            msg['From'] = self.title()
-            msg['Subject'] = entry.title
-            msg['To'] = config.username
+            pass
+        msg['From'] = author
+        msg['Subject'] = entry.title
+        msg['To'] = config.username
         try:
             msg['Date'] = entry.published
         except AttributeError:
             pass
-        entryLinkHeader = email.header.Header(entry.link, 'utf-8')
-        msg['X-Entry-Link'] = entryLinkHeader
+        headerName = 'X-Entry-Link'
+        entryLinkHeader = email.header.Header(s=entry.link,
+                                              charset=self.feed.encoding)
+        msg[headerName] = entryLinkHeader
         try:
             content = entry.content[0]['value']
         except AttributeError:
@@ -144,7 +148,14 @@ class YFeed(object):
         msg.attach(part1)
         msg.attach(part2)
 
-        return msg
+        from io import BytesIO
+        from email.generator import BytesGenerator
+        bytesIO = BytesIO()
+        bytesGenerator = BytesGenerator(bytesIO, mangle_from_=True, maxheaderlen=60)
+        bytesGenerator.flatten(msg)
+        text = bytesIO.getvalue()
+
+        return text
 
 
     def updateEntries(self, agent=None, mailbox='INBOX.' + config.mailbox):
@@ -163,25 +174,29 @@ class YFeed(object):
         for entry in self.feed.entries:
 
             # Is there already a message for this entry ?
+            headerName = 'X-Entry-Link'
             try:
-                entryLinkHeader = email.header.Header(entry.link, 'utf-8')
-                entryLinkHeader = entryLinkHeader.encode()
+                #import pdb; pdb.set_trace()
+                entryLinkHeader = email.header.Header(s=entry.link,
+                                                      charset=self.feed.encoding)
+                entryLinkHeader = entryLinkHeader.encode(linesep='\r\n')
+                agent.literal = entryLinkHeader.encode() # undocumented imaplib feature
                 status, data = agent.uid(
                     'search',
                     None,
-                    'HEADER X-Entry-Link "' + entryLinkHeader + '"')
+                    'HEADER ' + headerName)
             except:
-                import pdb; pdb.set_trace()
                 logging.error('Could not search for entry link: ' + entry.link)
-            if data[0] not in [None, b'']:
+            if status == 'OK' and data[0] not in [None, b'']:
                 # There is already one, move on !
                 continue
 
             msg = self.createMessage(entry=entry)
+            #import pdb; pdb.set_trace()
             status, error = agent.append(path,
                                          '',
                                          imaplib.Time2Internaldate(time.time()),
-                                         msg.as_bytes())
+                                         msg)
             if status != 'OK':
                 logging.error('Could not append message: ' + error)
 
