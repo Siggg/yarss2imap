@@ -13,6 +13,9 @@ Then run the client
 
 # Documented test
 
+BEWARE : running these tests may delete messages in your 'INBOX' mailbox. It will delete messages if their
+subject line is "OPML" or starts with "feed ".
+
 You can run the tests below with this command line :
 
     python3 -m doctest README.md
@@ -38,6 +41,17 @@ We should be able to connect to an IMAP account with these settings.
     'OK'
 
 # Test setup
+
+Let's remove messages titled "OPML" or "feed " from the INBOX. You had been warned !
+
+    >>> agent.select('INBOX')
+    'OK'
+    >>> status, data = agent.uid('search', None, 'UNDELETED HEADER Subject "OPML"') 
+    >>> uids = data[0].decode().split()
+    >>> status, data = agent.uid('search', None, 'UNDELETED HEADER Subject "feed "')
+    >>> uids += data[0].decode().split()
+    >>> for uid in uids: 
+    ...     status, data = agent.uid('store', uid, '+FLAGS', '\\Deleted')
 
 Let's remove any test mailbox left from previous tests.
 
@@ -93,19 +107,19 @@ It creates an IMAP folder with this feed.
     >>> agent.update(mailbox='INBOX.testyarss2imap')
     'OK'
     >>> title = feed.feed.title
-    >>> folders = agent.list('INBOX.testyarss2imap')[1] 
-    >>> True in [title in folderName.decode() for folderName in folders]
-    True
+    >>> folders = agent.list('INBOX.testyarss2imap')[1]
+    >>> folders[0].decode().split('"')[-2]
+    "INBOX.testyarss2imap.Jean Millerat's bytes for good"
 
 It moved the command message from the inbox to that new folder.
 
     >>> agent.select(mailbox='INBOX')
     'OK'
-    >>> agent.uid('search', None, 'HEADER Subject "feed ' + feed.feed.links[0].href + '"')[1] in [[None], [b'']]
+    >>> agent.uid('search', None, 'UNDELETED HEADER Subject "feed ' + feed.feed.links[0].href + '"')[1] in [[None], [b'']]
     True
     >>> agent.select(mailbox='"INBOX.testyarss2imap.' + title + '"')
     'OK'
-    >>> agent.uid('search', None, 'HEADER Subject "feed ' + feed.feed.links[0].href + '"')[1] in [[None], [b'']]
+    >>> agent.uid('search', None, 'UNDELETED HEADER Subject "feed ' + feed.feed.links[0].href + '"')[1] in [[None], [b'']]
     False
 
 The folder contains more items than how many there are in this feed.
@@ -204,7 +218,11 @@ There are as many items in that folder as before. No more, no less.
     Our agent can load this OPML file. It then creates one new mailbox per OPML outline.
 
     >>> mailboxesBefore = agent.list('INBOX.testyarss2imap')[1]
-    >>> agent.loadOPML(opml = opml, mailbox='INBOX.testyarss2imap')
+    >>> from main import YOPMLCommandMessage
+    >>> opmlCommandMessage = YOPMLCommandMessage(message=None, mailbox=None, messageUID=None, agent=agent)
+    >>> opmlCommandMessage.opml = opml
+    >>> opmlCommandMessage.execute(underMailbox='INBOX.testyarss2imap')
+    'OK'
     >>> mailboxesAfter = agent.list('INBOX.testyarss2imap')[1]
     >>> newMailboxes = [mailbox for mailbox in mailboxesAfter if mailbox not in mailboxesBefore]
     >>> len(newMailboxes)

@@ -16,17 +16,41 @@ logging.basicConfig(
 from xml.etree import ElementTree
 
 
+
+def imapify(string):
+    """ Return a version of the given string which
+    can be used as a mailbox name by an IMAP server. """
+
+    result = unicodedata.normalize('NFKD', string)
+    result = result.encode('ASCII', 'ignore')
+    result = result.decode()
+    result = result.replace("/", "?")
+    result = result.replace(".", "-")
+    return result
+
+
+
 class YFeed(object):
     """ This is a yarss2imap RSS feed mapped to an IMAP mailbox. """
 
     def __init__(self, url=None):
+
+        # URL of the feed
         self.url = url
+
+        # Parsed feed
         self.feed = None
         if url is not None:
             self.feed = feedparser.parse(url)
+
+        # Title of the feed
         self._title = None
+
+        # Safe title to be used as the name of a mailbox
         self._safeTitle = None
-        self._path = None
+
+        # Path of the mailbox where this feed is represented
+        self._mailbox = None
 
 
     def title(self, title=None):
@@ -50,59 +74,36 @@ class YFeed(object):
 
         if self._safeTitle is not None:
             return self._safeTitle
-        self._safeTitle = unicodedata.normalize('NFKD', self.title())
-        self._safeTitle = self._safeTitle.encode('ASCII', 'ignore')
-        self._safeTitle = self._safeTitle.decode()
-        self._safeTitle = self._safeTitle.replace("/", "?").replace(".", "-")
+        self._safeTitle = imapify(self.title())
         return self._safeTitle
 
 
-    def path(self,
-             commandPaths=None,
-             agent=None,
-             mailbox='INBOX.' + config.mailbox):
-        """ Returns the path of the mailbox associated with this feed. """
+    def mailbox(self,
+                agent=None,
+                mailbox='INBOX.' + config.mailbox):
+        """ Returns the mailbox associated with this feed. """
 
-        if self._path is not None:
-            return self._path
+        if self._mailbox is not None:
+            return self._mailbox
         if agent is None:
             return None
-        if commandPaths == None:
-            commandPaths = []
 
-        # Several mailboxes may contain a "feed" command with the URL of this
-        # feed.
-        # The one with the longest path is the one to be associated with this
-        # feed.
-        # Unless it is the main mailbox, then we are to look for one based on
-        # a matching name.
-        longestPath = mailbox
-        for path in commandPaths:
-            if len(path) > len(longestPath):
-                longestPath = path
-        self._path = longestPath
-        if self._path != mailbox:
-            if self._path[0] != '"':
-                self._path = '"' + self._path + '"'
-            return self._path
-
-        # OK. So. No matching mailbox with a "feed" command for the URL of this
-        # feed.
-        # Does this feed have a mailbox with a name matching its title ?
-        paths = agent.listMailboxes(mailbox,
-                                    pattern='"*' + self.safeTitle() + '"')
-        if len(paths) == 0: # no mailbox with that name, let's create one
-            path = '"' + mailbox + '.' + self.safeTitle() + '"'
-            logging.info("Creating mailbox path: " + path)
-            agent.select(mailbox=mailbox)
-            agent.create(path)
-            agent.subscribe(path)
-        else:
-            path = '"' + paths[0] +'"'
-        self._path = path
-        if self._path[0] != '"':
-            self._path = '"' + self._path + '"'
-        return self._path
+        # Create one
+        self._mailbox = '"' + \
+                        mailbox.strip('"') + \
+                        '.' + \
+                        self.safeTitle() + \
+                        '"'
+        logging.info("Creating mailbox: " + self._mailbox)
+        status, message = agent.create(self._mailbox)
+        if status != 'OK':
+            logging.error("Could not create mailbox: " + self._mailbox)
+            logging.error("    error message was: " + str(message))
+        status, message = agent.subscribe(self._mailbox)
+        if status != 'OK':
+            logging.error("Could not subscribe to mailbox: " + self._mailbox)
+            logging.error("    error message was: " + str(message))
+        return self._mailbox
 
 
     def createMessage(self, entry=None):
@@ -160,41 +161,43 @@ class YFeed(object):
         return text
 
 
-    def updateEntries(self, agent=None, mailbox='INBOX.' + config.mailbox):
+    def updateEntries(self, agent=None):
         """ Guarantees that there is one message in the given mailbox
         for each entry in the feed. """
 
         if agent is None:
             return
 
-        path = self.path(agent=agent, mailbox=mailbox)
+        mailbox = self.mailbox(agent=agent)
 
         # Create one message per feed item
         nbOfEntries = str(len(self.feed.entries))
         logging.info("Examining " + nbOfEntries + " feed entries.")
-        agent.select(mailbox=path)
+        agent.select(mailbox=mailbox)
         for entry in self.feed.entries:
 
             # Is there already a message for this entry ?
             headerName = 'X-Entry-Link'
             try:
-                elHeader = email.header.Header(s=entry.link,
-                                               charset=self.feed.encoding)
-                entryLinkHeader = elHeader.encode(linesep='\r\n')
+                # elHeader = email.header.Header(s=entry.link,
+                #                               charset=self.feed.encoding)
+                # entryLinkHeader = elHeader.encode(linesep='\r\n')
                 agent.literal = entry.link.encode()
                 # ^-- this is an undocumented imaplib feature
                 status, data = agent.uid(
                     'search',
                     None,
-                    'HEADER ' + headerName)
+                    'UNDELETED HEADER ' + headerName)
             except:
                 logging.error('Could not search for entry link: ' + entry.link)
             if status == 'OK' and data[0] not in [None, b'']:
                 # There is already one, move on !
                 continue
+            elif status != 'OK':
+                logging.error('Could not search for entry URL: ' + entry.link)
 
             msg = self.createMessage(entry=entry)
-            status, error = agent.append(path,
+            status, error = agent.append(mailbox,
                                          '',
                                          imaplib.Time2Internaldate(time.time()),
                                          msg)
@@ -213,7 +216,7 @@ class YFeed(object):
             without any command message."""
 
         logging.info("Creating a feed mailbox named '" + self.title() \
-            + "' and this URL: " + str(self.url))
+            + "' from this URL: " + str(self.url))
         if self.url is None and self.title() is None:
             logging.error('Could not create mailbox without a feed nor a name.')
         if agent is None:
@@ -239,11 +242,171 @@ class YFeed(object):
 
 
 
+class YCommandMessage(object):
+    """ A yarss2imap command represented as a message. """
+
+    def __init__(self, message=None, mailbox=None, messageUID=None, agent=None):
+
+        self.message = message
+        self.mailbox = mailbox
+        if mailbox is not None:
+            if self.mailbox[0] != '"':
+                self.mailbox = '"' + self.mailbox + '"'
+        self.messageUID = messageUID
+        self.agent = agent
+
+
+    def remove(self):
+        """ Deletes the command message. """
+
+        if self.mailbox is None or self.messageUID is None:
+            return 'OK'
+        
+        # Remove OPML command messages
+        self.agent.select(self.mailbox)
+        status, msg = self.agent.uid('store',
+                                     self.messageUID,
+                                     '+FLAGS',
+                                     '\\Deleted')
+        if status != 'OK':
+            logging.error("Could not delete message with UID: " + \
+                          self.messageUID + \
+                          " in mailbox: " + \
+                          self.mailbox)
+            logging.error("Error message was: " + msg)
+        return status
+
+
+class YOPMLCommandMessage(YCommandMessage):
+    """ An OPML document is to be loaded as a hierarchy of
+    mailboxes including feed commands. Is represented as a
+    message with 'OPML' as its subject and having an OPML
+    document attached or as the main body.
+
+    When executed, a hierarchy of mailboxes will
+    be created according to the hierarchy of outlines described
+    in the OPML files. outlines with an xmlUrl attribute will
+    be created as mailboxes with a "feed <xmlUrl>"-titled
+    message within.
+    """
+
+    def __init__(self, message=None, mailbox=None, messageUID=None, agent=None):
+
+        YCommandMessage.__init__(self,
+                                 message=message,
+                                 mailbox=mailbox,
+                                 messageUID=messageUID,
+                                 agent=agent)
+        opmlMimeTypes = ['text/xml', 'text/x-opml+xml']
+        self.opml = None
+        if message is None:
+            return
+        if message.get_content_maintype() == 'multipart':
+            parts = message.get_payload()
+            for part in parts:
+                if part.get_content_type() in opmlMimeTypes:
+                    self.opml = part.get_payload(decode=True)
+                elif message.get_content_type() in opmlMimeTypes:
+                    self.opml = message.get_payload(decode=True)
+
+
+    def execute(self, underMailbox='INBOX' + config.mailbox):
+        """ Execute the OPML command using given agent:
+            - create the hierarchy of outlines as mailboxes
+            with feeds,
+            - remove the message. """
+
+        if self.agent is None:
+            logging.error("Could not execute without any agent.")
+            return
+        if self.opml is None:
+            logging.error("Could not load OPML when OPML is None.")
+            return
+
+        # Create mailboxes for OPML content
+        logging.info("Importing 1 OPML file.")
+        root = ElementTree.fromstring(self.opml)
+
+        def createMailboxes(root, rootMailbox):
+            """ Creates a mailbox under the given rootMailbox
+            for each child of the given root outline. """
+
+            for child in root.getchildren():
+                childMailbox = rootMailbox
+                if child.tag == 'outline':
+                    url = child.get('xmlUrl')
+                    title = child.get('title')
+                    feed = YFeed(url)
+                    if title is not None:
+                        feed.title(title)
+                    childMailbox = feed.createMailbox(agent=self.agent,
+                                                      parentMailbox=rootMailbox)
+                createMailboxes(child, childMailbox)
+
+        createMailboxes(root, underMailbox)
+        return self.remove()
+
+
+class YFeedCommandMessage(YCommandMessage):
+    """ A feed is to be updated. This command is represented
+    as a message with "feed <feedURL>" as its subject line :
+
+        feed http://...
+
+    """
+
+    def __init__(self, message=None, mailbox=None, messageUID=None, agent=None):
+
+        YCommandMessage.__init__(self,
+                                 message=message,
+                                 mailbox=mailbox,
+                                 messageUID=messageUID,
+                                 agent=agent)
+        subject = message['Subject']
+        self.feedURL = re.search(r'feed\s+(.*)', subject).groups()[0]
+
+    def execute(self, underMailbox='INBOX' + config.mailbox):
+        """ Executes the feed command using agent :
+            - move the feed message to a dedicated feed mailbox
+            if needed
+            - update this mailbox according to feed entries. """
+
+        logging.info("Updating feed from URL: " + self.feedURL)
+        # Create a mailbox for that feed
+        feed = YFeed(self.feedURL)
+        logging.info("This feed has this title: " + feed.title())
+
+        # If needed, move that feed message to the feed mailbox
+        if self.mailbox in ['INBOX', '"INBOX"']:
+            # This feed needs its own mailbox.
+            feedMailbox = feed.mailbox(agent=self.agent,
+                                       mailbox=underMailbox)
+        else:
+            # This feed will be in same mailbox as its
+            # command message.
+            feedMailbox = feed.mailbox(agent=self.agent,
+                                       mailbox=self.mailbox)
+        if self.mailbox != feedMailbox:
+            # The feed command message must go into
+            # the feed mailbox.
+            self.agent.moveUID(self.messageUID,
+                               fromMailbox=self.mailbox,
+                               toMailbox=feedMailbox)
+            self.agent.select(mailbox=feedMailbox)
+            self.mailbox = feedMailbox
+
+        # Now update entries in that mailbox
+        feed.updateEntries(agent=self.agent)
+        return 'OK'
+
+
+
 class Yarss2imapAgent(imaplib.IMAP4):       #pylint: disable-msg=R0904
     """ An IMAP4 agent that can manage RSS feeds as mailboxes. """
 
     def __init__(self):
 
+        logging.info("-----------------------------------------------")
         logging.info("Initializing new agent.")
         try:
             imaplib.IMAP4_SSL.__init__(self, config.servername, config.port)
@@ -267,9 +430,9 @@ class Yarss2imapAgent(imaplib.IMAP4):       #pylint: disable-msg=R0904
         """ Selects given mailbox or mailbox given in config gile. """
 
         logging.info("Selecting mailbox: " + mailbox)
-        mbox = unicodedata.normalize('NFKD', mailbox).encode('ASCII', 'ignore')
-        if mailbox[0] != '"':
-            mbox = '"' + mailbox + '"'
+        mbox = mailbox
+        if mbox[0] != '"':
+            mbox = '"' + mbox + '"'
         status, message = self.IMAP.select(self, mbox)
         if status == 'NO': # there's no such mailbox, let's create one
             self.IMAP.select(self)
@@ -361,30 +524,53 @@ class Yarss2imapAgent(imaplib.IMAP4):       #pylint: disable-msg=R0904
         return mailboxNames
 
 
+    def listCommands(self, mailbox='INBOX' + config.mailbox):
+        """ Returns a list of command messages found in the given mailbox. """
+
+        logging.info("Looking for command messages in: " + mailbox)
+        self.select(mailbox)
+        self.recent()
+        commandMessages = []
+
+        commandPattern = {
+                'feed': 'HEADER Subject "feed "',
+                'OPML': 'HEADER Subject "OPML"'
+                }
+
+        for command, pattern in commandPattern.items():
+
+            status, data = self.uid('search', None, 'UNDELETED ' + pattern)
+            messageUIDs = data[0].decode().split()
+            logging.info("Found " + \
+                         str(len(messageUIDs)) + \
+                         " command messages of type '" + \
+                         command + \
+                         "' in mailbox: " + \
+                         mailbox)
+
+            for uid in messageUIDs:
+                msgBin = self.uid('fetch', uid, '(RFC822)')[1][0][1]
+                msg = email.message_from_bytes(msgBin)
+                if command == "feed":
+                    commandMessage = YFeedCommandMessage(message=msg,
+                                                         mailbox=mailbox,
+                                                         messageUID=uid,
+                                                         agent=self)
+                elif command == "OPML":
+                    commandMessage = YOPMLCommandMessage(message=msg,
+                                                         mailbox=mailbox,
+                                                         messageUID=uid,
+                                                         agent=self)
+                commandMessages.append(commandMessage)
+
+        return commandMessages
+
+
     def update(self, mailbox='INBOX.' + config.mailbox):
         """ Looks for command messages in the INBOX and under the given
         mailbox. Then executes these commands. Commands are given
         in the subject line of messages. Arguments can be given in the
         subject line or can be attachments.
-
-        Only 2 commands are supported so far :
-
-            feed http://...
-
-            will update the feed with this URL. The corresponding
-            mailbox will be created if it does not exist.
-
-        and
-
-            OPML
-
-            will take an OPML file given as the body of or as an
-            attachment to the message. A hierarchy of mailboxes will
-            be created according to the hierarchy of outlines described
-            in the OPML files. outlines with an xmlUrl attribute will
-            be created as mailboxes with a "feed <xmlUrl>"-titled
-            message within.
-
         """
 
         logging.info("Updating mailbox: " + mailbox)
@@ -397,128 +583,58 @@ class Yarss2imapAgent(imaplib.IMAP4):       #pylint: disable-msg=R0904
         listedMailboxes += self.listMailboxes(mailbox)
 
         # Search for such messages and their command line in those mailboxes
-        feedCommands = {}
-        opmlCommands = {}
-        opmlPayloads = {}
+        commands = []
         for listedMailbox in listedMailboxes:
-            logging.info("Looking for command messages in: " + listedMailbox)
-            self.select(listedMailbox)
-            self.recent()
+            commands += self.listCommands(listedMailbox)
 
-            # Search "feed http://...." command messages
-            status, data = self.uid('search', None, 'HEADER Subject "feed "')
-            feedMsgUIDs = data[0].decode().split()
-            logging.info("Found " + \
-                         str(len(feedMsgUIDs)) + \
-                         " feed messages in mailbox: " + \
-                         listedMailbox)
-            for uid in feedMsgUIDs:
-                msgBin = self.uid('fetch', uid, '(RFC822)')[1][0][1]
-                msg = email.message_from_bytes(msgBin)
-                feedCommands[(listedMailbox, uid)] = msg['Subject']
+        logging.info("Found " + \
+                     str(len(commands)) + \
+                     " command messages under mailbox: " + \
+                     mailbox)
 
-            # Search "OPML" command messages
-            status, data = self.uid('search', None, 'HEADER Subject "OPML"')
-            opmlMsgUIDs = data[0].decode().split()
-            logging.info("Found " + \
-                         str(len(opmlMsgUIDs)) + \
-                         " OPML messages in mailbox: " + \
-                         listedMailbox)
-            opmlMimeTypes = ['text/xml', 'text/x-opml+xml']
-            for uid in opmlMsgUIDs:
-                msgBin = self.uid('fetch', uid, '(RFC822)')[1][0][1]
-                msg = email.message_from_bytes(msgBin)
-                if msg.get_content_maintype() == 'multipart':
-                    parts = msg.get_payload()
-                    for part in parts:
-                        if part.get_content_type() in opmlMimeTypes:
-                            opmlPayloads[part.get_payload(decode=True)] = True
-                elif msg.get_content_type() in opmlMimeTypes:
-                    opmlPayloads[msg.get_payload(decode=True)] = True
-                opmlCommands[(listedMailbox, uid)] = True
+        # Remove duplicate command messages
+        opmls = {}
+        feedCommandsByURL = {}
+        uniqueCommands = commands.copy()
+        for command in commands:
+            if isinstance(command, YOPMLCommandMessage):
+                if command.opml in opmls.keys():
+                    # We already know this OPML.
+                    # Let's remove that command.
+                    command.remove()
+                    uniqueCommands.remove(command)
+                else:
+                    opmls[command.opml] = True
+            elif isinstance(command, YFeedCommandMessage):
+                if command.feedURL in feedCommandsByURL.keys():
+                    # We already have this feed in another command
+                    otherCommand = feedCommandsByURL[command.feedURL]
+                    if len(command.mailbox) > len(otherCommand.mailbox):
+                        # This command path is longer than the longest so far
+                        # for that URL.
+                        # It's the only one we want to keep.
+                        feedCommandsByURL[command.feedURL] = command
+                        otherCommand.remove()
+                        uniqueCommands.remove(otherCommand)
+                    else:
+                        # This command is redundant. Let's remove it.
+                        command.remove()
+                        uniqueCommands.remove(command)
+                else:
+                    # This is the first feed command message for this URL
+                    feedCommandsByURL[command.feedURL] = command
 
-        # Create mailboxes for OPML content
-        logging.info("Importing " + \
-                     str(len(opmlPayloads.keys())) + \
-                     " OPML file(s).")
-        for opml in opmlPayloads.keys():
-            self.loadOPML(opml=opml, mailbox=mailbox)
-        # Remove OPML command messages
-        for mailbox, uid in opmlCommands.keys():
-            self.select(mailbox)
-            status, msg = self.uid('store', uid, '+FLAGS', '\\Deleted')
-            if status != 'OK':
-                logging.error("Could not delete message with UID: " + \
-                              uid + \
-                              " in mailbox: " + \
-                              mailbox)
-                logging.error("   error message was: " + msg)
+        logging.info("Found " + \
+                     str(len(uniqueCommands)) + \
+                     " unique commands under mailbox: " + \
+                     mailbox)
+        for command in uniqueCommands:
+            result = command.execute(underMailbox=mailbox)
+            if result is None:
+                logging.error('Could not execute command: ' + str(command))
+                break
 
-
-        # Build the list of feed URL to be checked for new items
-        feeds = {}
-        for msgPath, feedCommand in feedCommands.items():
-            try:
-                feedURL = re.search(r'feed\s+(.*)', feedCommand).groups()[0]
-            except AttributeError:
-                logging.error('Could not parse this feed command: ' + \
-                              str(feedCommand))
-
-            # store the message mailbox and uid under this URL
-            if feedURL not in feeds.keys():
-                feeds[feedURL] = []
-            feeds[feedURL].append(msgPath)
-
-        logging.info("Updating " + str(len(feeds.keys())) + " feed(s).")
-        # Now back to our mailbox
-        for url in feeds.keys():
-
-            logging.info("Updating feed from URL: " + url)
-            # Create a mailbox for that feed
-            feed = YFeed(url)
-            logging.info("This feed has this title: " + feed.title())
-
-            commandPaths = [mbx for (mbx, uid) in feeds[url]]
-            path = feed.path(commandPaths=commandPaths,
-                             agent=self,
-                             mailbox=mailbox)
-            # Move corresponding command messages from INBOX to that new folder
-            for feedMailbox, uid in feeds[url]:
-                if feedMailbox[0] != '"':
-                    feedMailbox = '"' + feedMailbox + '"'
-                self.moveUID(uid, fromMailbox=feedMailbox, toMailbox=path)
-                self.select(mailbox=feedMailbox)
-                self.expunge()
-            feed.updateEntries(agent=self, mailbox=mailbox)
-
-        return 'OK'
-
-
-    def loadOPML(self, opml=None, mailbox='INBOX.' + config.mailbox):
-        """ Creates mailboxes corresponding to the outlines
-            of the given OPML string. """
-
-        if opml is None:
-            return
-        root = ElementTree.fromstring(opml)
-
-        def createMailboxes(root, rootMailbox):
-            """ Creates a mailbox under the given rootMailbox
-            for each child of the given root outline. """
-
-            for child in root.getchildren():
-                childMailbox = rootMailbox
-                if child.tag == 'outline':
-                    url = child.get('xmlUrl')
-                    title = child.get('title')
-                    feed = YFeed(url)
-                    if title is not None:
-                        feed.title(title)
-                    childMailbox = feed.createMailbox(agent=self,
-                                                      parentMailbox=rootMailbox)
-                createMailboxes(child, childMailbox)
-
-        createMailboxes(root, mailbox)
+        return result
 
 
     def loop(self):
