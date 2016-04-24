@@ -80,7 +80,7 @@ class YFeed(object):
 
     def mailbox(self,
                 agent=None,
-                mailbox='INBOX.' + config.mailbox):
+                targetMailbox='INBOX.' + config.mailbox):
         """ Returns the mailbox associated with this feed. """
 
         if self._mailbox is not None:
@@ -89,11 +89,7 @@ class YFeed(object):
             return None
 
         # Create one
-        self._mailbox = '"' + \
-                        mailbox.strip('"') + \
-                        '.' + \
-                        self.safeTitle() + \
-                        '"'
+        self._mailbox = targetMailbox
         logging.info("Creating mailbox: " + self._mailbox)
         status, message = agent.create(self._mailbox)
         if status != 'OK':
@@ -261,7 +257,7 @@ class YCommandMessage(object):
 
         if self.mailbox is None or self.messageUID is None:
             return 'OK'
-        
+
         # Remove OPML command messages
         self.agent.select(self.mailbox)
         status, msg = self.agent.uid('store',
@@ -379,13 +375,18 @@ class YFeedCommandMessage(YCommandMessage):
         # If needed, move that feed message to the feed mailbox
         if self.mailbox in ['INBOX', '"INBOX"']:
             # This feed needs its own mailbox.
+            newMailbox = '"' + \
+                         underMailbox.strip('"') + \
+                         '.' + \
+                         feed.safeTitle() + \
+                         '"'
             feedMailbox = feed.mailbox(agent=self.agent,
-                                       mailbox=underMailbox)
+                                       targetMailbox=newMailbox)
         else:
             # This feed will be in same mailbox as its
             # command message.
             feedMailbox = feed.mailbox(agent=self.agent,
-                                       mailbox=self.mailbox)
+                                       targetMailbox=self.mailbox)
         if self.mailbox != feedMailbox:
             # The feed command message must go into
             # the feed mailbox.
@@ -503,11 +504,11 @@ class Yarss2imapAgent(imaplib.IMAP4):       #pylint: disable-msg=R0904
         status, msg = self.uid('copy', uid, toMb)
         if status != 'OK':
             logging.error("Could not copy a message to mailbox: " + toMb)
-            logging.error("   error message was: " + msg)
+            logging.error("   error message was: " + str(msg))
         status, msg = self.uid('store', uid, '+FLAGS', '\\Deleted')
         if status != 'OK':
             logging.error("Could not delete message with UID: " + uid)
-            logging.error("   error message was: " + msg)
+            logging.error("   error message was: " + str(msg))
 
 
     def listMailboxes(self, mailbox='INBOX' + config.mailbox, pattern='*'):
