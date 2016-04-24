@@ -201,6 +201,14 @@ There are as many items in that folder as before. No more, no less.
     >>> nbOfItems == len(agent.uid('search', None, 'ALL')[1][0].split())
     True
 
+What would be great would be :
+
+- if the feed command message got the date of the latest update.
+
+- if error messages were posted in case a feed can't be updated.
+
+- if some meaningful date were used in case the feed doesn't provide a date for entries.
+
 # OPML import
 
     We have a local example of an OPML file (downloaded from http://www.howtocreate.co.uk/tutorials/jsexamples/sampleOPML.xml).

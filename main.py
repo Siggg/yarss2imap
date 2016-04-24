@@ -93,8 +93,9 @@ class YFeed(object):
         logging.info("Creating mailbox: " + self._mailbox)
         status, message = agent.create(self._mailbox)
         if status != 'OK':
-            logging.error("Could not create mailbox: " + self._mailbox)
-            logging.error("    error message was: " + str(message))
+            # it probably already exists
+            logging.info("Could not create mailbox: " + self._mailbox)
+            logging.info("    error message was: " + str(message))
         status, message = agent.subscribe(self._mailbox)
         if status != 'OK':
             logging.error("Could not subscribe to mailbox: " + self._mailbox)
@@ -175,14 +176,12 @@ class YFeed(object):
             # Is there already a message for this entry ?
             headerName = 'X-Entry-Link'
             try:
-                # elHeader = email.header.Header(s=entry.link,
-                #                               charset=self.feed.encoding)
-                # entryLinkHeader = elHeader.encode(linesep='\r\n')
-                agent.literal = entry.link.encode()
+                agent.literal = entry.link.encode(self.feed.encoding)
                 # ^-- this is an undocumented imaplib feature
                 status, data = agent.uid(
                     'search',
-                    None,
+                    'CHARSET',
+                    self.feed.encoding,
                     'UNDELETED HEADER ' + headerName)
             except:
                 logging.error('Could not search for entry link: ' + entry.link)
