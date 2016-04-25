@@ -27,6 +27,7 @@ def imapify(string):
     result = result.decode()
     result = result.replace("/", "?")
     result = result.replace(".", "-")
+    result = result.replace('"', "-")
     return result
 
 
@@ -240,7 +241,7 @@ class YFeed(object):
                                      imaplib.Time2Internaldate(time.time()),
                                      msg.as_bytes())
         if status != 'OK':
-            logging.error('Could not append message: ' + error)
+            logging.error('Could not append message: ' + str(error))
         else:
             logging.info('Created feed message in mailbox: ' + path)
         return path
