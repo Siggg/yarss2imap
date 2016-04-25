@@ -1,10 +1,11 @@
 import imaplib
 import config
-import email, email.message, email.mime.multipart, email.mime.text, email.header
+import email, email.message, email.header, email.utils
+import email.mime.multipart, email.mime.text
 import re
 import feedparser
 import urllib.parse
-import time
+import time, datetime
 import sys
 import html2text
 import unicodedata
@@ -118,7 +119,10 @@ class YFeed(object):
         msg['Subject'] = entry.title
         msg['To'] = config.username
         try:
-            msg['Date'] = entry.published
+            msg['Date'] = email.utils.format_datetime(
+                    datetime.datetime.fromtimestamp(
+                        time.mktime(
+                            entry.published_parsed)))
         except AttributeError:
             pass
         headerName = 'X-Entry-Link'
