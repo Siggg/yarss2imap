@@ -122,9 +122,15 @@ class YFeed(object):
             msg['Date'] = email.utils.format_datetime(
                     datetime.datetime.fromtimestamp(
                         time.mktime(
-                            entry.published_parsed)))
+                            entry.updated_parsed)))
         except AttributeError:
-            pass
+            try:
+                msg['Date'] = email.utils.format_datetime(
+                        datetime.datetime.fromtimestamp(
+                            time.mktime(
+                                entry.published_parsed)))
+            except AttributeError:
+                pass
         headerName = 'X-Entry-Link'
         entryLinkHeader = email.header.Header(s=entry.link,
                                               charset=self.feed.encoding)
