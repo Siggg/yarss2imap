@@ -187,6 +187,12 @@ class YFeed(object):
         agent.select(mailbox=mailbox)
         for entry in self.feed.entries:
 
+            if hasattr(entry,'link') is False or \
+                entry.link is None or \
+                entry.link == '':
+                logging.error('Could not update entry titled: ' + entry.title)
+                continue
+
             # Is there already a message for this entry ?
             headerName = 'X-Entry-Link'
             try:
@@ -198,12 +204,8 @@ class YFeed(object):
                     self.feed.encoding,
                     'UNDELETED HEADER ' + headerName)
             except:
-                try:
-                    logging.error('Could not search for entry link: ' + \
-                                  entry.link)
-                except AttributeError:
-                    logging.error('Could not search for entry titled: ' + \
-                                  entry.title)
+                logging.error('Could not search for entry titled: ' + \
+                              entry.title)
             if status == 'OK' and data[0] not in [None, b'']:
                 # There is already one, move on !
                 continue
@@ -377,7 +379,12 @@ class YFeedCommandMessage(YCommandMessage):
                                  messageUID=messageUID,
                                  agent=agent)
         subject = message['Subject']
-        self.feedURL = re.search(r'feed\s+(.*)', subject).groups()[0]
+        matches = re.search(r'feed\s+(http.*)', subject)
+        if matches is None:
+            self.feedURL = None
+        else:
+            self.feedURL = matches.groups()[0]
+
 
     def execute(self, underMailbox='INBOX' + config.mailbox):
         """ Executes the feed command using agent :
@@ -575,12 +582,19 @@ class Yarss2imapAgent(imaplib.IMAP4):       #pylint: disable-msg=R0904
                                                          mailbox=mailbox,
                                                          messageUID=uid,
                                                          agent=self)
+                    if commandMessage.feedURL is None:
+                        # invalid command : no URL
+                        commandMessage = None
                 elif command == "importOPML":
                     commandMessage = YImportCommandMessage(message=msg,
                                                            mailbox=mailbox,
                                                            messageUID=uid,
                                                            agent=self)
-                commandMessages.append(commandMessage)
+                    if commandMessage.opml is None:
+                        # invalid command : no OPML
+                        commandMessage = None
+                if commandMessage is not None:
+                    commandMessages.append(commandMessage)
 
         return commandMessages
 
