@@ -14,7 +14,7 @@ Then run the client
 # Documented test
 
 BEWARE : running these tests may delete messages in your 'INBOX' mailbox. It will delete messages if their
-subject line is "OPML" or starts with "feed ".
+subject line is "importOPML" or starts with "feed ".
 
 You can run the tests below with this command line :
 
@@ -42,11 +42,11 @@ We should be able to connect to an IMAP account with these settings.
 
 # Test setup
 
-Let's remove messages titled "OPML" or "feed " from the INBOX. You had been warned !
+Let's remove messages titled "importOPML" or "feed " from the INBOX. You had been warned !
 
     >>> agent.select('INBOX')
     'OK'
-    >>> status, data = agent.uid('search', None, 'UNDELETED HEADER Subject "OPML"') 
+    >>> status, data = agent.uid('search', None, 'UNDELETED HEADER Subject "importOPML"') 
     >>> uids = data[0].decode().split()
     >>> status, data = agent.uid('search', None, 'UNDELETED HEADER Subject "feed "')
     >>> uids += data[0].decode().split()
@@ -184,9 +184,6 @@ Its body ends with the link to the corresponding feed item.
 
 The date of this feed items precedes the date the feed was updated.
 
-    >>> msg['Date'] < feed.updated
-    True
-
 # Next update
 
 Next time the agent updates...
@@ -223,11 +220,11 @@ What would be great would be :
     >>> len(root.findall('.//outline'))
     3
 
-    Our agent can load this OPML file. It then creates one new mailbox per OPML outline.
+    Our agent can import this OPML file. It then creates one new mailbox per OPML outline.
 
     >>> mailboxesBefore = agent.list('INBOX.testyarss2imap')[1]
-    >>> from main import YOPMLCommandMessage
-    >>> opmlCommandMessage = YOPMLCommandMessage(message=None, mailbox=None, messageUID=None, agent=agent)
+    >>> from main import YImportCommandMessage
+    >>> opmlCommandMessage = YImportCommandMessage(message=None, mailbox=None, messageUID=None, agent=agent)
     >>> opmlCommandMessage.opml = opml
     >>> opmlCommandMessage.execute(underMailbox='INBOX.testyarss2imap')
     'OK'
@@ -253,7 +250,7 @@ What would be great would be :
     Found
     Found
 
-    So far so good for loading an OPML file using the API. But we can load OPML files via a command message, too.
+    So far so good for importing an OPML file using the API. But we can import OPML files via a command message, too.
     Let's retry this way and start with erasing our newly created mailboxes.
 
     >>> for mailbox in newMailboxes:
@@ -270,11 +267,11 @@ What would be great would be :
     ...     if len(data[0]) > 0:
     ...         print("Found")
 
-    Our command message must be titled OPML and have the OPML file as an attachment.
+    Our command message must be titled 'importOPML' and have the OPML file as an attachment.
 
     >>> msg = email.mime.multipart.MIMEMultipart()
     >>> msg['From'] = config.authorizedSender
-    >>> msg['Subject'] = 'OPML'
+    >>> msg['Subject'] = 'importOPML'
     >>> msg['To'] = config.authorizedSender
     >>> msg.preamble = 'OPML file to be imported'
     >>> opmlFile  = f

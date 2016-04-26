@@ -15,6 +15,7 @@ logging.basicConfig(
         format='%(levelname)s:%(asctime)s %(message)s',
         level=logging.DEBUG)
 from xml.etree import ElementTree
+import imap_utf7
 
 
 
@@ -22,14 +23,17 @@ def imapify(string):
     """ Return a version of the given string which
     can be used as a mailbox name by an IMAP server. """
 
+    result = imap_utf7.encode(string).decode()
+    result = result.replace(".", "-")
+    result = result.replace('"', "'")
+    result = result.replace("/", "|")
+    return result
+
+"""
     result = unicodedata.normalize('NFKD', string)
     result = result.encode('ASCII', 'ignore')
     result = result.decode()
-    result = result.replace("/", "?")
-    result = result.replace(".", "-")
-    result = result.replace('"', "-")
-    return result
-
+"""
 
 
 class YFeed(object):
@@ -119,23 +123,22 @@ class YFeed(object):
         msg['From'] = author
         msg['Subject'] = entry.title
         msg['To'] = config.username
-        try:
+        date = None
+        if hasattr(entry, 'updated_parsed') \
+            and entry.updated_parsed is not None:
+            date = entry.updated_parsed
+        elif hasattr(entry, 'published_parsed') \
+            and entry.published_parsed is not None:
+            date = entry.published_parsed
+        else:
+            logging.warning('Entry without a date: ' + entry.title)
+        if date is not None:
             msg['Date'] = email.utils.format_datetime(
-                    datetime.datetime.fromtimestamp(
-                        time.mktime(
-                            entry.updated_parsed)))
-        except AttributeError:
-            try:
-                msg['Date'] = email.utils.format_datetime(
-                        datetime.datetime.fromtimestamp(
-                            time.mktime(
-                                entry.published_parsed)))
-            except AttributeError:
-                pass
+                            datetime.datetime.fromtimestamp(
+                                time.mktime(date)))
         headerName = 'X-Entry-Link'
-        entryLinkHeader = email.header.Header(s=entry.link,
+        msg[headerName] = email.header.Header(s=entry.link,
                                               charset=self.feed.encoding)
-        msg[headerName] = entryLinkHeader
         try:
             content = entry.content[0]['value']
         except AttributeError:
@@ -195,7 +198,12 @@ class YFeed(object):
                     self.feed.encoding,
                     'UNDELETED HEADER ' + headerName)
             except:
-                logging.error('Could not search for entry link: ' + entry.link)
+                try:
+                    logging.error('Could not search for entry link: ' + \
+                                  entry.link)
+                except AttributeError:
+                    logging.error('Could not search for entry titled: ' + \
+                                  entry.title)
             if status == 'OK' and data[0] not in [None, b'']:
                 # There is already one, move on !
                 continue
@@ -268,7 +276,7 @@ class YCommandMessage(object):
         if self.mailbox is None or self.messageUID is None:
             return 'OK'
 
-        # Remove OPML command messages
+        # Remove import command messages
         self.agent.select(self.mailbox)
         status, msg = self.agent.uid('store',
                                      self.messageUID,
@@ -283,10 +291,10 @@ class YCommandMessage(object):
         return status
 
 
-class YOPMLCommandMessage(YCommandMessage):
-    """ An OPML document is to be loaded as a hierarchy of
+class YImportCommandMessage(YCommandMessage):
+    """ An OPML document is to be imported as a hierarchy of
     mailboxes including feed commands. Is represented as a
-    message with 'OPML' as its subject and having an OPML
+    message with 'importOPML' as its subject and having an OPML
     document attached or as the main body.
 
     When executed, a hierarchy of mailboxes will
@@ -317,7 +325,7 @@ class YOPMLCommandMessage(YCommandMessage):
 
 
     def execute(self, underMailbox='INBOX' + config.mailbox):
-        """ Execute the OPML command using given agent:
+        """ Execute the importOPML command using given agent:
             - create the hierarchy of outlines as mailboxes
             with feeds,
             - remove the message. """
@@ -326,7 +334,7 @@ class YOPMLCommandMessage(YCommandMessage):
             logging.error("Could not execute without any agent.")
             return
         if self.opml is None:
-            logging.error("Could not load OPML when OPML is None.")
+            logging.error("Could not import OPML when OPML is None.")
             return
 
         # Create mailboxes for OPML content
@@ -545,7 +553,7 @@ class Yarss2imapAgent(imaplib.IMAP4):       #pylint: disable-msg=R0904
 
         commandPattern = {
                 'feed': 'HEADER Subject "feed "',
-                'OPML': 'HEADER Subject "OPML"'
+                'importOPML': 'HEADER Subject "importOPML"'
                 }
 
         for command, pattern in commandPattern.items():
@@ -567,11 +575,11 @@ class Yarss2imapAgent(imaplib.IMAP4):       #pylint: disable-msg=R0904
                                                          mailbox=mailbox,
                                                          messageUID=uid,
                                                          agent=self)
-                elif command == "OPML":
-                    commandMessage = YOPMLCommandMessage(message=msg,
-                                                         mailbox=mailbox,
-                                                         messageUID=uid,
-                                                         agent=self)
+                elif command == "importOPML":
+                    commandMessage = YImportCommandMessage(message=msg,
+                                                           mailbox=mailbox,
+                                                           messageUID=uid,
+                                                           agent=self)
                 commandMessages.append(commandMessage)
 
         return commandMessages
@@ -608,7 +616,7 @@ class Yarss2imapAgent(imaplib.IMAP4):       #pylint: disable-msg=R0904
         feedCommandsByURL = {}
         uniqueCommands = commands.copy()
         for command in commands:
-            if isinstance(command, YOPMLCommandMessage):
+            if isinstance(command, YImportCommandMessage):
                 if command.opml in opmls.keys():
                     # We already know this OPML.
                     # Let's remove that command.
