@@ -16,6 +16,8 @@ logging.basicConfig(
         level=logging.DEBUG)
 from xml.etree import ElementTree
 import imap_utf7
+from io import BytesIO
+from email.generator import BytesGenerator
 
 
 
@@ -123,7 +125,7 @@ class YFeed(object):
         msg['From'] = author
         msg['Subject'] = entry.title
         msg['To'] = config.username
-        date = None
+        date = time.time()
         if hasattr(entry, 'updated_parsed') \
             and entry.updated_parsed is not None:
             date = entry.updated_parsed
@@ -160,8 +162,6 @@ class YFeed(object):
         msg.attach(part1)
         msg.attach(part2)
 
-        from io import BytesIO
-        from email.generator import BytesGenerator
         bytesIO = BytesIO()
         bytesGenerator = BytesGenerator(bytesIO,
                                         mangle_from_=True,
@@ -274,7 +274,6 @@ class YCommandMessage(object):
                 self.mailbox = '"' + self.mailbox + '"'
         self.messageUID = messageUID
         self.agent = agent
-
 
     def remove(self):
         """ Deletes the command message. """
@@ -473,6 +472,39 @@ class YAgent(object):       #pylint: disable-msg=R0904
             status, message = self.imap.select(mbox)
             if status != "OK":
                 logging.error("Could not select mailbox: " + str(mbox))
+            if mbox in ['"INBOX.testyarss2imap"', '"INBOX.' + config.mailbox + '"']:
+                # The default yarss2imap mailbox was just created
+                # Let's populate it with a README message.
+                logging.info("Creating README message")
+                msg = email.mime.multipart.MIMEMultipart('alternative')
+                msg.set_charset("utf-8")
+                msg['From'] = "sig@akasig.org"
+                msg['Subject'] = "Welcome to yarss2imap. README please."
+                msg['To'] = config.username
+                msg['Date'] = email.utils.format_datetime(
+                                datetime.datetime.fromtimestamp(
+                                    time.time()))
+                f = open('README.md','r')
+                content = f.read()
+                f.close()
+                part = email.mime.text.MIMEText(content, 'plain')
+                msg.attach(part)
+                bytesIO = BytesIO()
+                bytesGenerator = BytesGenerator(bytesIO,
+                                     mangle_from_=True,
+                                     maxheaderlen=60)
+                bytesGenerator.flatten(msg)
+                text = bytesIO.getvalue() 
+                status, error = self.imap.append(
+                                    mbox,
+                                    '',
+                                    imaplib.Time2Internaldate(time.time()),
+                                    text)
+                if status != 'OK':
+                    logging.error('Could not append README message: ' + error)
+                self.imap.select(mbox)
+
+
         return status
 
 
