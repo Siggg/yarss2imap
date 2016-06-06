@@ -97,12 +97,12 @@ class YFeed(object):
         # Create one
         self._mailbox = targetMailbox
         logging.info("Creating mailbox: " + self._mailbox)
-        status, message = agent.create(self._mailbox)
+        status, message = agent.imap.create(self._mailbox)
         if status != 'OK':
             # it probably already exists
             logging.info("Could not create mailbox: " + self._mailbox)
             logging.info("    error message was: " + str(message))
-        status, message = agent.subscribe(self._mailbox)
+        status, message = agent.imap.subscribe(self._mailbox)
         if status != 'OK':
             logging.error("Could not subscribe to mailbox: " + self._mailbox)
             logging.error("    error message was: " + str(message))
@@ -187,7 +187,7 @@ class YFeed(object):
         agent.select(mailbox=mailbox)
         for entry in self.feed.entries:
 
-            if hasattr(entry,'link') is False or \
+            if hasattr(entry, 'link') is False or \
                 entry.link is None or \
                 entry.link == '':
                 logging.error('Could not update entry titled: ' + entry.title)
@@ -196,9 +196,9 @@ class YFeed(object):
             # Is there already a message for this entry ?
             headerName = 'X-Entry-Link'
             try:
-                agent.literal = entry.link.encode(self.feed.encoding)
+                agent.imap.literal = entry.link.encode(self.feed.encoding)
                 # ^-- this is an undocumented imaplib feature
-                status, data = agent.uid(
+                status, data = agent.imap.uid(
                     'search',
                     'CHARSET',
                     self.feed.encoding,
@@ -206,6 +206,8 @@ class YFeed(object):
             except:
                 logging.error('Could not search for entry titled: ' + \
                               entry.title)
+                status = 'KO'
+                data = [None]
             if status == 'OK' and data[0] not in [None, b'']:
                 # There is already one, move on !
                 continue
@@ -213,10 +215,11 @@ class YFeed(object):
                 logging.error('Could not search for entry URL: ' + entry.link)
 
             msg = self.createMessage(entry=entry)
-            status, error = agent.append(mailbox,
-                                         '',
-                                         imaplib.Time2Internaldate(time.time()),
-                                         msg)
+            status, error = agent.imap.append(
+                    mailbox,
+                    '',
+                    imaplib.Time2Internaldate(time.time()),
+                    msg)
             if status != 'OK':
                 logging.error('Could not append message: ' + error)
 
@@ -246,10 +249,11 @@ class YFeed(object):
         msg['Subject'] = "feed " + str(self.url)
         msg['From'] = config.authorizedSender
         msg['To'] = config.authorizedSender
-        status, error = agent.append(path,
-                                     '',
-                                     imaplib.Time2Internaldate(time.time()),
-                                     msg.as_bytes())
+        status, error = agent.imap.append(
+                path,
+                '',
+                imaplib.Time2Internaldate(time.time()),
+                msg.as_bytes())
         if status != 'OK':
             logging.error('Could not append message: ' + str(error))
         else:
@@ -280,10 +284,11 @@ class YCommandMessage(object):
 
         # Remove import command messages
         self.agent.select(self.mailbox)
-        status, msg = self.agent.uid('store',
-                                     self.messageUID,
-                                     '+FLAGS',
-                                     '\\Deleted')
+        status, msg = self.agent.imap.uid(
+                'store',
+                self.messageUID,
+                '+FLAGS',
+                '\\Deleted')
         if status != 'OK':
             logging.error("Could not delete message with UID: " + \
                           self.messageUID + \
@@ -427,27 +432,26 @@ class YFeedCommandMessage(YCommandMessage):
 
 
 
-class Yarss2imapAgent(imaplib.IMAP4):       #pylint: disable-msg=R0904
+class YAgent(object):       #pylint: disable-msg=R0904
     """ An IMAP4 agent that can manage RSS feeds as mailboxes. """
 
     def __init__(self):
 
         logging.info("-----------------------------------------------")
         logging.info("Initializing new agent.")
+        self.imap = None
         try:
-            imaplib.IMAP4_SSL.__init__(self, config.servername, config.port)
-            self.IMAP = imaplib.IMAP4_SSL
+            self.imap = imaplib.IMAP4_SSL(config.servername, config.port)
         except:
-            imaplib.IMAP4.__init__(self, config.servername, config.port)
-            self.IMAP = imaplib.IMAP4
+            self.imap = imaplib.IMAP4(config.servername, config.port)
+        logging.info("New agent initialized.")
 
 
     def login(self):
         """ Logs in using credentials given in config file. """
 
         logging.info("Logging in.")
-        status, message = self.IMAP.login(self,
-                                          config.username,
+        status, message = self.imap.login(config.username,
                                           config.password)
         return status
 
@@ -459,14 +463,14 @@ class Yarss2imapAgent(imaplib.IMAP4):       #pylint: disable-msg=R0904
         mbox = mailbox
         if mbox[0] != '"':
             mbox = '"' + mbox + '"'
-        status, message = self.IMAP.select(self, mbox)
+        status, message = self.imap.select(mbox)
         if status == 'NO': # there's no such mailbox, let's create one
-            self.IMAP.select(self)
-            status, message = self.IMAP.create(self, mbox)
+            self.imap.select()
+            status, message = self.imap.create(mbox)
             if status != "OK":
                 logging.error("Could not create mailbox: " + str(mbox))
-            self.IMAP.subscribe(self, mbox)
-            status, message = self.IMAP.select(self, mbox)
+            self.imap.subscribe(mbox)
+            status, message = self.imap.select(mbox)
             if status != "OK":
                 logging.error("Could not select mailbox: " + str(mbox))
         return status
@@ -475,14 +479,14 @@ class Yarss2imapAgent(imaplib.IMAP4):       #pylint: disable-msg=R0904
     def close(self):
 
         logging.info("Closing connexion.")
-        status, message = self.IMAP.close(self)
+        status, message = self.imap.close()
         return status
 
 
     def logout(self):
 
         logging.info("Logging out.")
-        status, message = self.IMAP.logout(self)
+        status, message = self.imap.logout()
         return status
 
 
@@ -492,7 +496,7 @@ class Yarss2imapAgent(imaplib.IMAP4):       #pylint: disable-msg=R0904
         if mailbox is None:
             return None
         logging.info("Erasing mailbox: " + mailbox)
-        lines = self.list(mailbox)[1]
+        lines = self.imap.list(mailbox)[1]
         self.select(mailbox='INBOX')
         for line in lines:
             if line is None:
@@ -501,14 +505,16 @@ class Yarss2imapAgent(imaplib.IMAP4):       #pylint: disable-msg=R0904
             path = re.search(r'\(.*\) ".*" "(.*)"', line).groups()[0]
             if path[0] != '"':
                 path = '"' + path + '"'
-            status, message = self.unsubscribe(path)
+            if path in [mailbox, '"' + mailbox + '"']:
+                continue # we'll remove it at the end
+            status, message = self.imap.unsubscribe(path)
             if status != 'OK':
                 logging.error("Could not unsubscribe from: " + path)
-            status, message = self.delete(path)
+            status, message = self.imap.delete(path)
             if status != 'OK':
                 logging.error("Could not delete path: " + path)
-        self.unsubscribe(mailbox)
-        return self.delete(mailbox)[0]
+        self.imap.unsubscribe(mailbox)
+        return self.imap.delete(mailbox)[0]
 
 
     def moveUID(self, uid, fromMailbox='INBOX', toMailbox='INBOX'):
@@ -526,11 +532,11 @@ class Yarss2imapAgent(imaplib.IMAP4):       #pylint: disable-msg=R0904
         status = self.select(fromMb)
         if status != 'OK':
             logging.error("Could not select mailbox: " + fromMb)
-        status, msg = self.uid('copy', uid, toMb)
+        status, msg = self.imap.uid('copy', uid, toMb)
         if status != 'OK':
             logging.error("Could not copy a message to mailbox: " + toMb)
             logging.error("   error message was: " + str(msg))
-        status, msg = self.uid('store', uid, '+FLAGS', '\\Deleted')
+        status, msg = self.imap.uid('store', uid, '+FLAGS', '\\Deleted')
         if status != 'OK':
             logging.error("Could not delete message with UID: " + uid)
             logging.error("   error message was: " + str(msg))
@@ -541,7 +547,7 @@ class Yarss2imapAgent(imaplib.IMAP4):       #pylint: disable-msg=R0904
         given pattern. """
 
         mailboxNames = []
-        mailboxes = self.list(mailbox, pattern=pattern)[1]
+        mailboxes = self.imap.list(mailbox, pattern=pattern)[1]
         for mailboxFound in mailboxes:
             if mailboxFound is not None:
                 mailboxName = re.search(r'\(.*\) ".*" "(.*)"',
@@ -555,7 +561,7 @@ class Yarss2imapAgent(imaplib.IMAP4):       #pylint: disable-msg=R0904
 
         logging.info("Looking for command messages in: " + mailbox)
         self.select(mailbox)
-        self.recent()
+        self.imap.recent()
         commandMessages = []
 
         commandPattern = {
@@ -565,7 +571,7 @@ class Yarss2imapAgent(imaplib.IMAP4):       #pylint: disable-msg=R0904
 
         for command, pattern in commandPattern.items():
 
-            status, data = self.uid('search', None, 'UNDELETED ' + pattern)
+            status, data = self.imap.uid('search', None, 'UNDELETED ' + pattern)
             messageUIDs = data[0].decode().split()
             logging.info("Found " + \
                          str(len(messageUIDs)) + \
@@ -575,7 +581,7 @@ class Yarss2imapAgent(imaplib.IMAP4):       #pylint: disable-msg=R0904
                          mailbox)
 
             for uid in messageUIDs:
-                msgBin = self.uid('fetch', uid, '(RFC822)')[1][0][1]
+                msgBin = self.imap.uid('fetch', uid, '(RFC822)')[1][0][1]
                 msg = email.message_from_bytes(msgBin)
                 if command == "feed":
                     commandMessage = YFeedCommandMessage(message=msg,
@@ -689,7 +695,7 @@ class Yarss2imapAgent(imaplib.IMAP4):       #pylint: disable-msg=R0904
 
 if __name__ == "__main__":
 
-    AGENT = Yarss2imapAgent()
+    AGENT = YAgent()
     AGENT.login()
     AGENT.select()
     AGENT.loop()

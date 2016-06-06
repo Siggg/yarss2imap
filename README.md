@@ -35,8 +35,8 @@ You should copy config.py.example to config.py and update its contents according
 
 We should be able to connect to an IMAP account with these settings.
 
-    >>> from main import Yarss2imapAgent
-    >>> agent = Yarss2imapAgent()
+    >>> from main import YAgent
+    >>> agent = YAgent()
     >>> agent.login()
     'OK'
 
@@ -46,12 +46,12 @@ Let's remove messages titled "importOPML" or "feed " from the INBOX. You had bee
 
     >>> agent.select('INBOX')
     'OK'
-    >>> status, data = agent.uid('search', None, 'UNDELETED HEADER Subject "importOPML"') 
+    >>> status, data = agent.imap.uid('search', None, 'UNDELETED HEADER Subject "importOPML"') 
     >>> uids = data[0].decode().split()
-    >>> status, data = agent.uid('search', None, 'UNDELETED HEADER Subject "feed "')
+    >>> status, data = agent.imap.uid('search', None, 'UNDELETED HEADER Subject "feed "')
     >>> uids += data[0].decode().split()
     >>> for uid in uids: 
-    ...     status, data = agent.uid('store', uid, '+FLAGS', '\\Deleted')
+    ...     status, data = agent.imap.uid('store', uid, '+FLAGS', '\\Deleted')
 
 Let's remove any test mailbox left from previous tests.
 
@@ -61,10 +61,10 @@ Let's create an empty test mailbox.
 
     >>> agent.select(mailbox='INBOX.testyarss2imap')
     'OK'
-    >>> agent.uid('search', None, 'HEADER Subject ""')
+    >>> agent.imap.uid('search', None, 'HEADER Subject ""')
     ('OK', [b''])
-    >>> agent.list('INBOX.testyarss2imap')
-    ('OK', [None])
+    >>> agent.imap.list('INBOX.testyarss2imap')[0]
+    'OK'
 
 We can load the example feed from my blog.
 
@@ -88,7 +88,7 @@ The subject line of the message must start with "feed" then a whitespace then th
     >>> msg['Subject']
     'feed http://www.akasig.org/feed/'
     >>> import imaplib, time
-    >>> status, data = agent.append('INBOX', '', imaplib.Time2Internaldate(time.time()), msg.as_bytes())
+    >>> status, data = agent.imap.append('INBOX', '', imaplib.Time2Internaldate(time.time()), msg.as_bytes())
     >>> status
     'OK'
 
@@ -96,35 +96,35 @@ Now the message is received by the agent.
 
     >>> agent.select(mailbox='INBOX')
     'OK'
-    >>> agent.uid('search', None, 'HEADER Subject "feed ' + feed.feed.links[0].href + '"')[1] in [[None],[b'']]
+    >>> agent.imap.uid('search', None, 'HEADER Subject "feed ' + feed.feed.links[0].href + '"')[1] in [[None],[b'']]
     False
 
 You then have to ask the agent for an update.
 It creates an IMAP folder with this feed.
 
-    >>> agent.list('INBOX.testyarss2imap')
-    ('OK', [None])
+    >>> agent.imap.list('INBOX.testyarss2imap')[0]
+    'OK'
     >>> agent.update(mailbox='INBOX.testyarss2imap')
     'OK'
     >>> title = feed.feed.title
-    >>> folders = agent.list('INBOX.testyarss2imap')[1]
-    >>> folders[0].decode().split('"')[-2]
+    >>> folders = agent.imap.list('INBOX.testyarss2imap')[1]
+    >>> folders[-1].decode().split('"')[-2]
     "INBOX.testyarss2imap.Jean Millerat's bytes for good"
 
 It moved the command message from the inbox to that new folder.
 
     >>> agent.select(mailbox='INBOX')
     'OK'
-    >>> agent.uid('search', None, 'UNDELETED HEADER Subject "feed ' + feed.feed.links[0].href + '"')[1] in [[None], [b'']]
+    >>> agent.imap.uid('search', None, 'UNDELETED HEADER Subject "feed ' + feed.feed.links[0].href + '"')[1] in [[None], [b'']]
     True
     >>> agent.select(mailbox='"INBOX.testyarss2imap.' + title + '"')
     'OK'
-    >>> agent.uid('search', None, 'UNDELETED HEADER Subject "feed ' + feed.feed.links[0].href + '"')[1] in [[None], [b'']]
+    >>> agent.imap.uid('search', None, 'UNDELETED HEADER Subject "feed ' + feed.feed.links[0].href + '"')[1] in [[None], [b'']]
     False
 
 The folder contains more items than how many there are in this feed.
 
-    >>> nbOfItems = len(agent.uid('search', None, 'ALL')[1][0].split())
+    >>> nbOfItems = len(agent.imap.uid('search', None, 'ALL')[1][0].split())
     >>> nbOfItems > len(feed.entries)
     True
 
@@ -132,13 +132,12 @@ Each folder item is a message.
 Let's have a look at one of these messages.
 Its Subject line is the title of the corresponding feed item.
 
-    >>> msgId = agent.uid('search', None, 'HEADER From "Sig"')[1][0].split()[-1]
-    >>> msgBin = agent.uid('fetch', b'2', '(RFC822)')[1][0][1]
+    >>> msgBin = agent.imap.uid('fetch', b'2', '(RFC822)')[1][0][1]
     >>> msg = email.message_from_bytes(msgBin)
-    >>> entry = feed.entries[0]
     >>> subject_header = msg['Subject']
     >>> from email.header import decode_header
     >>> decoded_subject = decode_header(subject_header)[0]
+    >>> entry = feed.entries[0]
     >>> decoded_subject[0].decode(decoded_subject[1]) == entry.title
     True
 
@@ -195,16 +194,9 @@ There are as many items in that folder as before. No more, no less.
 
     >>> agent.select(mailbox='INBOX.testyarss2imap.' + title)
     'OK'
-    >>> nbOfItems == len(agent.uid('search', None, 'ALL')[1][0].split())
+    >>> nbOfItems == len(agent.imap.uid('search', None, 'ALL')[1][0].split())
     True
 
-What would be great would be :
-
-- if the feed command message got the date of the latest update.
-
-- if error messages were posted in case a feed can't be updated.
-
-- if some meaningful date were used in case the feed doesn't provide a date for entries.
 
 # OPML import
 
@@ -222,13 +214,13 @@ What would be great would be :
 
     Our agent can import this OPML file. It then creates one new mailbox per OPML outline.
 
-    >>> mailboxesBefore = agent.list('INBOX.testyarss2imap')[1]
+    >>> mailboxesBefore = agent.imap.list('INBOX.testyarss2imap')[1]
     >>> from main import YImportCommandMessage
     >>> opmlCommandMessage = YImportCommandMessage(message=None, mailbox=None, messageUID=None, agent=agent)
     >>> opmlCommandMessage.opml = opml
     >>> opmlCommandMessage.execute(underMailbox='INBOX.testyarss2imap')
     'OK'
-    >>> mailboxesAfter = agent.list('INBOX.testyarss2imap')[1]
+    >>> mailboxesAfter = agent.imap.list('INBOX.testyarss2imap')[1]
     >>> newMailboxes = [mailbox for mailbox in mailboxesAfter if mailbox not in mailboxesBefore]
     >>> len(newMailboxes)
     3
@@ -243,7 +235,7 @@ What would be great would be :
     >>> newMailboxes = ['"' + re.search('\(.*\) ".*" "(.*)"', mb.decode()).groups()[0] + '"' for mb in newMailboxes]
     >>> for mailbox in newMailboxes:
     ...     result = agent.select(mailbox)
-    ...     status, data = agent.uid('search', None, 'HEADER Subject "feed "')
+    ...     status, data = agent.imap.uid('search', None, 'HEADER Subject "feed "')
     ...     if len(data[0]) > 0:
     ...         print("Found")
     Found
@@ -263,7 +255,7 @@ What would be great would be :
 
     >>> for mailbox in newMailboxes:
     ...     result = agent.select(mailbox)
-    ...     status, data = agent.uid('search', None, 'HEADER Subject "feed "')
+    ...     status, data = agent.imap.uid('search', None, 'HEADER Subject "feed "')
     ...     if len(data[0]) > 0:
     ...         print("Found")
 
@@ -279,7 +271,7 @@ What would be great would be :
     0
     >>> opmlPart = email.mime.text.MIMEText(opmlFile.read(), 'xml')
     >>> msg.attach(opmlPart)
-    >>> status, data = agent.append('INBOX', '', imaplib.Time2Internaldate(time.time()), msg.as_bytes())
+    >>> status, data = agent.imap.append('INBOX', '', imaplib.Time2Internaldate(time.time()), msg.as_bytes())
     >>> status
     'OK'
 
@@ -289,7 +281,7 @@ What would be great would be :
     'OK'
     >>> for mailbox in newMailboxes:
     ...     result = agent.select(mailbox)
-    ...     status, data = agent.uid('search', None, 'HEADER Subject "feed "') 
+    ...     status, data = agent.imap.uid('search', None, 'HEADER Subject "feed "') 
     ...     if len(data[0]) > 0:
     ...         print("Found")
     Found
@@ -306,3 +298,45 @@ What would be great would be :
     >>> agent.logout()
     'BYE'
 
+
+# Features being considered for some future version
+
+It would be great if the following features existed, wouldn't it be ?
+
+- gmail IMAP accounts are supported 
+
+- when first started, a welcome/help message is generated and placed into the INBOX, with an invitation to let Siggg know about what you think about yarss2imap
+
+- a "diff http://" command allows this URL to be monitored and text diffs (diffs using html2text and diff) are posted as messages with the HTML attached for historical reference
+
+- error messages are posted in case a feed can't be updated.
+
+- some meaningful date is used in case the feed doesn't provide a date for entries.
+
+- connection nicely restarts after inactivity and an imaplib.IMAP4.abort exception
+
+- Siggg's magical feed sorting scheme gets implemented
+
+- attachments to feed entries (think podcast) become attachments to messages
+
+- email newsletters get sorted into folders named according to some extraction from the "From:" field of messages
+
+- this package is distributed as a Windows executable with the configuration file as an .ini file
+
+- if the URL of a feed command can't be parsed as a valid RSS or atom file, alternative RSS or atom links are searched in this HTML
+	and these links are posted in the body of the feed message with an \Unseen flag set for a notice
+
+- a "twitter @siggg" command allows @siggg's tweets to be monitored and posted as messages
+
+- a "facebook Jean.Millerat" command allows Jean.Millerat's posts on his Facebook wall to be monitored and posted as messages
+
+- a "reddit /r/aww" command allows the aww subreddit to be monitored (also "reddit /u/jeanAkaSiggg")
+
+- multithreading and timeouts are used to optimize the duration of updates
+
+- feed that didn't get updates for several years get a warning message
+
+- alerts are generated whenever the mailbox size is about to be reached
+
+- the feed command message gets the date of the latest update. 
+ 
