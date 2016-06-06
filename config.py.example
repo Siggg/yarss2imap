@@ -1,7 +1,9 @@
 test = 'OK'
-servername = 'imap.somedomain'
-port = 143
-username = 'someusername'
+servername = 'imap.gmail.com'
+port = 993
+# port = 143
+username = 'someusername@gmail.com'
 password = 'somepassword'
+# You can get an application-specific password for gmail accounts. Have a look at Google security settings.
 authorizedSender = 'someone@somewhere'
 mailbox = 'yarss2imap'     # this mailbox will be created under 'INBOX.'
