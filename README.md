@@ -1,7 +1,10 @@
 # yarss2imap
 
-Yet another RSS2imap feed aggregator. Runs as a python IMAP client that pushes RSS items into IMAP folders.
-Distributed under the GNU Affero General Public License v.3.0 (or later). Copyright 2016 Jean Millerat
+Welcome there ! This is Yet another RSS2imap feed aggregator. It runs as a python IMAP client that pushes RSS items into IMAP folders.
+
+Please drop me an email to say hello or tell me your thoughts about this piece of software : sig at akasig dot org
+
+Distributed under the GNU Affero General Public License v.3.0 (or later). Copyright 2016 Jean Millerat. See the license section below for more information.
 
 # Quickstart
 
@@ -62,9 +65,15 @@ Let's create an empty test mailbox.
     >>> agent.select(mailbox='INBOX.testyarss2imap')
     'OK'
     >>> agent.imap.uid('search', None, 'HEADER Subject ""')
-    ('OK', [b''])
+    ('OK', [b'1'])
     >>> agent.imap.list('INBOX.testyarss2imap')[0]
     'OK'
+
+It's not empty because it was populated with a README message at creation.
+
+    >>> subject = agent.imap.uid('fetch', '1', '(BODY[HEADER.FIELDS (SUBJECT)])')[1][0][1].decode()
+    >>> 'Welcome to yarss2imap' in subject
+    True
 
 We can load the example feed from my blog.
 
@@ -197,7 +206,6 @@ There are as many items in that folder as before. No more, no less.
     >>> nbOfItems == len(agent.imap.uid('search', None, 'ALL')[1][0].split())
     True
 
-
 # OPML import
 
     We have a local example of an OPML file (downloaded from http://www.howtocreate.co.uk/tutorials/jsexamples/sampleOPML.xml).
@@ -288,7 +296,6 @@ There are as many items in that folder as before. No more, no less.
     Found
     Found
 
-
 # Cleanup and logout 
 
     >>> agent.purge(mailbox='INBOX.testyarss2imap')
@@ -298,20 +305,29 @@ There are as many items in that folder as before. No more, no less.
     >>> agent.logout()
     'BYE'
 
+# License
+
+GNU Affero General Public License (AGPL)
+
+Copyright (c) 2016 by Jean Millerat, 76 avenue de Beaujeu, 78990 ELANCOURT (sig at akasig dot org)
+
+This file is part of a program which is free software : you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+
+This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Affero General Public License for more details.
+
+You should have received a copy of the GNU Affero General Public License along with this program.
+
+If not, see http://www.gnu.org/licenses/ 
 
 # Features being considered for some future version
 
 It would be great if the following features existed, wouldn't it be ?
-
-- gmail IMAP accounts are supported 
 
 - when first started, a welcome/help message is generated and placed into the INBOX, with an invitation to let Siggg know about what you think about yarss2imap
 
 - a "diff http://" command allows this URL to be monitored and text diffs (diffs using html2text and diff) are posted as messages with the HTML attached for historical reference
 
 - error messages are posted in case a feed can't be updated.
-
-- some meaningful date is used in case the feed doesn't provide a date for entries.
 
 - connection nicely restarts after inactivity and an imaplib.IMAP4.abort exception
 
@@ -339,4 +355,4 @@ It would be great if the following features existed, wouldn't it be ?
 - alerts are generated whenever the mailbox size is about to be reached
 
 - the feed command message gets the date of the latest update. 
- 
+
